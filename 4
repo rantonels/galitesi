@@ -1,0 +1,237 @@
+\documentclass{article}
+\usepackage[margin=0.7in]{geometry}
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+    
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+
+\usepackage{physics}
+
+\newcommand{\ess}{\ensuremath{\mathbb{S}}}
+\newcommand{\ar}{\ensuremath{\mathbb{R}}}
+
+\newcommand{\T}{\ensuremath{\Theta}}
+%\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\hil}{\ensuremath{\mathcal{H}}}
+\newcommand{\cmnt}[1]{\emph{#1}}
+\newcommand{\intR}{\int_{-\infty}^\infty}
+\newcommand{\sumZ}{\sum_{n=-\infty}^{\infty}}
+
+    \title{Quantum particle on a circle}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    We study the probability amplitude for a quantum particle on a circle to return to its original position after a time $t$. This amplitude turns out to be a tempered distribution with an intricate structure of singularities on a dense set and transformation properties analogous to a modular form.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+\section{Quantum mechanics on $\ess^1$}
+\subsection{Schr\"odinger equation and propagators}
+
+Arguably, a minimal description of a quantum mechanical system is in terms of a separable complex Hilbert space $\hil$, the state space, an algebra $\mathcal{A}$ of operators acting on $\hil$, and, if there is interest in studying time-evolution, a selected hermitian operator $H \in \mathcal{A}$, the Hamiltonian.  
+
+The state, representing information available about the system, is encoded as a vector\footnote{This is actually only true for \emph{pure} (i.e., maximal) information. Imperfect/incomplete information, that is a mixed state, admits a representation as a state matrix but not as a state space vector. In addition, proportional vectors of $\hil$ map to the same pure state, so that the latter should better be made to correspond with rays of $\hil$. Both of these points are not relevant to our present discussion.} (ket) $\ket{\Psi(t)}$ in state space, where we have explicited the possibility that this knowledge is time-dependent. This possibility is realized, and information on the system at time $t=t_1$ determines the state at a later time $t=t_2$ by integration of the Schr\"odinger equation:
+
+\begin{equation}
+    i \hbar \dv{t}\ket{\Psi(t)} = H \ket{\Psi(t)}
+\end{equation}
+
+
+If, in addition, we exclude that the Hamiltonian depends explicitly on time, the Schr\"odinger equation can immediately be integrated through an operator exponential:
+
+\begin{equation}
+    \ket{\Psi(t_2)} = e^{-\frac{i}{\hbar} H (t_2-t_1)} \ket{\Psi(t_1)} 
+\end{equation}
+
+
+\cmnt{finire}
+
+\subsection{Review: free particle on $\mathbb{R}$}
+
+Consider the quantization of the simplest possible continuous classical system: the free particle in one dimension. This is the Hamiltonian system phase space $\ar^2$ (with the simple chart $(p,x)$) and the Hamiltonian $H(p,x) = \frac{p^2}{2}$ (having chosen units such that $m=1$). Configuration space is the real line. Consequently, the quantum description has as state a complex wavefunction with domain $\ar$, and evolution is according to the Hamiltonian
+
+\begin{equation}
+    H = - \frac{\partial_x^2}{2}\,.
+\end{equation}
+
+We are interested in calculation of the propagator $G(\Delta t, \Delta x)$. It is instructive to review the derivation of this Green function through both methods described before.
+
+We begin with the path integral picture.
+
+\cmnt{finire}
+
+the final expression for the propagator, which we call the Schr\"odinger kernel, is 
+
+\begin{equation}
+    G(t,x) = (2\pi i t)^{-1/2} \exp(\frac{i}{2} \frac{x^2}{t})\,.
+\end{equation}
+
+The same result can be obtained by diagonalization of $H$. As a simple derivative operator, it's obvious a basis of eigenfunctions of $H$ is given by the Fourier components $\phi_k(x) = e^{ikx}$. Each of them evolves according to
+
+\begin{equation}
+    \label{rfourierevolution}
+    \phi_k(x; t) = \exp(\frac{it}{2}\partial_x^2) \phi_k(x;0) = e^{-ik^{2}t/2} e^{ikx}\,.
+\end{equation}
+
+Our initial wavefunction is the (non-normalizable) delta function: $\Psi(x;0) = \delta(x)$. Recalling the Fourier representation of the distribution $\delta$:
+
+\begin{equation}
+    \psi(x;0) = \frac{1}{2\pi} \int_{-\infty}^\infty dk \; e^{ikx} 
+\end{equation}
+
+and inserting \eqref{rfourierevolution} we obtain the evolved state at a later time:
+
+\begin{equation}
+    \psi(x;t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} dk \; \exp( - i \frac{k^2}{2}t +  ikx ) = (2 \pi i t)^{-1/2} \exp(\frac{x^2}{2it}) \propto G(t,x)\,,
+\end{equation}
+
+in agreement with the first derivation.
+
+We note a paradoxical properties of the propagator. At any given $t$, $\abs{G(t,x)}^2 \equiv \frac{1}{2\pi t}$ identically for all $x$. The state at time $t>0$ would seem to assign uniform probability density to all positions on the real line, and is therefore non-normalizable. This behaviour becomes more intuitive in light of the Heisenberg uncertainty principle HUP, 
+or. At any given $t$, $\abs{G(t,x)}^2 \equiv \frac{1}{2\pi t}$ identically for all $x$. The state at time $t>0$ would seem to assign uniform probability density to all positions on the real line, and is therefore non-normalizable. This behaviour becomes more intuitive in light of the Heisenberg uncertainty principle (HUP), which states that for any state the variance of the position and momentum observables satisfy the inequality
+
+\begin{equation}
+    \sigma_x \sigma_p \geq \frac{1}{2}
+\end{equation}
+
+The initial $\delta$-function state is a position eigenstate, and thus has $\sigma_x = 0$. It follows that $\sigma_p = \infty$, and indeed the Fourier transform is the constant function.
+
+If any possible value of the momentum is equally likely, it makes sense that after any small time the particle could have moved to any point on the real line with equal probability. This statement of dubious rigorousness is as far as it is possible to go in the attempt to make physical sense of the propagator as an actual solution. In reality, physically realizable initial states are normalizable and will remain so as they evolve in time; nevertheless it will be possible to model such evolution through convolution with the Schr\"odinger kernel:
+
+\begin{equation}
+    \Phi(x;t) = \left(\Phi(0) * G(t) \right)(x) := \intR dx' \Phi(x',0) G(x-x',t)
+\end{equation}
+
+and since the kernel is a tempered distribution \cmnt{proof}, if $\Phi(x,0)$ is taken to be Schwartz so will be $\Phi(x,t)$. Thus the state will be normalizable at all times.
+
+\cmnt{convolution with gaussian?}
+
+\cmnt{heat equation}
+
+\subsection{Free particle on the circle}
+
+Let us consider now the case of interest for this work: a particle moving on the cirlce $\ess^1$. A change of units can fix the radius of the circle to any desired value; we take the circumference to be $1$. In a local chart, for example using an angle coordinate $x \in [0,1]$, the Schr\"odinger equation takes the form
+
+\begin{equation}
+    -i\partial_t \Psi(x;t) = - \frac{\partial_x^2}{2} \Psi(x;t)
+\end{equation}
+
+\begin{equation}    
+    \label{boundaryconds}
+    \Psi(0;t) = \Psi(1;t), \quad \partial_x \Psi(0;t) = \partial_x \Psi(1;t)
+\end{equation}
+
+Boundary conditions \eqref{boundaryconds} should be obvious intuitively; formally they can be derived easily by considering a second overlapping chart and imposing the Schr\"odinger equation applies there too.
+
+Again the goal is to determine the propagator, that is to say the generalized solution corresponding to a $\delta$-function initial condition.
+
+One way of integrating the equation is by exploiting the known non-compact solution through a method of images. The circle is interpreted as $\ess^1 = \ar / \mathbb{Z}$, that is the quotient of $\ar$ through the identification of points that differ by an integer. Thus, a free particle starting on a point $x_1$ in the circle at time $0$ and ending on another point $x_2$ after a certain time interval $t$ is equivalent to a free particle on $\mathbb{R}$ starting on $x_1 \in \mathbb{R}$ and ending up on \emph{any} representative $x_2 + n$, $n\in\mathbb{Z}$, of the class of $x_2$ under the equivalence relation. The index $n$ of the representative corresponds to the winding number, that is the number of turns around the circle performed by the particle before reaching $x_2$.
+
+\cmnt{immagine}
+
+In accordance with \eqref{amplitudessum} the amplitude for the particle on $\ess^1$ to move from $x_1$ to $x_2$ is equal to the sum over all images for the particle on $\ar$ to move from $x_1$ to that image over the same time interval. Therefore, setting again $x_1 = 0$ by translation invariance, the circle propagator is given by the sum over "unwrapped" propagators:
+
+\begin{equation}
+    A(x;t) := A(0,x;0,t) = \sumZ G(x + n; t)\,.
+\end{equation}
+
+Naively ignoring convergence issues, we would then obtain the sum \cmnt{occhio segni}
+
+\begin{equation}
+    A(x;t) = (2\pi i t)^{-1/2} \sumZ \exp(i \frac{(x+ n)^2}{2t})\,.
+\end{equation}
+
+Defining the variables\footnote{The reasoning behind the nature of the redefinitions will become apparent in the next section.} $\tau := 2\pi t $ and $z := \frac{x}{2\pi t}$ \cmnt{rifare}, this becomes
+
+\begin{equation}
+    A(x;t) = \exp(\frac{ix^2}{2t}) \frac{1}{\sqrt{2\pi i t}} \sumZ \exp( i\frac{1}{2t}n^2 + \ldots ) = \ldots \,;
+\end{equation}
+
+in particular, the probability amplitude for the particle to return to its original position ($x=0$) is
+
+\begin{equation}
+    A(0;t) = \frac{1}{\sqrt{2\pi i t}} \sumZ e^{i\frac{n^2}{2t}} =: \T(t)\,.
+\end{equation}
+
+The issue with the above is that the sum of oscillatory terms does not converge in any simple sense. (In fact, we will prove in \cmnt{proof!!} it almost never does converge pointwise). It does however converge in the sense of distributions in $t$ to a tempered distribution with highly singular behaviour. Our goal is to provide a complete description of the structure of this distribution. Since the $x$-dependence of the amplitude is not as fascinating as that on $\tau$, we will limit most of our considerations to the $x=0$ case, with no real loss of qualitative structure.
+
+Thus, the main focus of our attention is directed towards the $\T(t)$ "function".
+
+
+\section{Deconstructing \T(t)}
+
+\subsection{A resummation formula}\label{resummation}
+
+We will first simplify $\T(t)$ considerably. We recall the Poisson resummation formula: if $f(x)$ and $\hat f(k)$ are Fourier transforms\footnote{Note we use the ``physicist's'' convention with $\hat f(k) = \int dx\, e^{-ikx} f(x)$, so the argument of $\hat f$ is the wavenumber and $\xi$ is the inverse wavelength.} of eachother, then
+
+\begin{equation}
+    \sumZ f(n) = \sum_{\xi=-\infty}^{\infty} \hat f(2\pi\xi)\,,
+\end{equation}
+
+provided any of the two series converges at least distributionally. Taking $f(x) = e^{-i\frac{\pi}{\tau} x^2 }$, and thus $\hat f(k) = \sqrt{-i\tau} e^{i \frac{\tau}{4\pi} k^2}$, the equality reads (renaming dummy $\xi$ to $n$):
+
+\begin{equation}
+    \sumZ e^{-i\frac{\pi}{\tau} n^2 } = \sqrt{-i\tau} \sumZ e^{i\tau\pi n^2} \,,
+\end{equation}
+
+so that defining $\tau := 2\pi t$ the $\T(t)$ amplitude is rewritten as
+
+\begin{equation}
+    \T(t) = \sumZ e^{i\tau\pi n^2}
+\end{equation}
+
+\subsection{$\Im{\tau}>0$ and the modular group}
+
+It seems natural to try and promote $t$, or equivalently $\tau$, to complex variables. If $\tau$ is in the upper half plane the series is absolutely convergent pointwise, as
+
+\begin{equation}
+    | \exp(\pi i n^2 \tau) | \leq e^{-\pi n^2 \Im\tau}\,.
+\end{equation}
+
+In fact, the series converges to a function holomorphic on the upper half-plane, the Jacobi theta function:
+
+\begin{equation}
+\vartheta(z;\tau) := \sumZ \exp( \pi i n^2 \tau + 2\pi i n z )\,.
+\end{equation}
+
+The issue is that $\T(t)$ coincides with the theta function computed on the real axis, outside of its domain of convergence. We argue $\T(t)$ can be constructed as the limit $\lim_{\epsilon\rightarrow 0} \vartheta(0;\tau + i\epsilon)$, where the limit is taken distributionally; that is to say the distribution is specified by the following action on a test function $\varphi(t)$:
+
+\begin{equation}
+    \intR dt \, \T(t) \varphi(t)  := \lim_{\epsilon\rightarrow 0} \intR dt \, \vartheta(0; \tau + i \epsilon) \varphi(t)
+\end{equation}
+
+We will prove there is convergence in this sense in section \ref{sec:convergence}.
+
+$\vartheta(0;\tau)$ has remarkable transformation properties which carry over to $\Theta(t)$. These can be summarized in the following two identities that are of particular interest to us:
+
+\begin{align}
+    \vartheta(0; \tau + 2) = \vartheta(0; \tau)\,, \\
+    \vartheta(0; -\frac{1}{\tau}) = \sqrt{-i\tau} \, \vartheta(0; \tau)\,.
+\end{align}
+
+The first is evident from the derived expression. That the function is periodic of period $2$ in $\tau$ means that the propagator at time $t^* = \frac{1}{\pi}$, or recovering units $t^* = 4\pi \frac{mR^2}{\hbar}$, is equal to the propagator at time $0$. In other words, any quantum state on the circle repeats every $t^*$. This fact is less remarkable if one recalls that all energy eigenvalues on the circle, forming a complete basis, evolve in time with the simple phase factor $e^{int/t^*}$, with $n\in \mathbb{N}$, so that all wavefunctions must also share the same periodicity in time. Still, it means a quantum particle placed exactly at one point on a circle (that is, in a position eigenstate) will return to the original position with probability $1$ every $t*$.
+
+\subsection{Even rationals}
+\subsection{Odd rationals}
+\subsection{Distributional convergence}\label{sec:convergence}
+
+Consider the following series for real $\tau$:
+
+\begin{equation}
+    B(\tau) = \frac{1}{i\pi}\sumZ \frac{e^{i\pi\tau n^2} }{n^2}
+\end{equation}
+
+\section{Physical interpretation}
+\subsection{As a resonant system}
+
+
+
+
+\end{document}

@@ -1,0 +1,64 @@
+%% Creator: Inkscape inkscape 0.92.1, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'modgroup.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{963.00000646bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.47648562)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{modgroup.pdf}}%
+    \put(0.37845333,0.36679913){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11958193\unitlength}\raggedright \textbf{$D$}\end{minipage}}}%
+    \put(0.58378808,0.36522569){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11958193\unitlength}\raggedright \textbf{$TD$}\end{minipage}}}%
+    \put(0.78282904,0.36286551){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11958193\unitlength}\raggedright \textbf{$T^2D$}\end{minipage}}}%
+    \put(0.16210447,0.37230619){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11958193\unitlength}\raggedright \textbf{$T^{-1}D$}\end{minipage}}}%
+    \put(0.38160023,0.19135987){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11958193\unitlength}\raggedright \textbf{$SD$}\end{minipage}}}%
+    \put(0.30843497,0.13156891){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11958193\unitlength}\raggedright \textbf{$STD$}\end{minipage}}}%
+    \put(0.57670758,0.19686693){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11958193\unitlength}\raggedright \textbf{$TSD$}\end{minipage}}}%
+    \put(0.3399039,0.01592061){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11958193\unitlength}\centering \textbf{$0$}\end{minipage}}}%
+    \put(0.54128352,0.01480801){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11958193\unitlength}\centering \textbf{$1$}\end{minipage}}}%
+    \put(0.44095332,0.02024761){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11958193\unitlength}\centering \textbf{$\tfrac{1}{2}$}\end{minipage}}}%
+  \end{picture}%
+\endgroup%

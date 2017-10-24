@@ -1,0 +1,479 @@
+\documentclass{article}
+\usepackage[margin=1.3in]{geometry}
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+    
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+
+\usepackage{physics}
+\usepackage{mathtools} % arows
+\usepackage{color}
+
+\usepackage{xfrac} % fractions like/this
+
+
+\usepackage{pgf}
+
+
+\newcommand{\ess}{\ensuremath{\mathbb{S}}}
+\newcommand{\ar}{\ensuremath{\mathbb{R}}}
+
+\newcommand{\T}{\ensuremath{\vartheta}}
+%\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\hil}{\ensuremath{\mathcal{H}}}
+\newcommand{\cmnt}[1]{\textcolor{red}{\emph{#1}}}
+\newcommand{\intR}{\int_{-\infty}^\infty}
+\newcommand{\sumZ}{\sum_{n=-\infty}^{\infty}}
+\newcommand{\locint}{L_{1,\operatorname{loc}}}
+
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\newcommand{\immagine}[4]{
+    \begin{figure}[h]
+    \centering{
+    \def\svgwidth{\linewidth}
+    {\input{images/#1}}
+    \caption{#3}
+    \label{fig:#4}
+    }
+    \end{figure}
+}
+
+\title{Quantum particle on a circle}
+\author{Riccardo Antonelli}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    We study the probability amplitude for a quantum particle on a circle to return to its original position after a time $t$. This amplitude turns out to be a tempered distribution with an intricate structure of singularities on a dense set and transformation properties reminiscent of a modular form.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+\cmnt{introduzione}
+
+\section{Quantum mechanics on $\ess^1$}
+\subsection{Schr\"odinger equation and propagators}
+
+Arguably, a minimal description of a quantum mechanical system is in terms of a separable complex Hilbert space $\hil$, the state space, an algebra $\mathcal{A}$ of operators acting on $\hil$, and, if there is interest in studying time-evolution, a selected hermitian operator $H \in \mathcal{A}$, the Hamiltonian.  
+
+The state, representing information available about the system, is encoded as a vector\footnote{This is actually only true for \emph{pure} (i.e., maximal) information. Imperfect/incomplete information, that is a mixed state, admits a representation as a state matrix but not as a state space vector. In addition, proportional vectors of $\hil$ map to the same pure state, so that the latter should better be made to correspond with rays of $\hil$. Both of these points are not relevant to our present discussion.} (ket) $\ket{\Psi(t)}$ in state space, where we have explicited the possibility that this knowledge is time-dependent. This possibility is realized, and information on the system at time $t=t_1$ determines the state at a later time $t=t_2$ by integration of the Schr\"odinger equation:
+
+\begin{equation}
+    i \hbar \dv{t}\ket{\Psi(t)} = H \ket{\Psi(t)}
+\end{equation}
+
+
+If, in addition, we exclude that the Hamiltonian depends explicitly on time, the Schr\"odinger equation can immediately be integrated through an operator exponential:
+
+\begin{equation}
+    \ket{\Psi(t_2)} = e^{-\frac{i}{\hbar} H (t_2-t_1)} \ket{\Psi(t_1)} 
+\end{equation}
+
+
+\cmnt{finire}
+
+\subsection{Review: free particle on $\mathbb{R}$}
+
+Consider the quantization of the simplest possible continuous classical system: the free particle in one dimension. This is the Hamiltonian system phase space $\ar^2$ (with the simple chart $(p,x)$) and the Hamiltonian $H(p,x) = \frac{p^2}{2}$ (having chosen units such that $m=1$). Configuration space is the real line. Consequently, the quantum description has as state a complex wavefunction with domain $\ar$, and evolution is according to the Hamiltonian
+
+\begin{equation}
+    H = - \frac{\partial_x^2}{2}\,.
+\end{equation}
+
+We are interested in calculation of the propagator $G(\Delta t, \Delta x)$. It is instructive to review the derivation of this Green function through both methods described before.
+
+We begin with the path integral picture.
+
+\cmnt{finire}
+
+the final expression for the propagator, which we call the Schr\"odinger kernel, is 
+
+\begin{equation}
+    G(t,x) = (2\pi i t)^{-1/2} \exp(\frac{i}{2} \frac{x^2}{t})\,.
+\end{equation}
+
+The same result can be obtained by diagonalization of $H$. As a simple derivative operator, it's obvious a basis of eigenfunctions of $H$ is given by the Fourier components $\phi_k(x) = e^{ikx}$. Each of them evolves according to
+
+\begin{equation}
+    \label{rfourierevolution}
+    \phi_k(x; t) = \exp(\frac{it}{2}\partial_x^2) \phi_k(x;0) = e^{-ik^{2}t/2} e^{ikx}\,.
+\end{equation}
+
+Our initial wavefunction is the (non-normalizable) delta function: $\Psi(x;0) = \delta(x)$. Recalling the Fourier representation of the distribution $\delta$:
+
+\begin{equation}
+    \Psi(x;0) = \frac{1}{2\pi} \int_{-\infty}^\infty dk \; e^{ikx} 
+\end{equation}
+
+and inserting \eqref{rfourierevolution} we obtain the evolved state at a later time:
+
+\begin{equation}
+    \Psi(x;t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} dk \; \exp( - i \frac{k^2}{2}t +  ikx ) = (2 \pi i t)^{-1/2} \exp(-\frac{x^2}{2it}) \propto G(t,x)\,,
+\end{equation}
+
+in agreement with the first derivation.
+
+We note a paradoxical properties of the propagator. At any given $t$, $\abs{G(t,x)}^2 \equiv \frac{1}{2\pi t}$ identically for all $x$. The state at time $t>0$ would seem to assign uniform probability density to all positions on the real line, and is therefore non-normalizable. This behaviour becomes more intuitive in light of the Heisenberg uncertainty principle (HUP), which states that for any state the variance of the position and momentum observables satisfy the inequality
+
+\begin{equation}
+    \sigma_x \sigma_p \geq \frac{1}{2}
+\end{equation}
+
+The initial $\delta$-function state is a position eigenstate, and thus has $\sigma_x = 0$. It follows that $\sigma_p = \infty$, and indeed the Fourier transform is the constant function.
+
+If any possible value of the momentum is equally likely, it makes sense that after any small time the particle could have moved to any point on the real line with equal probability. This statement of dubious rigorousness is as far as it is possible to go in the attempt to make physical sense of the propagator as an actual solution. In reality, physically realizable initial states are normalizable and will remain so as they evolve in time; nevertheless it will be possible to model such evolution through convolution with the Schr\"odinger kernel:
+
+\begin{equation}
+    \Phi(x;t) = \left(\Phi(0) * G(t) \right)(x) := \intR dx' \Phi(x',0) G(x-x',t)
+\end{equation}
+
+and since the kernel is a tempered distribution \cmnt{proof}, if $\Phi(x,0)$ is taken to be Schwartz so will be $\Phi(x,t)$. Thus the state will be normalizable at all times.
+
+\cmnt{convolution with gaussian?}
+
+\cmnt{heat equation}
+
+\subsection{Free particle on the circle}
+
+Let us consider now the case of interest for this work: a particle moving on the cirlce $\ess^1$. A change of units can fix the radius of the circle to any desired value; we take the circumference to be $1$. In a local chart, for example using an angle coordinate $x \in [0,1]$, the Schr\"odinger equation takes the form
+
+\begin{equation}
+    -i\partial_t \Psi(x;t) = - \frac{\partial_x^2}{2} \Psi(x;t)
+\end{equation}
+
+\begin{equation}    
+    \label{boundaryconds}
+    \Psi(0;t) = \Psi(1;t), \quad \partial_x \Psi(0;t) = \partial_x \Psi(1;t)
+\end{equation}
+
+Boundary conditions \eqref{boundaryconds} should be obvious intuitively; formally they can be derived easily by considering a second overlapping chart and imposing the Schr\"odinger equation applies there too.
+
+Again the goal is to determine the propagator, that is to say the generalized solution corresponding to a $\delta$-function initial condition.
+
+One way of integrating the equation is by exploiting the known non-compact solution through a method of images. The circle is interpreted as $\ess^1 = \ar / \mathbb{Z}$, that is the quotient of $\ar$ through the identification of points that differ by an integer. Thus, a free particle starting on a point $x_1$ in the circle at time $0$ and ending on another point $x_2$ after a certain time interval $t$ is equivalent to a free particle on $\mathbb{R}$ starting on $x_1 \in \mathbb{R}$ and ending up on \emph{any} representative $x_2 + n$, $n\in\mathbb{Z}$, of the class of $x_2$ under the equivalence relation. The index $n$ of the representative corresponds to the winding number, that is the number of turns around the circle performed by the particle before reaching $x_2$.
+
+\cmnt{immagine}
+
+In accordance with \eqref{amplitudessum} the amplitude for the particle on $\ess^1$ to move from $x_1$ to $x_2$ is equal to the sum over all images for the particle on $\ar$ to move from $x_1$ to that image over the same time interval. Therefore, setting again $x_1 = 0$ by translation invariance, the circle propagator is given by the sum over "unwrapped" propagators:
+
+\begin{equation}
+    A(x;t) := A(0,x;0,t) = \sumZ G(x + n; t)\,.
+\end{equation}
+
+Naively ignoring convergence issues, we would then obtain the sum
+
+\begin{equation}
+    A(x;t) = (2\pi i t)^{-1/2} \sumZ \exp(i \frac{(x+ n)^2}{2t})\,.
+\end{equation}
+
+Defining the variables\footnote{The reasoning behind the nature of the redefinitions will become apparent in the next section.} $\tau := - 2\pi t $ and $z := - x$, this becomes
+
+\begin{equation}
+    A(x;t) = \exp(\frac{ix^2}{2t}) \frac{1}{\sqrt{2\pi i t}} \sumZ \exp( \frac{in^2}{2t} + \frac{ixn}{t} ) 
+\end{equation}
+
+
+\begin{equation}
+    = e^{-i\pi z^2 \tau}\, \frac{1}{\sqrt{-i\tau}} \sumZ \exp(-\frac{\pi i n^2}{\tau} +  \frac{2\pi i n z}{\tau})   \,;
+\end{equation}
+
+
+in particular, the probability amplitude (density) for the particle to return to its original position ($x=0$) is
+
+\begin{equation}
+    A(0;t) = \frac{1}{\sqrt{-i\tau}} \sumZ e^{-{i \pi n^2}/{\tau}} =: \T(\tau)\,.
+\end{equation}
+
+The issue with the above is that the sum of oscillatory terms does not converge in any simple sense. (In fact, we will prove in \cmnt{proof!!} it almost never does converge pointwise). It does however converge in the sense of distributions in $t$ to a tempered distribution with highly singular behaviour. Our goal is to provide a complete description of the structure of this distribution. Since the $x$-dependence of the amplitude is not as fascinating as that on $\tau$, we will limit most of our considerations to the $x=0$ case, with no real loss of qualitative structure. We will recover the $x$ dependence after, in the discussion of fractional revivals and the physical interpretation of the amplitude.
+
+Thus, the main focus of our attention is directed towards the $\T(\tau)$ "function".
+
+
+\section{Deconstructing $\T(\tau)$}
+
+\cmnt{breve introduzione}
+
+\subsection{A resummation formula}\label{resummation}
+
+We will first simplify $\T(t)$ considerably. We recall the Poisson resummation formula: if $f(x)$ and $\hat f(k)$ are Fourier transforms\footnote{Note we use the ``physicist's'' convention with $\hat f(k) = \int dx\, e^{-ikx} f(x)$, so the argument of $\hat f$ is the wavenumber and $\xi$ is the inverse wavelength.} of eachother, then
+
+\begin{equation}
+    \sumZ f(n) = \sum_{\xi=-\infty}^{\infty} \hat f(2\pi\xi)\,,
+\end{equation}
+
+provided any of the two series converges at least distributionally. Taking $f(x) = e^{-i\frac{\pi}{\tau} x^2 }$, and thus $\hat f(k) = \sqrt{-i\tau} e^{i \frac{\tau}{4\pi} k^2}$, the equality reads (renaming dummy $\xi$ to $n$):
+
+\begin{equation}
+    \sumZ e^{-i\frac{\pi}{\tau} n^2 } = \sqrt{-i\tau} \sumZ e^{i\tau\pi n^2} \,,
+\end{equation}
+
+so that the $\T(\tau)$ amplitude is rewritten as
+
+\begin{equation}
+    \T(\tau) = \sumZ e^{i\tau\pi n^2}
+\end{equation}
+
+\subsection{$\Im{\tau}>0$ and the modular group} \label{sec:modular}
+
+It seems natural to try and promote $t$, or equivalently $\tau$, to complex variables. If $\tau$ is in the upper half plane the series is absolutely convergent pointwise, as
+
+\begin{equation}
+    | \exp(\pi i n^2 \tau) | \leq e^{-\pi n^2 \Im\tau}\,.
+\end{equation}
+
+In fact, the series converges to a function holomorphic on the upper half-plane, the Jacobi theta function:
+
+\begin{equation}
+\vartheta(z;\tau) := \sumZ \exp( \pi i n^2 \tau + 2\pi i n z )\,.
+\end{equation}
+
+The issue is that $\T(\tau)$ coincides with the theta function computed on the real axis, outside of its domain of convergence. We argue $\T(t)$ can be constructed as the limit $\lim_{\epsilon\rightarrow 0} \vartheta(0;\tau + i\epsilon)$, where the limit is taken distributionally; that is to say the distribution is specified by the following action on a test function $\varphi(t)$:
+
+\begin{equation}
+    \intR dt \, \T(t) \varphi(t)  := \lim_{\epsilon\rightarrow 0} \intR dt \, \vartheta(0; \tau + i \epsilon) \varphi(t)
+\end{equation}
+
+We will prove there is convergence in this sense in section \ref{sec:convergence}.
+
+$\vartheta(0;\tau)$ has remarkable transformation properties which carry over to $\T(\tau)$. These can be summarized in the following two identities that are of particular interest for the study of $\T(\tau)$:
+
+\begin{align}
+    \vartheta(0; \tau + 2) = \vartheta(0; \tau)\,, \label{t2map}\\
+    \vartheta(0; -\tfrac{1}{\tau}) = \sqrt{-i\tau} \, \vartheta(0; \tau)\,. \label{smap}
+\end{align}
+
+The first is evident from the derived expression. That the function is periodic of period $2$ in $\tau$ means that the propagator at time $t^* = \frac{1}{\pi}$, or recovering units $t^* = 4\pi \frac{mR^2}{\hbar}$, is equal to the propagator at time $0$. In other words, any quantum state on the circle repeats every $t^*$. This fact is less remarkable if one recalls that all energy eigenvalues on the circle, forming a complete basis, evolve in time with the simple phase factor $e^{int/t^*}$, with $n\in \mathbb{N}$, so that all wavefunctions must also share the same periodicity in time. Still, it means a quantum particle placed exactly at one point on a circle (that is, in a position eigenstate) will return to the original position with probability $1$ every $t*$.
+
+\newcommand{\modg}{PSL(2,\mathbb{Z})}
+
+The second relation is however especially important in combination with the first. The two transformations in terms of $\tau$ belong to the modular group $\modg$, which is composed of all maps of the form
+
+\begin{equation}
+    \tau \rightarrow \frac{a \tau + b}{c\tau + d}\,, \quad a,b,c,d \in \mathbb{Z}\,,\; ad - bc = 1\,.
+\end{equation}
+
+These are all diffeomorphisms from the upper half-plane to itself. They can also be extended to act on the real axis, provided the latter is compactified with a point at infinity as $\hat{\mathbb{R}} = \mathbb{R} \cup \{\infty\}$. The modular group is also realizable as a matrix group: if a modular transformation is represented by the unitary integer matrix
+
+\begin{equation}
+    \mqty( a & b \\ c & d)
+\end{equation}
+
+then composition of modular maps is seen to coincide with matrix multiplication; this translates into a homomorphism from the modular group to $SL(2,\mathbb{Z})$. Since opposite matrices $A$ and $-A$ yield the same modular transformation, this can be turned into an isomorphism by quotienting the sign ambiguity: $SL(2,\mathbb{Z})/\mathbb{Z}_2 = PSL(2,\mathbb{Z})$ is therefore the modular group.
+
+$\modg$ has an obvious but powerful property of mapping rationals to rationals (or better, extended rationals $\hat{\mathbb{Q}} = \mathbb{Q} \cup \{\infty\}$), and moreover this action is transitive, in the sense that given rationals $r$ and $s$ there exists a modular map sending $r\mapsto s$. The modular group is generated by the two transformations:
+
+\begin{align}
+   && T : \tau \rightarrow \tau + 1\,, \quad& T=\mqty(1 & 1 \\ 0 & 1) && \\
+   && S : \tau \rightarrow -1/\tau\,, \quad& S=\mqty(0 & -1 \\ 1 & 0) &&
+\end{align}
+
+The Jacobi theta function $\vartheta(z,\tau)$ has well-defined transformation properties under $T$ and $S$, implying the same holds for general modular transformations. However, the transformation under $T$ involves a shift in the variable $z$, which is not especially useful for our purposes. The transformations that do keep $z$ constant are generated by maps \eqref{t2map} and \eqref{smap}:
+
+\begin{align}
+   && T^2 : \tau \rightarrow \tau + 2\,, \quad& T^2=\mqty(1 & 2 \\ 0 & 1) && \\
+   && S : \tau \rightarrow -1/\tau\,, \quad& S=\mqty(0 & -1 \\ 1 & 0) &&
+\end{align}
+
+\newcommand{\emodg}{\Lambda}
+
+These do generate a proper subgroup of $PSL(2,\mathbb{Z})$, as we will show now, which we call $\emodg$. Define the notion of \emph{parity} of a reduced fraction $p/q$ as the parity of $pq$. (The parity of $\infty \in \hat{\mathbb{Q}}$ is taken to be the same as $0$, so even). It's clear this parity is invariant under action of $\emodg$; moreover since at least two rationals of opposite parity exist (e.g. $0$ and $1$), transitivity implies $\emodg$ and $PSL(2,\mathbb{Z})$ cannot coincide.
+
+\renewcommand{\deg}{{}^{\circ}}
+
+\immagine{modgroup.pdf_tex}{20cm}{A fundamental domain $D$ for $\modg$ in the upper half plane (an ideal triangle with angles $0\deg$, $30 \deg$, $30 \deg$, and a few of its images under elements of the modular group. The quadrilateral $D \cup TD$ is a fundamental domain for $\emodg$.}{modular}
+
+What is more useful is that there are \emph{only} two orbits, in the sense that any rational $r$ can be mapped through an element of $\emodg$ to either $0$ or $1$ depending on its parity. We consider the following explicit algorithm.
+
+Taken a rational $r = \pm \frac{p}{q}$ in lowest terms, $r\neq 0, 1$,
+
+\begin{itemize}
+    \item if $r < -1$ or $r > 1$, apply relevant power of $T^2$ to place it in $[-1,1]$
+    \item apply $S$
+\end{itemize}
+
+The above procedure has the property of always decreasing the magnitude of either $p$ or $q$. Since these are positive integers, iteration of the procedure has to reach $0$ or $1$ in a finite number of steps. A couple examples:
+
+\newcommand{\sapp}{\,\;\ensuremath{\xrightarrow{\mathmakebox[2em]{S}}}\;\,}
+%\newcommand{\tappz}{\ensuremath{\xrightarrow{T^2}}}
+\newcommand{\tapp}[1]{\,\;\xrightarrow{\mathmakebox[2em]{(T^2)^{#1}}}\;\,}
+
+\begin{equation}
+    \frac{13}{4} \tapp{-2} - \frac{3}{4} \sapp \frac{4}{3} \tapp{-1} - \frac{2}{3} \sapp \frac{3}{2} \tapp{-1} -\frac{1}{2} \sapp 2 \tapp{-1} 0
+\end{equation}
+
+\begin{equation}
+    \frac{7}{9} \sapp - \frac{9}{7} \tapp{1} \frac{5}{7} \sapp -\frac{7}{5} \tapp{1} \frac{3}{5} \sapp - \frac{5}{3} \tapp{1} \frac{1}{3} \sapp -3 \tapp{2} 1
+\end{equation}
+
+Returning to our physical object of interest, the amplitude, we see that properties \eqref{t2map} and \eqref{smap} relate the behaviour of $\T$ at a rational time\footnote{We are, of course, here referring to the normalized time $\tau$ for simplicity.} with the behaviour at time $0$ or $1$ depending on the parity. Therefore $\T$ has a sort of self-similar structure, and any qualitative features present at the points $0$ and $1$ will be repeated infinitely in two dense sets. For example, we anticipate (though this will be studied more precisely) that the amplitude has a $\tau^{-1/2}$ singularity for $\tau$ close to zero, since for very small time the propagator on a circle is expected to reduce to that of the free particle. If so, then there must also be a similar singularity at all even rationals; therefore $\T$ has a dense set of singularities.
+
+\cmnt{magari definire $\vartheta(\tau) = \vartheta(0;\tau)$, magari farlo prima? Lavorare con $\T$ è una schifezza assoluta}
+
+
+\subsection{Even rationals}
+
+It is easy to show $\T$ ``should'' have a $\sim \tau^{-1/2}$ singularity near $\tau = 0$. Indeed, applying  \eqref{smap}:
+
+\begin{equation}
+    \vartheta(\tau) = \sqrt{\frac{i}{\tau}} \sumZ e^{-i\pi n^2 \frac{1}{\tau}}\,.
+\end{equation}
+
+Naively, all terms in the sum except $n=0$ are oscillatory and supposedly cancel for small times, and $\vartheta(\tau) \sim \sqrt{\frac{i}{\tau}}$. This corresponds to physical intuition: the propagator should reduce to the free particle propagator for very short times, in which the particle has not yet "probed" the global structure of the circle. If this is true, however, then similar singularities should be repeated at any even rational point. Thus $\T$ would have infinite singularities, and thus be unbounded, in any given interval. This makes it impossible for it to be ever asymptotic to $\tau^{-1/2}$ in the first place.
+
+The asymptotic behaviour must not of course be interpreted as direct but in a distributional sense. In particular, a more sensible definition is that for a family of Schwartz functions $f_\sigma(\tau) = f(\tau/\sigma)$ the evaluation of $\vartheta$ on $f_\sigma$ is asymptotic to that of $f_\sigma$ on the tempered distribution $A t^{-1/2}$ for some constant $A$. In integration against a Schwartz function we expect the secundary singularities at each even rational to matter less and less as we approach the main singularity at $\tau = 0$. We now test explicitly $\vartheta$ against a family of shrinking Gaussians and verify this intuition.
+
+Consider the normalized Gaussian $g_\sigma(\tau) = \frac{1}{\sigma \sqrt{2\pi}} \exp(-\frac{\tau^2}{2\sigma^2})$. The integral of $g_\sigma(\tau)$ against $A \tau^{-1/2}$ is
+
+\begin{equation}
+    \bra{\tau^{-1/2}}\ket{g_\sigma} =  A \intR d\tau \, g_\sigma(\tau) \tau^{-1/2} = \frac{2A}{\sigma\sqrt{2\pi}} 2^{1/4} \sqrt\sigma \int_0^\infty dx e^{-x} x^{-3/4} = \frac{A\Gamma(\frac{1}{4})}{2^{1/4}\sqrt{\pi\sigma}}\,.
+\end{equation}
+
+On the other hand, if $g_\sigma(\tau)$ is integrated against $\vartheta$, we obtain
+
+\begin{equation}
+    \bra{\vartheta}\ket{g_\sigma} = \sumZ \int d\tau \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{\tau^2}{2\sigma^2} + i\pi\tau n^2}  = \sumZ \exp(-\pi^2 \sigma^2 n^4 / 2)\,; 
+\end{equation}
+
+only the asymptotic behaviour for small $\sigma$ is relevant. Defined $N^4 := 2 \pi^{-2} \sigma^{-2}$, the summand is slowly-varying for large $N$. Thus we can approximate as an integral:
+
+\begin{equation}
+    = N \sumZ \frac{1}{N} \exp(-\frac{n^4}{N^4}) \sim N \intR d\xi \, e^{-\xi^4} = 2 N \, \Gamma(\tfrac{5}{4}) = \frac{2^{-3/4}}{\sqrt{\pi\sigma}} \Gamma(\tfrac{1}{4})\,.
+\end{equation}
+
+It is therefore seen%\footnote{The doubt might arise that $\vartheta(\tau)$ also has a component with support in $\{0\}$ that is invisible to the family of gaussian (in the sense that its integral against $g_\sigma$ is independent on $\sigma$). However, this component must be a linear combination of $\delta$ derivatives; the even derivatives do yield positive powers of $\sigma$ and are to be excluded,  }
+\ that the action of $\vartheta$ on a Schwartz function shrinking around $\tau=0$ is asymptotic to that of the distribution $\sqrt{\frac{i}{\tau}}$.
+
+\cmnt{remap to all even rationals}
+
+Now that the existence of this singularity has been ascertained, let us verify a reduced copy of it exists at any even rational. Imagine the even rational $a$ gets mapped to the even rational $b$ by one step of the iterative procedure described in section \ref{sec:modular}. Assume it is known that in the vicinity of $b$ there is an inverse square-root singularity:
+
+\begin{equation}
+    \vartheta(b + \delta\tau') \sim K \delta \tau^{-1/2}
+\end{equation}
+
+Now, if $a$ and $b$ are related by a simple translation $(T^2)^n$, then it's obvious this singularity is copied with no change in the constant $K$ by the periodicity property \eqref{t2map}. If instead they are related by the map $S$, and $b = -1/a$, then
+
+\begin{equation}
+    \vartheta(a + \delta\tau) = \sqrt\frac{i}{a} \vartheta\left(-\frac{1}{a+\delta\tau}\right) \sim \sqrt\frac{i}{a} \vartheta(b + \frac{\delta \tau}{a^2}) = \sqrt{ia} K \delta\tau^{-1/2}\,,
+\end{equation}
+
+so that $a$ inherits the singularity of $b$ but suppressed by a factor of $\sqrt{a}$. By simple induction, a singularity appears at any even rational $\pm p/q$, and the constant of proportionality $K_{p/q}$ is equal to the square root of the product of all rational encountered in the procedure towards $\tau = 0$ at each application of $S$; it's clear this is simply $|K_{p/q}| = 1/\sqrt{q}$. So, in the vicinity of $p/q$ the distribution $\vartheta$ behaves as
+
+\begin{equation}
+    \vartheta(\tau) \sim \frac{1}{\sqrt{p-q\tau}}
+\end{equation}
+
+\cmnt{è possibile anche fare un calcolo della fase delle singolarità? Credo di sì}
+
+\subsection{Odd rationals}
+
+The point $\tau=1$ is equally peculiar. We argue $\vartheta$ vanishes there along with all of its distributional derivatives $\dv[k]{t} \vartheta(\tau)$. Again, the statement as it stands is non-sensical unless it is reformulated in distributional language because of the dense set of singularities. To express it we introduce again a family of shrinking Schwartz functions $f_\sigma(\tau) = f((\tau-1)/\sigma)$, this time centered around $1$. We claim that, for all $k \in \mathbb{N}$,
+
+\begin{equation}
+    \lim_{\sigma \rightarrow 0} \bra{ \dv[k]{t}\vartheta}\ket{ f_\sigma } = 0
+\end{equation}
+
+As before, it suffices to test against shrinking normalized Gaussians $g_\sigma(\tau) = \frac{1}{\sigma\sqrt{2\pi}} \exp( - \frac{\tau^2}{2\sigma^2} )$. We find
+
+\begin{equation}
+    \bra{\dv[k]{t}\vartheta}\ket{g_\sigma} = \sumZ (i\pi n^2)^k \frac{1}{\sigma\sqrt{2\pi}} \intR d\tau e^{- \frac{(\tau-1)^2}{2\sigma^2} + i\pi\tau n^2} = \sumZ (i\pi n^2)^k \exp( - \frac{\pi^2 \sigma^2 n^4}{2} + i\pi n^2)
+\end{equation}
+
+\begin{equation}\label{alternatingser}
+    = (i\pi)^k \sumZ n^{2k} (-1)^n e^{-\pi^2 \sigma^2 n^4/2} =: (i\pi)^k S_k(\sigma)\,.\quad\quad(0^0 = 1)
+\end{equation}
+
+The series \eqref{alternatingser} is absolutely convergent for any positive $\sigma$ and natural $k$. Defined again $N^4 := 2/(\pi^2 \sigma^2)$, we intend to show  $\lim_{N \rightarrow \infty} S_k = 0$. First we recognize that $S_k$ it is a residue sum for the poles of the meromorphic function
+
+\begin{equation}
+    F_{k,N}(z) = \frac{\pi}{\sin{\pi z}} z^{2k} \exp(-\frac{z^4}{N^4})\,,
+\end{equation}
+
+%A heuristic reasoning that points to $\lim_{\sigma \rightarrow 0} S_k(\sigma) = 0$ is as follows. Rewrite the alternating series by arranging terms in pairs:
+
+%\begin{equation}
+%    S_k(\sigma) = \sum_m (2m)^k e^{-a^2 (2m)^4}  - (2m-1)^{k-1} e^{-a^2 (2m-1)^4}
+%\end{equation}
+
+which indeed has poles at all $n \neq 0$ with residue $(-1)^n n^{2k} e^{-n^4/N^4}$, and another pole at $0$ with residue $1$ for $k=0$ only, so that there is match with $S_k$ for any $k$. By the residue theorem, a partial sum for $S_k$ is $1/(2\pi i)$ the contour integral of $F$ around a loop circling the relevant poles; in the limit the entire sum is equal to the integral along a pair of lines:
+
+\begin{equation}
+    2\pi i S_k = -\int_{-\infty}^\infty F_{k,N}(\rho + it) d\rho + \int_\infty^\infty F_{k,N}(\rho-it)d\rho\,;
+\end{equation}
+
+And this limit is sensible since $F(z)$ is exponentially decaying for $\abs{z} \rightarrow \infty$ as long as $\arg{z} \neq (m+\frac{1}{2}) \frac{\pi}{2}$. Using $F(-z) = - F(z)$ we reduce the integral to the half-line:
+
+\begin{equation}
+    - \pi i S_k = \int_{it}^{it + \infty} \frac{\pi}{\sin{\pi z}} z^{2k} \exp(-\frac{z^4}{N^4})\,dz\,,
+\end{equation}
+
+Then, with the substitution $z = N \xi$:
+
+\begin{equation}
+    = N^{1+2k} \int_{it/N}^{it/N + \infty} \frac{\pi}{\sin{\pi N \xi}} \xi^{2k} \exp(-\xi^4) d\xi\,.
+\end{equation}
+
+Note $t$ was arbitrary, so we can choose to fix a constant $it/N =: K$. In addition, for large enough $N$, $\abs{\sin(\pi N \xi)} = \abs{\sin(\pi N (\Re \xi + iK))} \geq C e^{\pi N K}$ for some constant $C$. Thus the absolute value of the integral is bounded:
+
+\begin{equation}
+    \pi \abs{S_k} \leq N^{1+2k} \frac{\pi}{C} e^{-\pi N K} \int_0^{\infty} \abs{\xi}^{2k} \exp(-\Re{\xi^{4}}) d\Re\xi\,,
+\end{equation}
+
+and the last integral is a finite constant depending only on $K$. We can finally send $N\rightarrow \infty$ while keeping $K$ constant. Therefore $S_k \rightarrow 0$ for $N\rightarrow \infty$, for all $k$.
+
+Having ascertained the existence of the "flat point" of $\vartheta$ in $\tau = 1$, it is now trivial to verify this structure is copied at all odd rationals through the action of the group $\emodg$.
+
+\subsection{Distributional convergence}\label{sec:convergence}
+
+We are now set to prove that there is convergence in the sense of tempered distributions of the series
+
+\begin{equation}
+    \vartheta(\tau) = \sumZ e^{i\pi \tau n^2}\,.
+\end{equation}
+
+By this, we mean that defined $\vartheta_N(\tau)$ as the partial sum with $|n| < N$, given any Schwartz function $f(\tau)$ the evaluation of $\vartheta_N$ over $f$ converges to a finite value for $N\rightarrow\infty$. The partial sum evaluations however are
+
+\begin{equation}
+    \intR d\tau \, \vartheta_N(\tau) f(\tau) = \sum_{|n|<N} \intR d\tau\, e^{i\pi\tau n^2} f(\tau) = \sum_{|n|<N} \hat f(-\pi n^2)\,,
+\end{equation}
+
+having recognized the Fourier transform of $f(\tau)$. We recall that the Fourier transform of a Schwartz function is itself Schwartz. This means $\norm\big{\hat f}_{1,0} = \sup_\tau \abs\big{\tau \hat f(\tau)}$ is finite, and thus $\abs\big{\hat f(\tau)} \leq C/\abs{\tau}$ for some $C>0$, so that the above series is absolutely convergent. Thus, $\T(\tau)$ is a well-defined tempered distribution.
+
+Equivalently, we have just proven that the Fourier transform of the $\T(\tau)$ distribution, which is the ``quadratic $\delta$ comb'':
+
+\begin{equation}
+    \hat \T(\omega) = \sumZ \delta(\omega + \pi n^2)
+\end{equation}
+
+is a well-defined tempered distribution.
+
+
+
+\cmnt{Segue dimostrazione alternativa con l'integrale, magari spostare in una sezione apposita con grafico di $B$}
+
+Consider the following series for real $\tau$:
+
+\begin{equation}
+    B(\tau) = \frac{1}{i\pi}\sumZ \frac{e^{i\pi\tau n^2} }{n^2}
+\end{equation}
+
+The series is absoutely convergent and limited as a function of $\tau$, as $\sum_{n=0}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}$. Therefore, $B(\tau)$ is a well-defined function in $\locint$.
+
+\section{Physical interpretation}
+
+\subsection{Fractional revivals and antirevivals}
+
+%\immagine{3dplots/1-3.pgf}{20cm}{ }{13}
+\input{images/3dplots/1-3.pgf}
+\input{images/3dplots/0-1.pgf}
+\input{images/3dplots/3-7.pgf}
+\input{images/3dplots/2-5.pgf}
+\input{images/3dplots/1-1.pgf}
+
+
+\end{document}
