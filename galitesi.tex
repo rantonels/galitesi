@@ -581,15 +581,17 @@ Thus, the fundamental solution at fractional time becomes
 
 for some phases $\phi_{p,q,c}$, a characterization which will become extremely useful when attempting a physical interpretation of time evolution of an initial state.
 
-We just comment that the prefactor $1/\sqrt{q}$ is expected on the face of unitarity, or conservation of information. The time evolution operator of the Schr\"odinger equation is unitary, and preserves the $L^2$ norm of the wavefunction. Taken an initial smooth wavefunction $\psi(z)$ with compact support in an interval around $0$ smaller than $\frac{1}{2q}$, and normalized such that $\int_{\mathbb{S}^1} dx \abs{\psi(z)}^2 = 1$, time evolution by a fractional time $p/q$ is equivalent with convolution with the $\vartheta(z;\sfrac{p}{q})$ kernel, which results by \eqref{finalrationalkernel} in $q$ non-overlapping copies of the original wavefunction, with some phases and rescaled by $1/\sqrt{q}$. The final norm of the wavefunction is thus
+We just comment that the prefactor $1/\sqrt{q}$ is expected on the face of unitarity, or conservation of information. The time evolution operator of the Schr\"odinger equation is unitary, and preserves the $L^2$ norm of the wavefunction. Taken an initial smooth wavefunction $\psi(z)$ with compact support in an interval around $0$ smaller than $\frac{1}{2q}$, and normalized such that $\int_{\mathbb{S}^1} dx \abs{\psi(z)}^2 = 1$, time evolution by a fractional time $p/q$ is equivalent with convolution with the $\vartheta(z;\sfrac{p}{q})$ kernel, which results by \eqref{finalrationalkernel} in $q$ non-overlapping copies of the original wavefunction, with some phases and rescaled by $1/\sqrt{q}$. The final squared norm of the wavefunction is thus
 
 \begin{equation}
-    \frac{1}{q}\sum_i{c=0^{q-1}} 1 = 1\,.
+    \frac{1}{q}\sum_{c=0}^{q-1} 1 = 1\,.
 \end{equation}
 
 \section{Physical interpretation}
 
 \subsection{Fractional revivals and antirevivals}
+
+\cmnt{Spiegazione della struttura a tempi razionali: a tempo razionale pari la funzione d'onda viene ``rivitalizzata'' in $q$ copie, mentre a tempo razionale dispari le copie rivitalizzate sono sfasate di $1/(2q)$ (antirevivals)}
 
 %\immagine{3dplots/1-3.pgf}{20cm}{ }{13}
 \input{images/3dplots/0-1.pgf}
@@ -601,6 +603,8 @@ We just comment that the prefactor $1/\sqrt{q}$ is expected on the face of unita
 \input{images/3dplots/3-5.pgf}
 \input{images/3dplots/2-3.pgf}
 \input{images/3dplots/3-4.pgf}
+
+\cmnt{(c'è un problema di scala nei grafici; rivedere il codice)}
 
 
 \end{document}
