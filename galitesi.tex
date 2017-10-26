@@ -6,6 +6,9 @@
     
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 
+\usepackage{biblatex}
+\bibliography{bibliography}
+
 \usepackage{physics}
 \usepackage{mathtools} % arows
 \usepackage{color}
@@ -340,7 +343,7 @@ Returning to our physical object of interest, the amplitude, we see that propert
 
 \subsection{Even rationals}
 
-It is easy to show $\T$ ``should'' have a $\sim \tau^{-1/2}$ singularity near $\tau = 0$. Indeed, applying  \eqref{smap}:
+It is easy to show $\T$ ``should'' have a $\sim \tau^{-1/2}$ singularity near $\tau = 0$ \cite{boxpdf}. Indeed, applying  \eqref{smap}:
 
 \begin{equation}
     \vartheta(\tau) = \sqrt{\frac{i}{\tau}} \sumZ e^{-i\pi n^2 \frac{1}{\tau}}\,.
@@ -606,5 +609,7 @@ We just comment that the prefactor $1/\sqrt{q}$ is expected on the face of unita
 
 \cmnt{(c'è un problema di scala nei grafici; rivedere il codice)}
 
+
+\printbibliography
 
 \end{document}
