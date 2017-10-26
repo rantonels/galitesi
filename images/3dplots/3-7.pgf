@@ -274,7 +274,7 @@
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[x=1.045946in,y=0.659148in,,]{\rmfamily\fontsize{10.000000}{12.000000}\selectfont \(\displaystyle \tau = \frac{3}{7}\)}%
+\pgftext[x=1.045946in,y=0.178378in,,]{\rmfamily\fontsize{10.000000}{12.000000}\selectfont \(\displaystyle \tau = \frac{3}{7}\)}%
 \end{pgfscope}%
 \end{pgfpicture}%
 \makeatother%

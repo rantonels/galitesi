@@ -9,7 +9,7 @@ CIRC = 1
 x = np.arange(0,CIRC+0.002,0.001)
 
 
-psi0 = np.exp( - (x-CIRC*0.5)**2 / (2*(0.02**2)))
+psi0 = np.exp( - (x-CIRC*0.5)**2 / (2*(0.03**2)))
 
 
 NRANGE = 50
@@ -45,20 +45,27 @@ def plotPsi(psi,text):
     ax.set_ylim3d(-1,1)
 #    ax.set_zlim3d(-1,1)
     ax.set_axis_off()
-    ax.text(0,0,0,text, 
+    ax.text2D(0,-0.09,text, 
             horizontalalignment='center',
         verticalalignment='center')
-    ax.plot( np.cos(2*pi*x/CIRC), np.sin(2*pi*x/CIRC), np.abs(psi)**2, color='k', linewidth=1.5)
+    ax.plot( np.cos(2*pi*x/CIRC), np.sin(2*pi*x/CIRC), np.abs(psi)**2, color='k', linewidth=1.5,
+            )
     #circle = ax.plot( np.cos(2*pi*x/CIRC), np.sin(2*pi*x/CIRC), 0, color='k',linewidth=1)
 #    plt.show()
 
 for p,q in [
-        (1,3),
         (0,1),
-        (1,1),
-        (2,3),
+        (1,5),
+        (1,4),
         (2,5),
-        (3,7)
+        (1,3),
+        (1,2),
+        (3,5),
+        (2,3),
+        (3,4),
+        (4,5),
+        (1,1),
+        
         ]:
     r = float(p)/q
 
@@ -73,5 +80,5 @@ for p,q in [
     plotPsi(psiTest,r"$\tau = %s$"%rname)
 
 
-    plt.savefig("3dplots/%d-%d.pgf"%(p,q))
+    plt.savefig("3dplots/%d-%d.pgf"%(p,q), bbox_inches='tight', pad_inches=0.0)
 

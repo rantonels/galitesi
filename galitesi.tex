@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage[margin=1.3in]{geometry}
+\renewcommand{\baselinestretch}{1.5} 
 \usepackage[parfill]{parskip}
 \usepackage[utf8]{inputenc}
     
@@ -20,6 +21,8 @@
 
 \newcommand{\T}{\ensuremath{\vartheta}}
 %\renewcommand{\Im}{\operatorname{Im}}
+
+\renewcommand{\deg}{{}^{\circ}}
 \newcommand{\hil}{\ensuremath{\mathcal{H}}}
 \newcommand{\cmnt}[1]{\textcolor{red}{\emph{#1}}}
 \newcommand{\intR}{\int_{-\infty}^\infty}
@@ -54,7 +57,25 @@
 
 \section{Introduction}
 
-\cmnt{introduzione}
+Quantum mechanics includes mathematical tools routinely employed in the calculation of measurable quantities that on any remotely formal level appear nonsensical and ill-defined. The root of this widespread misbehaviour of general quantum theory would seem to trace back to the fact that quantum-mechanical observables are to be computed through expressions of the type:
+
+\begin{equation}\label{illdefined}
+    \mathcal{O} = \abs{ \sum_{c} e^{i\mathcal{F}[c]} }^2\,.
+\end{equation}
+
+The sum is over all possible configurations and can actually be a finite sum, a series, an integral, or even a functional integral, and for essentially all choices of the real functional $\mathcal{F}$ it has very poor convergence. Nevertheless, in physics expressions like \eqref{illdefined} are often produced and manipulated with no concerns for whether they make any sense \emph{temporarily}, and are then handled with an array of regularization procedures until they are carried to a sensible final result for a desired experimental prediction.
+
+Perhaps the most general of such regularizations is Wick rotation, in which a transformation $t \rightarrow it$ in the complex time plane is performed. Generally, computed at purely imaginary time the functionals $\mathcal{F}$ acquire a positive imaginary part and the sum-over-paths becomes convergent. The real-time desired quantity is hopefully recovered through analytic continuation up to the real axis. This is usually understood as an occasion to cure the pathologies of quantum mechanics by \emph{defining} a quantum theory simply as the result of the Wick rotation procedure. This is a practical (and almost always successful) approach but is somewhat unsatisfactory or at least unsettling, as it delegates the description of real quantities to abstract dynamics in imaginary time and also requires strong assumption of analyticity of observables.
+
+We would like here instead to attempt a sketch of alternative meaning that can be assigned to the naively divergent oscillatory sums of quantum mechanics. For this reason we consider the simplest possible quantum system in which such unruly summations occur, a free particle on $\mathbb{S}^1$. This is a sandbox even more basic than the more popular particle in a box\footnote{In fact, the box is a simple orbifold of the circle, as $[0,1] \cong \mathbb{S}^1/\{\theta \sim - \theta\}$. Thus the propagator in a box is easily obtained as a sum of two circle propagators through the method of images.}, and in this context we pose the simplest question:
+
+\begin{quote} \emph{What is the probability that a particle left on a point on the circle will reach another given point after some given time?} \end{quote}
+
+This probability (density) is the squared modulus of a complex amplitude, depending on the final position and elapsed time, called the propagator, which is simply the fundamental solution to the Schr\"odinger equation on the circle. The answer to this apparently absolutely innocuous question is already an incredibly bizzare object. Even after being rigorously defined through regularization, it still does not behave as a function of position and time in any naive sense. Normally, this is kept ``as is'' and read as a formal series, up until the point when one computes more regular observables starting from it. In this work, instead, we insist in providing an accurate description of this amplitude as it comes as an actual mathematical object (and it will turn out to be a tempered distribution of both time and space) and a study of its features.
+
+The propagator will be found to be endowed with an intricate structure of infinite singularities and zeroes that are mapped to eachother by modular transformations, but will nonetheless be perfectly well-defined as a tempered distribution; in fact the sum-over-histories that produces it will be shown to be sensible if understood as a distributional limit. A greater attention will be provided on the time dependence of the amplitude.
+
+Finally, after this anatomical study of the circle propagator, we will offer a possible physical understanding for the found features.
 
 \section{Quantum mechanics on $\ess^1$}
 \subsection{Schr\"odinger equation and propagators}
@@ -75,7 +96,7 @@ If, in addition, we exclude that the Hamiltonian depends explicitly on time, the
 \end{equation}
 
 
-\cmnt{finire}
+\cmnt{Introdurre path integral, particella su $M$ e carte con Schr\"odinger}
 
 \subsection{Review: free particle on $\mathbb{R}$}
 
@@ -89,7 +110,7 @@ We are interested in calculation of the propagator $G(\Delta t, \Delta x)$. It i
 
 We begin with the path integral picture.
 
-\cmnt{finire}
+\cmnt{ripresentare il calcolo del propagatore con path-integral.}
 
 the final expression for the propagator, which we call the Schr\"odinger kernel, is 
 
@@ -178,7 +199,7 @@ Defining the variables\footnote{The reasoning behind the nature of the redefinit
 \end{equation}
 
 
-\begin{equation}
+\begin{equation} \label{amplitudeztau}
     = e^{-i\pi z^2 \tau}\, \frac{1}{\sqrt{-i\tau}} \sumZ \exp(-\frac{\pi i n^2}{\tau} +  \frac{2\pi i n z}{\tau})   \,;
 \end{equation}
 
@@ -188,6 +209,7 @@ in particular, the probability amplitude (density) for the particle to return to
 \begin{equation}
     A(0;t) = \frac{1}{\sqrt{-i\tau}} \sumZ e^{-{i \pi n^2}/{\tau}} =: \T(\tau)\,.
 \end{equation}
+
 
 The issue with the above is that the sum of oscillatory terms does not converge in any simple sense. (In fact, we will prove in \cmnt{proof!!} it almost never does converge pointwise). It does however converge in the sense of distributions in $t$ to a tempered distribution with highly singular behaviour. Our goal is to provide a complete description of the structure of this distribution. Since the $x$-dependence of the amplitude is not as fascinating as that on $\tau$, we will limit most of our considerations to the $x=0$ case, with no real loss of qualitative structure. We will recover the $x$ dependence after, in the discussion of fractional revivals and the physical interpretation of the amplitude.
 
@@ -228,9 +250,13 @@ It seems natural to try and promote $t$, or equivalently $\tau$, to complex vari
 
 In fact, the series converges to a function holomorphic on the upper half-plane, the Jacobi theta function:
 
-\begin{equation}
+\begin{equation}\label{jacobidef}
 \vartheta(z;\tau) := \sumZ \exp( \pi i n^2 \tau + 2\pi i n z )\,.
 \end{equation}
+
+\input{images/plots/theta0.pgf}
+
+\cmnt{didascalia immagine}
 
 The issue is that $\T(\tau)$ coincides with the theta function computed on the real axis, outside of its domain of convergence. We argue $\T(t)$ can be constructed as the limit $\lim_{\epsilon\rightarrow 0} \vartheta(0;\tau + i\epsilon)$, where the limit is taken distributionally; that is to say the distribution is specified by the following action on a test function $\varphi(t)$:
 
@@ -283,7 +309,6 @@ The Jacobi theta function $\vartheta(z,\tau)$ has well-defined transformation pr
 
 These do generate a proper subgroup of $PSL(2,\mathbb{Z})$, as we will show now, which we call $\emodg$. Define the notion of \emph{parity} of a reduced fraction $p/q$ as the parity of $pq$. (The parity of $\infty \in \hat{\mathbb{Q}}$ is taken to be the same as $0$, so even). It's clear this parity is invariant under action of $\emodg$; moreover since at least two rationals of opposite parity exist (e.g. $0$ and $1$), transitivity implies $\emodg$ and $PSL(2,\mathbb{Z})$ cannot coincide.
 
-\renewcommand{\deg}{{}^{\circ}}
 
 \immagine{modgroup.pdf_tex}{20cm}{A fundamental domain $D$ for $\modg$ in the upper half plane (an ideal triangle with angles $0\deg$, $30 \deg$, $30 \deg$, and a few of its images under elements of the modular group. The quadrilateral $D \cup TD$ is a fundamental domain for $\emodg$.}{modular}
 
@@ -311,8 +336,6 @@ The above procedure has the property of always decreasing the magnitude of eithe
 \end{equation}
 
 Returning to our physical object of interest, the amplitude, we see that properties \eqref{t2map} and \eqref{smap} relate the behaviour of $\T$ at a rational time\footnote{We are, of course, here referring to the normalized time $\tau$ for simplicity.} with the behaviour at time $0$ or $1$ depending on the parity. Therefore $\T$ has a sort of self-similar structure, and any qualitative features present at the points $0$ and $1$ will be repeated infinitely in two dense sets. For example, we anticipate (though this will be studied more precisely) that the amplitude has a $\tau^{-1/2}$ singularity for $\tau$ close to zero, since for very small time the propagator on a circle is expected to reduce to that of the free particle. If so, then there must also be a similar singularity at all even rationals; therefore $\T$ has a dense set of singularities.
-
-\cmnt{magari definire $\vartheta(\tau) = \vartheta(0;\tau)$, magari farlo prima? Lavorare con $\T$ è una schifezza assoluta}
 
 
 \subsection{Even rationals}
@@ -347,8 +370,6 @@ only the asymptotic behaviour for small $\sigma$ is relevant. Defined $N^4 := 2 
 
 It is therefore seen%\footnote{The doubt might arise that $\vartheta(\tau)$ also has a component with support in $\{0\}$ that is invisible to the family of gaussian (in the sense that its integral against $g_\sigma$ is independent on $\sigma$). However, this component must be a linear combination of $\delta$ derivatives; the even derivatives do yield positive powers of $\sigma$ and are to be excluded,  }
 \ that the action of $\vartheta$ on a Schwartz function shrinking around $\tau=0$ is asymptotic to that of the distribution $\sqrt{\frac{i}{\tau}}$.
-
-\cmnt{remap to all even rationals}
 
 Now that the existence of this singularity has been ascertained, let us verify a reduced copy of it exists at any even rational. Imagine the even rational $a$ gets mapped to the even rational $b$ by one step of the iterative procedure described in section \ref{sec:modular}. Assume it is known that in the vicinity of $b$ there is an inverse square-root singularity:
 
@@ -464,16 +485,122 @@ Consider the following series for real $\tau$:
 
 The series is absoutely convergent and limited as a function of $\tau$, as $\sum_{n=0}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}$. Therefore, $B(\tau)$ is a well-defined function in $\locint$.
 
+\section{The theta function propagator}
+
+Having now satisfyingly examined the qualitative structure of the propagator for $x=0$ as a function of time, we now return back to our original formulation to include the spatial dependence.
+
+Recovering \eqref{amplitudeztau}, and recalling the definition \eqref{jacobidef} of the Jacobi theta function, we recognize
+
+\begin{equation}
+    A(z,\tau) = e^{-i\pi z^2 \tau} \frac{1}{\sqrt{-i\tau}}\, \vartheta\left(\frac{z}{\tau};-\frac{1}{\tau}\right)
+\end{equation}
+
+The full Jacobi theta function has more general modular transformation properties than the subcase $\vartheta(\tau) = \vartheta(0;\tau)$ we studied before. In particular, it holds that
+
+\begin{equation}
+    \vartheta(z+1;\tau) = \vartheta(z;\tau)
+\end{equation}
+
+\begin{equation}
+    \vartheta(z;\tau + 1) = \vartheta(z+\frac{1}{2}; \tau)
+\end{equation}
+
+\begin{equation}\label{thtransS}
+    \vartheta\left(\frac{z}{\tau}; -\frac{1}{\tau} \right) = \sqrt{-i\tau} \exp(\frac{\pi}{\tau} i z^2)
+\end{equation}
+
+Relation \eqref{thtransS} immediately implies that the fundamental solution $A$ is \emph{directly} a theta function:
+
+\begin{equation}
+    A(z,\tau) = \vartheta(z;\tau)
+\end{equation}
+
+The Jacobi theta for real values of the period is thus reinterpreted physically as the quantum propagator on the circle. There is an enlightening analogy with a better-known case; consider again the Schr\"odinger equation for a particle moving on some Riemannian manifold $M$:
+
+\begin{equation}
+    i \pdv{t} \Psi = - \frac{\nabla^2}{2} \Psi\,,
+\end{equation}
+
+where $\nabla^2$ is the Laplace-Beltrami operator on $M$, and perform the substitution $t \mapsto it$; this yields
+
+\begin{equation}
+    \pdv{t} \Psi = - \frac{\nabla^2}{2} \Psi\,,
+\end{equation}
+
+i.e. the heat / diffusion equation on $M$. Indeed, it is well-known $\vartheta(z;it)$ (much more regular than its real-period counterpart studied in this work) is the fundamental solution to the heat equation on the circle. This can be understood physically as diffusion being the Wick-rotated, or imaginary-time, counterpart of the Schr\"odinger equation. This, in fact, is to be seen as a minimal example of a general phenomenon in quantum theories in which the Wick-rotated theory (a statistical-mechanical system) has better converging observables; and observables in the quantum theory, only formally specified by non-converging oscillatory integrals, can be defined by analytic continuation of the imaginary-time observables.
+
+We now show a remarkable structure of the theta function propagator that should clarify the nature of the singularities in the time dependence. Fixed a rational time $\tau = \sfrac{p}{q}$ in least terms, rewrite the summation index $n$ as $n = aq + b$, for $a \in \mathbb{Z}$, $b = 0,\ldots,q-1$. The amplitude becomes:
+
+\newcommand{\sumA}{\sum_{a=-\infty}^\infty}
+\newcommand{\sumB}{\sum_{b=0}^{q-1}}
+\newcommand{\comb}{\operatorname{III}}
+
+\begin{align}
+    \T(z;\tau) = \sumA \sumB \exp(\pi i \frac{p}{q} (aq + b)^2  + 2\pi i (aq+b) z)\\
+    = \left( \sumB e^{i\pi \frac{p b^2}{q} + 2\pi i b z} \right) \sumA (-1)^{pqa} e^{2\pi i a q} 
+\end{align}
+
+We recognize the sum over $a$ as the Fourier series for a Dirac comb, i.e. a periodic array of $\delta$ functions:
+
+\begin{equation}
+    \comb_T(z) := \sumZ \delta(z-nT) = \frac{1}{T} \sum_{k=-\infty}^\infty e^{2\pi i k z}\,,
+\end{equation}
+
+so that the sum over $a$ reduces to
+
+\begin{align}
+    \frac{1}{q} \comb_{\frac{1}{q}} (z+\Delta)\,,
+\end{align}
+
+where $\Delta = 0$ if $\sfrac{p}{q}$ is even, and $\Delta = \frac{1}{2}$ if it's odd. Thus we have the remarkable fact that at any fixed rational time $\tau = \sfrac{p}{q}$, the theta function amplitude is a sum of $q$ $\delta$-functions equally spaced around the circle; the Dirac deltas are then weighted by the phase factor
+
+\begin{equation}
+    \sumB \left(e^{i\pi/q}\right)^{pb^2 + 2bzq}
+\end{equation}
+
+Since $\comb_{\frac{1}{q}}$ only has support in $z = \frac{c+\Delta}{q}$ for $c = 0,\ldots,q-1$ (understood $\mod 1$), this factor is
+
+\begin{equation}\label{betafactor}
+    \beta_{p,q,c} = \sumB \left(e^{i\pi/q}\right)^{pb^2 + 2bc + 2\Delta b}\,,
+\end{equation}
+
+Expression \eqref{betafactor} is a generalized quadratic Gaussian sum, and its determination is extremely complex. It is however sufficient for our purposes to ascertain the norm $|\beta_{p,q,c}|$. Indeed, defined $r=\exp(i\pi/q)$ and $l=2(c+\Delta)$, we have:
+
+\begin{equation}\label{thenorm}
+    \beta_{p,q,c} \beta^*_{p,q,c} = \sum_{b_1=0}^{q-1} \sum_{b_2=0}^{q-1} \left(e^{i\pi/q}\right)^{p(b_1^2 - b_2^2) + l (b_1 - b_2)} = q     
+\end{equation}
+
+\cmnt{Nessun progresso per dimostrare questo fatto. Numericamente sembra vero.}
+
+
+Thus, the fundamental solution at fractional time becomes
+
+\begin{equation}\label{finalrationalkernel}
+    \vartheta\left( z ; \,\frac{p}{q} \right) = \frac{1}{\sqrt{q}} \sum_{c=0}^{q-1} \phi_{p,q,c} \, \delta \left(z-\frac{c}{q}\right)\,,
+\end{equation}
+
+for some phases $\phi_{p,q,c}$, a characterization which will become extremely useful when attempting a physical interpretation of time evolution of an initial state.
+
+We just comment that the prefactor $1/\sqrt{q}$ is expected on the face of unitarity, or conservation of information. The time evolution operator of the Schr\"odinger equation is unitary, and preserves the $L^2$ norm of the wavefunction. Taken an initial smooth wavefunction $\psi(z)$ with compact support in an interval around $0$ smaller than $\frac{1}{2q}$, and normalized such that $\int_{\mathbb{S}^1} dx \abs{\psi(z)}^2 = 1$, time evolution by a fractional time $p/q$ is equivalent with convolution with the $\vartheta(z;\sfrac{p}{q})$ kernel, which results by \eqref{finalrationalkernel} in $q$ non-overlapping copies of the original wavefunction, with some phases and rescaled by $1/\sqrt{q}$. The final norm of the wavefunction is thus
+
+\begin{equation}
+    \frac{1}{q}\sum_i{c=0^{q-1}} 1 = 1\,.
+\end{equation}
+
 \section{Physical interpretation}
 
 \subsection{Fractional revivals and antirevivals}
 
 %\immagine{3dplots/1-3.pgf}{20cm}{ }{13}
-\input{images/3dplots/1-3.pgf}
 \input{images/3dplots/0-1.pgf}
-\input{images/3dplots/3-7.pgf}
+\input{images/3dplots/1-5.pgf}
+\input{images/3dplots/1-4.pgf}
 \input{images/3dplots/2-5.pgf}
-\input{images/3dplots/1-1.pgf}
+\input{images/3dplots/1-3.pgf}
+\input{images/3dplots/1-2.pgf}
+\input{images/3dplots/3-5.pgf}
+\input{images/3dplots/2-3.pgf}
+\input{images/3dplots/3-4.pgf}
 
 
 \end{document}
