@@ -343,7 +343,7 @@ The above procedure has the property of always decreasing the magnitude of eithe
 Returning to our physical object of interest, the amplitude, we see that properties \eqref{t2map} and \eqref{smap} relate the behaviour of $\T$ at a rational time\footnote{We are, of course, here referring to the normalized time $\tau$ for simplicity.} with the behaviour at time $0$ or $1$ depending on the parity. Therefore $\T$ has a sort of self-similar structure, and any qualitative features present at the points $0$ and $1$ will be repeated infinitely in two dense sets. For example, we anticipate (though this will be studied more precisely) that the amplitude has a $\tau^{-1/2}$ singularity for $\tau$ close to zero, since for very small time the propagator on a circle is expected to reduce to that of the free particle. If so, then there must also be a similar singularity at all even rationals; therefore $\T$ has a dense set of singularities.
 
 
-\subsection{Even rationals}
+\subsection{Even rationals}\label{sec:evens}
 
 It is easy to show $\T$ ``should'' have a $\sim \tau^{-1/2}$ singularity near $\tau = 0$ \cite{boxpdf}. Indeed, applying  \eqref{smap}:
 
@@ -502,19 +502,21 @@ Recovering \eqref{amplitudeztau}, and recalling the definition \eqref{jacobidef}
 
 The full Jacobi theta function has more general modular transformation properties than the subcase $\vartheta(\tau) = \vartheta(0;\tau)$ we studied before. In particular, it holds that
 
-\begin{equation}
+\begin{equation} \label{zperiodicity}
     \vartheta(z+1;\tau) = \vartheta(z;\tau)
 \end{equation}
 
-\begin{equation}
+\begin{equation} \label{tmap}
     \vartheta(z;\tau + 1) = \vartheta(z+\frac{1}{2}; \tau)
 \end{equation}
 
-\begin{equation}\label{thtransS}
-    \vartheta\left(\frac{z}{\tau}; -\frac{1}{\tau} \right) = \sqrt{-i\tau} \exp(\frac{\pi}{\tau} i z^2)
+\begin{equation}\label{smapfull}
+    \vartheta\left(\frac{z}{\tau}; -\frac{1}{\tau} \right) = \sqrt{-i\tau} \exp(\frac{\pi}{\tau} i z^2) \T(z;\tau)
 \end{equation}
 
-Relation \eqref{thtransS} immediately implies that the fundamental solution $A$ is \emph{directly} a theta function:
+Equations \eqref{zperiodicity} and \eqref{tmap} are immediate; \eqref{smapfull} can again be proven by means of Poisson resummation\cite{thetamodular}; we omit the derivation for the sake of brevity.
+
+Relation \eqref{smapfull} immediately implies that the fundamental solution $A$ is \emph{directly} a theta function:
 
 \begin{equation}
     A(z,\tau) = \vartheta(z;\tau)
@@ -582,7 +584,7 @@ so that $p$ can be taken to have $\abs{p} < \abs{q}$. In addition, we make use o
     \abs{\beta_{p,q,c}} = \sqrt{\abs{\frac{q}{p}}} \; \abs{\beta_{-q,p,c}}\,.
 \end{equation}
 
-Having in addition noted that $\abs{\beta_{p,1,c}} = 1$ for all $p,c$, we can induct over all pairs $(p,q)$ and conclude\footnote{We remark the reasoning is strongly reminiscent of that employed in section \ref{sec:evens}, suggesting the calculations are connected. Indeed, a proof of the reciprocity formula can also be provided starting from the modular properties of the theta function\ref{berndt_gauss}.}
+Having in addition noted that $\abs{\beta_{p,1,c}} = 1$ for all $p,c$, we can induct over all pairs $(p,q)$ and conclude\footnote{We remark the reasoning is strongly reminiscent of that employed in section \ref{sec:evens}, suggesting the calculations are connected. Indeed, a proof of the reciprocity formula can also be provided starting from the modular properties of the theta function\cite{berndt_gauss}.}
 
 \begin{equation}
     |\beta_{p,q,c}| = \sqrt{q}
@@ -610,6 +612,23 @@ We just comment that the prefactor $1/\sqrt{q}$ is expected on the face of unita
 \begin{equation}
     \frac{1}{q}\sum_{c=0}^{q-1} 1 = 1\,.
 \end{equation}
+
+%\subsection{The full modular group}
+%
+%Now that the $z$ dependence has been reintroduced, we can finally consider the action of the entire modular group on the theta amplitude $\vartheta(z;\tau)$. For the action under $T:\tau \mapsto \tau+1$, note
+%
+%\begin{equation}\label{tmap}
+%    \vartheta(z;\tau+1) = \sumZ e^{i\pi n^2 \tau + 2\pi n z} (-1)^{i\pi n^2} = \sumZ e^{i\pi n^2 \tau + 2\pi n z} (-1)^{i\pi n} = \T\left(z+\frac{1}{2}; \tau \right)\,.
+%\end{equation}
+%
+%As an obvious consequence, $\T(z;\tau+2) = \T(z+1;\tau) = \T(z;\tau)$, so that the amplitude is truly periodic in time with period $2$ for all positions. \eqref{tmap} in addition says the amplitude also does repeat after $\Delta\tau = 1$, but shifted by an angle of $\pi$ on the circle.
+%
+%The transformation property under $S: \tau \mapsto -\frac{1}{\tau}$ must be modified from expression \eqref{smap} to account for non-zero $z$. The derivation can again be performed through Poisson resummation but we omit it for the sake of brevity; the result is\cite{citthetamodular}
+%
+%\begin{equation}
+%    \T(\frac{z}{\tau};\frac{\tau}{})
+%\end{equation}
+
 
 \section{Physical interpretation}
 
