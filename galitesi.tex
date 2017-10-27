@@ -1,8 +1,10 @@
 \documentclass{article}
 \usepackage[margin=1.3in]{geometry}
-\renewcommand{\baselinestretch}{1.5} 
+\renewcommand{\baselinestretch}{1.3} 
 \usepackage[parfill]{parskip}
 \usepackage[utf8]{inputenc}
+
+\usepackage{hyperref}
     
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 
@@ -532,10 +534,11 @@ where $\nabla^2$ is the Laplace-Beltrami operator on $M$, and perform the substi
 
 i.e. the heat / diffusion equation on $M$. Indeed, it is well-known $\vartheta(z;it)$ (much more regular than its real-period counterpart studied in this work) is the fundamental solution to the heat equation on the circle. This can be understood physically as diffusion being the Wick-rotated, or imaginary-time, counterpart of the Schr\"odinger equation. This, in fact, is to be seen as a minimal example of a general phenomenon in quantum theories in which the Wick-rotated theory (a statistical-mechanical system) has better converging observables; and observables in the quantum theory, only formally specified by non-converging oscillatory integrals, can be defined by analytic continuation of the imaginary-time observables.
 
-We now show a remarkable structure of the theta function propagator that should clarify the nature of the singularities in the time dependence. Fixed a rational time $\tau = \sfrac{p}{q}$ in least terms, rewrite the summation index $n$ as $n = aq + b$, for $a \in \mathbb{Z}$, $b = 0,\ldots,q-1$. The amplitude becomes:
+We now show a remarkable structure of the theta function propagator that should clarify the nature of the singularities in the time dependence. Fixed a rational time $\tau = \sfrac{p}{q}$ in least terms, without loss of generality between $0$ and $1$, rewrite the summation index $n$ as $n = aq + b$, for $a \in \mathbb{Z}$, $b = 0,\ldots,q-1$. The amplitude becomes:
 
 \newcommand{\sumA}{\sum_{a=-\infty}^\infty}
 \newcommand{\sumB}{\sum_{b=0}^{q-1}}
+\newcommand{\sumBnorm}{\sum_{b=0}^{|q|-1}}
 \newcommand{\comb}{\operatorname{III}}
 
 \begin{align}
@@ -564,16 +567,34 @@ where $\Delta = 0$ if $\sfrac{p}{q}$ is even, and $\Delta = \frac{1}{2}$ if it's
 Since $\comb_{\frac{1}{q}}$ only has support in $z = \frac{c+\Delta}{q}$ for $c = 0,\ldots,q-1$ (understood $\mod 1$), this factor is
 
 \begin{equation}\label{betafactor}
-    \beta_{p,q,c} = \sumB \left(e^{i\pi/q}\right)^{pb^2 + 2bc + 2\Delta b}\,,
+    \beta_{p,q,c} = \sumBnorm \left(e^{i\pi/q}\right)^{pb^2 + 2bc + 2\Delta b}\,,
 \end{equation}
 
-Expression \eqref{betafactor} is a generalized quadratic Gaussian sum, and its determination is extremely complex. It is however sufficient for our purposes to ascertain the norm $|\beta_{p,q,c}|$. Indeed, defined $r=\exp(i\pi/q)$ and $l=2(c+\Delta)$, we have:
+Expression \eqref{betafactor} is a generalized quadratic Gauss sum, and its determination is extremely complex. It is however sufficient for our purposes to ascertain the norm $|\beta_{p,q,c}|$. We lift the restriction on $p$ and $q$ to be positive and for $p<q$ for the purpose of the proof. Immediately:
 
-\begin{equation}\label{thenorm}
-    \beta_{p,q,c} \beta^*_{p,q,c} = \sum_{b_1=0}^{q-1} \sum_{b_2=0}^{q-1} \left(e^{i\pi/q}\right)^{p(b_1^2 - b_2^2) + l (b_1 - b_2)} = q     
+\begin{equation}
+    \beta_{p+2kq,q,c} = \beta_{p,q,c}\,,
 \end{equation}
 
-\cmnt{Nessun progresso per dimostrare questo fatto. Numericamente sembra vero.}
+so that $p$ can be taken to have $\abs{p} < \abs{q}$. In addition, we make use of the reciprocity formula for generalized quadratic Gauss sums\cite{berndt_gauss}:
+
+\begin{equation}
+    \abs{\beta_{p,q,c}} = \sqrt{\abs{\frac{q}{p}}} \; \abs{\beta_{-q,p,c}}\,.
+\end{equation}
+
+Having in addition noted that $\abs{\beta_{p,1,c}} = 1$ for all $p,c$, we can induct over all pairs $(p,q)$ and conclude\footnote{We remark the reasoning is strongly reminiscent of that employed in section \ref{sec:evens}, suggesting the calculations are connected. Indeed, a proof of the reciprocity formula can also be provided starting from the modular properties of the theta function\ref{berndt_gauss}.}
+
+\begin{equation}
+    |\beta_{p,q,c}| = \sqrt{q}
+\end{equation}
+
+%Indeed, defined $r=\exp(i\pi/q)$ and $l=2(c+\Delta)$, we have:
+%
+%\begin{equation}\label{thenorm}
+%    \beta_{p,q,c} \beta^*_{p,q,c} = \sum_{b_1=0}^{q-1} \sum_{b_2=0}^{q-1} \left(e^{i\pi/q}\right)^{p(b_1^2 - b_2^2) + l (b_1 - b_2)} = q     
+%\end{equation}
+%
+%\cmnt{Nessun progresso per dimostrare questo fatto. Numericamente sembra vero.}
 
 
 Thus, the fundamental solution at fractional time becomes
