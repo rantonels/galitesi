@@ -17,6 +17,7 @@
 
 \usepackage{xfrac} % fractions like/this
 
+\usepackage{svg}
 
 \usepackage{pgf}
 
@@ -36,16 +37,27 @@
 
 \usepackage{graphicx}
 \graphicspath{{images/}}
-\newcommand{\immagine}[4]{
+
+\newcommand{\figurewrapper}[4]{
     \begin{figure}[h]
     \centering{
     \def\svgwidth{\linewidth}
-    {\input{images/#1}}
+    {#1}
     \caption{#3}
     \label{fig:#4}
     }
     \end{figure}
 }
+
+\newcommand{\immagine}[4]{
+    \figurewrapper{\input{images/#1}}{#2}{#3}{#4}
+}
+
+\newcommand{\immaginegraph}[4]{
+    \figurewrapper{\includegraphics{#1}}{#2}{#3}{#4}
+}
+
+
 
 \title{Quantum particle on a circle}
 \author{Riccardo Antonelli}
@@ -315,7 +327,7 @@ The Jacobi theta function $\vartheta(z,\tau)$ has well-defined transformation pr
 These do generate a proper subgroup of $PSL(2,\mathbb{Z})$, as we will show now, which we call $\emodg$. Define the notion of \emph{parity} of a reduced fraction $p/q$ as the parity of $pq$. (The parity of $\infty \in \hat{\mathbb{Q}}$ is taken to be the same as $0$, so even). It's clear this parity is invariant under action of $\emodg$; moreover since at least two rationals of opposite parity exist (e.g. $0$ and $1$), transitivity implies $\emodg$ and $PSL(2,\mathbb{Z})$ cannot coincide.
 
 
-\immagine{modgroup.pdf_tex}{20cm}{A fundamental domain $D$ for $\modg$ in the upper half plane (an ideal triangle with angles $0\deg$, $30 \deg$, $30 \deg$, and a few of its images under elements of the modular group. The quadrilateral $D \cup TD$ is a fundamental domain for $\emodg$.}{modular}
+\figurewrapper{\includegraphics[width=0.8\textwidth]{modulargroup}}{20cm}{A representation of the action of $\modg$ on the upper half-plane $\mathbb{H}^2$ as a tessellation of ideal trangles with angles $(30\deg,30\deg,0\deg)$. Any of the triangles acts as a fundamental domain; the ideal $0\deg$ vertices lie on the real axis at rational points. The shading depicts the two orbits of the subgroup $\emodg \subset \modg$}{modular}
 
 What is more useful is that there are \emph{only} two orbits, in the sense that any rational $r$ can be mapped through an element of $\emodg$ to either $0$ or $1$ depending on its parity. We consider the following explicit algorithm.
 
