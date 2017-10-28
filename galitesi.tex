@@ -20,7 +20,13 @@
 \usepackage{svg}
 
 \usepackage{pgf}
+\usepackage{import}
 
+\newcommand\inputpgf[2]{{
+\let\pgfimageWithoutPath\pgfimage
+\renewcommand{\pgfimage}[2][]{\pgfimageWithoutPath[##1]{#1/##2}}
+\input{#1/#2}
+}}
 
 \newcommand{\ess}{\ensuremath{\mathbb{S}}}
 \newcommand{\ar}{\ensuremath{\mathbb{R}}}
@@ -408,6 +414,8 @@ so that $a$ inherits the singularity of $b$ but suppressed by a factor of $\sqrt
 
 \cmnt{è possibile anche fare un calcolo della fase delle singolarità? Credo di sì}
 
+\cmnt{Forse no... forse è equivalente al calcolo delle fasi nella \eqref{finalrationalkernel}, che coinvolge number theory e potrebbe non essere fattibile nel caso generale}
+
 \subsection{Odd rationals}
 
 The point $\tau=1$ is equally peculiar. We argue $\vartheta$ vanishes there along with all of its distributional derivatives $\dv[k]{t} \vartheta(\tau)$. Again, the statement as it stands is non-sensical unless it is reformulated in distributional language because of the dense set of singularities. To express it we introduce again a family of shrinking Schwartz functions $f_\sigma(\tau) = f((\tau-1)/\sigma)$, this time centered around $1$. We claim that, for all $k \in \mathbb{N}$,
@@ -659,7 +667,11 @@ We just comment that the prefactor $1/\sqrt{q}$ is expected on the face of unita
 \input{images/3dplots/2-3.pgf}
 \input{images/3dplots/3-4.pgf}
 
-\cmnt{(c'è un problema di scala nei grafici; rivedere il codice)}
+
+
+\figurewrapper{\inputpgf{images/}{butterfly.pgf}}{40cm}{$\abs{\psi(z,\tau)}^2$ for an initial Gaussian state over a full revival period.}{butterfly}
+
+%\import{images/}{butterfly.pgf}
 
 
 \printbibliography

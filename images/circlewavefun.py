@@ -6,11 +6,13 @@ pi = np.pi
 
 CIRC = 1
 
-x = np.arange(0,CIRC+0.002,0.001)
+x = np.arange(0,CIRC,0.001)
 
 
 psi0 = np.exp( - (x-CIRC*0.5)**2 / (2*(0.03**2)))
 
+psi0abs = np.abs(psi0)**2
+psi0absmax = psi0abs.max()
 
 NRANGE = 50
 
@@ -18,15 +20,16 @@ NRANGE = 50
 
 def evolve(t,psi_in):
 
-    z = - x
+    z =  x
 
     kernel = (0.0+0j) * psi_in
     for n in range(-NRANGE, NRANGE+1):
         kernel += np.exp(1j*pi*n*n*t + 2j*pi*z*n)
 
+
+    kernel /= np.sqrt( np.sum(np.abs(kernel)**2) ) 
 #    kernel *= np.exp(-1j*z*z*t)
 
-#    print np.sum(np.abs(kernel)**2)
 
 #    print np.fft.fft(kernel)
 
@@ -41,17 +44,21 @@ def plotPsi(psi,text):
 
     fig = plt.figure(figsize=(2,2))
     ax = fig.gca(projection='3d')
+    ax.set_aspect('equal')
     ax.set_xlim3d(-1,1)
     ax.set_ylim3d(-1,1)
-#    ax.set_zlim3d(-1,1)
+    HEIGHT = 0.2
+    ax.set_zlim3d(0,1)
     ax.set_axis_off()
     ax.text2D(0,-0.09,text, 
             horizontalalignment='center',
         verticalalignment='center')
-    ax.plot( np.cos(2*pi*x/CIRC), np.sin(2*pi*x/CIRC), np.abs(psi)**2, color='k', linewidth=1.5,
+    ax.plot( np.cos(2*pi*x/CIRC), np.sin(2*pi*x/CIRC), np.abs(psi)**2 / psi0absmax * HEIGHT , color='k', linewidth=1.5,
             )
+
     #circle = ax.plot( np.cos(2*pi*x/CIRC), np.sin(2*pi*x/CIRC), 0, color='k',linewidth=1)
 #    plt.show()
+
 
 for p,q in [
         (0,1),
@@ -74,6 +81,7 @@ for p,q in [
     else:
         rname = r"\frac{%d}{%d}"%(p,q)
 
+    print "%d/%d"%(p,q)
     psiTest = evolve(r+0.000001, psi0)
 
 
