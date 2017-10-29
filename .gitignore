@@ -1,6 +1,11 @@
 refs/*
 temp/*
 
+## vim
+
+*.swp
+*.swo
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
