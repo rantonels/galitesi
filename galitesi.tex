@@ -118,6 +118,40 @@ If, in addition, we exclude that the Hamiltonian depends explicitly on time, the
     \ket{\Psi(t_2)} = e^{-\frac{i}{\hbar} H (t_2-t_1)} \ket{\Psi(t_1)} 
 \end{equation}
 
+$U(t) = e^{-\frac{i}{\hbar} H t}$ is the unitary time-evolution operator, and its determination coincides with the complete solution of the Schr\"odinger equation.
+
+While the presentation above is absolutely general, we specialize to a very simple subcase, that of a mechanical system with finite degrees of freedom. If we have a classical Hamiltonian system whose phase space is a product $M \times TM \ni (q,p)$, where the $n$-dimensional Riemannian smooth manifold $(M,g)$ is called the configuration space, and with some Hamiltonian function $H(p,q)$, then the \textbf{quantization} of this system is constructed by taking as Hilbert space the set of square-normalizable complex wavefunctions on configuration space\footnote{An interesting generalization is to consider instead wavefunctions to be sections of a complex line bundle over $M$, perhaps topologically non-trivial. This can be seen to be equivalent to the introduction of a flat electromagnetic potential with a non-trivial holonomy, and this addition on the $\mathbb{S}^1$ case is a possible future extension for this work.}:
+
+\begin{equation}
+    \hil = L^2(M) = \left\{ \psi : M \rightarrow \mathbb{C} : \int d\operatorname{vol}_M \abs{\psi(q)}^2 < \infty \right\}\,.
+\end{equation}
+
+Then the dynamics can be specified in any given atlas of $M$. In each chart $M \times TM \supset U \rightarrow \mathbb{R}^n \times \mathbb{R}^n$, $(q,p) \mapsto (x,p)$, we represent the classical coordinates $x$, $p$ respectively by the Hermitian operators $\hat x$, $\hat p$ acting as
+
+\begin{align}
+    \hat x \psi(x) & := x \psi(x)\\
+    \hat p \psi(x) & := -i \hbar \operatorname{grad}_M \psi(x)
+\end{align}
+
+Then finally we can write the Hamiltonian $\hat H$ as simply\footnote{More precisely, $H(p,q)$ is either written as a polynomial or approximated with a family of polynomials, and the same operation is performed on the operators $\hat x$, $\hat p$ to build the quantized Hamiltonian $\hat H$. Since these do not commute, ambiguities might arise, with physical implications. It is not the case for the situations we will consider, however, and we can ignore these issues.} $H(\hat x, \hat p)$. In each chart, the Schr\"odinger equation holds:
+
+\begin{equation}
+    i \pdv{t} \psi(x,t) = \hat H \psi(x,t)
+\end{equation}
+
+Physically speaking, the class of systems above is fairly broad. We can restrict it considerably to Hamiltonians of the form
+
+\begin{equation}
+    H(p,q) = \frac{\left\langle p, p \right\rangle}{2m}\,,
+\end{equation}
+
+which describe the dynamics of a free point particle of mass $m$ moving on $(M,g)$. We now choose units in which $\hbar = m = 1$. The Schr\"odinger equation reduces to
+
+\begin{equation}
+    i \pdv{t} \psi(x,t) = - \frac{\nabla^2}{2} \psi(x,t)
+\end{equation}
+
+where $\nabla^2$ is the Laplace-Beltrami operator for the metric $g$.
 
 \cmnt{Introdurre path integral, particella su $M$ e carte con Schr\"odinger}
 
