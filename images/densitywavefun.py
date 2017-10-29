@@ -32,4 +32,4 @@ ax.set_ylabel(r"$z$")
 ax.set_xlabel(r"$\tau$")
 
 #plt.show()
-plt.savefig("butterfly.pgf")
+plt.savefig("butterfly.pgf",bbox_inches='tight')

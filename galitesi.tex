@@ -311,9 +311,7 @@ In fact, the series converges to a function holomorphic on the upper half-plane,
 \vartheta(z;\tau) := \sumZ \exp( \pi i n^2 \tau + 2\pi i n z )\,.
 \end{equation}
 
-\input{images/plots/theta0.pgf}
-
-\cmnt{didascalia immagine}
+\figurewrapper{\input{images/plots/theta0.pgf}}{20cm}{Plot of $\T(\tau)$ over the upper-half plane. Contours of $\abs{\T(\tau)}$ (dashed) and $\operatorname{arg}(\T(\tau))$ (solid) are depicted.}{thetaplot}
 
 The issue is that $\T(\tau)$ coincides with the theta function computed on the real axis, outside of its domain of convergence. We argue $\T(t)$ can be constructed as the limit $\lim_{\epsilon\rightarrow 0} \vartheta(0;\tau + i\epsilon)$, where the limit is taken distributionally; that is to say the distribution is specified by the following action on a test function $\varphi(t)$:
 
