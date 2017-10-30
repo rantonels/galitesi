@@ -1,0 +1,65 @@
+%% Creator: Inkscape inkscape 0.92.1, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'wrapping.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{408.37558964bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.60934575)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{wrapping.pdf}}%
+    \put(0.02276103,0.07558593){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.07529833\unitlength}\centering \textbf{$0$}\end{minipage}}}%
+    \put(0.03109407,0.10667685){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.12061764\unitlength}\centering \textbf{$x_1$}\end{minipage}}}%
+    \put(0.09859738,0.61680881){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09594518\unitlength}\centering \textbf{$x_2$}\end{minipage}}}%
+    \put(0.18859741,0.61680881){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.15057302\unitlength}\centering \textbf{$x_2+1$}\end{minipage}}}%
+    \put(0.30817761,0.61680881){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.14984349\unitlength}\centering \textbf{$x_2+2$}\end{minipage}}}%
+    \put(0.7552666,0.50028211){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.12690407\unitlength}\centering \textbf{$x_2$}\end{minipage}}}%
+    \put(0.7083119,0.04037379){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11694455\unitlength}\centering \textbf{$x_1$}\end{minipage}}}%
+    \put(0.13685523,0.07558593){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.07529833\unitlength}\centering \textbf{$1$}\end{minipage}}}%
+    \put(0.256515,0.07558593){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.07529833\unitlength}\centering \textbf{$2$}\end{minipage}}}%
+    \put(0.37524717,0.07558593){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.07529833\unitlength}\centering \textbf{$3$}\end{minipage}}}%
+    \put(0.38200129,0.58688481){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{}}}%
+  \end{picture}%
+\endgroup%

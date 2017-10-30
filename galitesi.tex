@@ -5,6 +5,8 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage{hyperref}
+
+\usepackage{multicol}
     
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 
@@ -21,6 +23,15 @@
 
 \usepackage{pgf}
 \usepackage{import}
+
+
+\DeclareMathOperator*{\SumInt}{%
+\mathchoice%
+  {\ooalign{$\displaystyle\sum$\cr\hidewidth$\displaystyle\int$\hidewidth\cr}}
+  {\ooalign{\raisebox{.14\height}{\scalebox{.7}{$\textstyle\sum$}}\cr\hidewidth$\textstyle\int$\hidewidth\cr}}
+  {\ooalign{\raisebox{.2\height}{\scalebox{.6}{$\scriptstyle\sum$}}\cr$\scriptstyle\int$\cr}}
+  {\ooalign{\raisebox{.2\height}{\scalebox{.6}{$\scriptstyle\sum$}}\cr$\scriptstyle\int$\cr}}
+}
 
 \newcommand\inputpgf[2]{{
 \let\pgfimageWithoutPath\pgfimage
@@ -69,6 +80,44 @@
 \author{Riccardo Antonelli}
 
 \begin{document}
+
+
+\makeatletter
+\begin{center} \Large
+    \vfill
+    {\LARGE \textbf{Universit\`a degli studi di Padova}}\\
+    \vspace{30pt}
+    Scuola Galileiana di Studi Superiori \vfill
+    \emph{Classe di Scienze Naturali}\\ \vfill
+
+    Tesi di diploma galileiano\\ \vfill
+
+    {\Huge \bfseries \@title }
+    \vfill
+
+\end{center}
+
+\vspace{100pt}
+
+\begin{multicols}{2} \Large
+    \begin{flushleft}
+    Relatore\\
+    Prof. Paolo Ciatti
+\end{flushleft}
+
+    \columnbreak
+
+    \begin{flushright}
+    Diplomando\\
+    \@author
+\end{flushright}
+
+\end{multicols}
+
+\vfill
+
+
+\newpage
 
 \maketitle
 
@@ -147,13 +196,48 @@ Physically speaking, the class of systems above is fairly broad. We can restrict
 
 which describe the dynamics of a free point particle of mass $m$ moving on $(M,g)$. We now choose units in which $\hbar = m = 1$. The Schr\"odinger equation reduces to
 
-\begin{equation}
+\begin{equation} \label{localschroedinger}
     i \pdv{t} \psi(x,t) = - \frac{\nabla^2}{2} \psi(x,t)
 \end{equation}
 
 where $\nabla^2$ is the Laplace-Beltrami operator for the metric $g$.
 
-\cmnt{Introdurre path integral, particella su $M$ e carte con Schr\"odinger}
+There exists a way of understanding the time-evolution operator $\hat U(t)$ more explicitly in this case. Define the function $G(x_1,x_2;t)$ as the solution to the initial-value problem for equation \eqref{localschroedinger} with a $\delta$-function initial condition:
+
+\begin{align}
+    i \pdv{t} G(x_1;x,t) & = - \frac{\nabla^2_x}{2} G(x_1;x,t)\,, \\
+    G(x_1;x,0) & = \frac{1}{\sqrt{g}} \delta(x-x_1)\,.
+\end{align}
+
+Then, since \eqref{localschroedinger} is linear, the solution to the initial-value problem with initial condition $\psi(x,0)$ can be found as a convolution:
+
+\begin{equation}\label{convolutionformula}
+    \psi(x,t) = G(x_1;x,t) \ast_{x_1} \psi(x_1,0)\,.
+\end{equation}
+
+The function $G$ is known as a fundamental solution or in more physical terms the propagator, since it coincides with the probability amplitude for a particle left at position $x_1$ to be found at position $x$ after time $t$. \eqref{convolutionformula} then describes how knowledge about the distribution of initial positions evolves as a sum over the evolutions of possible initial positions. In any case \eqref{convolutionformula} is the specification of the operator $\hat U(t)$ as a convolution operator.
+
+Taking a basis of eigenstates of position $\ket x$ normalized such that $\int dx \ket{x} \bra{x}$ is the identity operator, note that
+
+\begin{align}
+    G(x_1;x,t) & := \bra{x_1} \hat U (t) \ket{x}\\
+    & = \bra{x_1} e^{-i H t} \ket{x} \\
+    & = \bra{x_1} e^{-i H t'} e^{-i H (t-t')} \ket{x} \\
+    & = \int dx' \bra{x_1} e^{-i H t'} \ket{x'} \bra{x'} e^{-iH(t-t')} \ket{x}\\
+    & = \int dx' G(x_1;x',t')G(x';x,t-t') \label{productform}
+\end{align}
+
+Expression \eqref{productform} states the amplitude of propagation from an initial to a final point is equal to the sum over all possible intermediate position of the product between the amplitude of propagation from initial to intermediate and to intermediate to final position. This is a general and fundamental statement about quantum mechanics: amplitudes are sum over possible processes, each of which is a product of amplitudes of subprocesses. In general, one can always write some equality of the form
+
+\newcommand{\iniziale}{\bra{\text{initial}}}
+\newcommand{\finale}{\ket{\text{final}}}
+
+\begin{equation}\label{amplitudessum}
+    \iniziale \hat U(t) \finale = \SumInt_{\text{intermediate}} \iniziale \hat U(t') \ket{\text{intermediate}} \bra{\text{intermediate}} U(t-t') \finale\,;
+\end{equation}
+
+where $\SumInt$ can be any general type of "sum", including even finite or infinite sums or integrals under which the intermediate states form a suitably normalized complete basis of $\hil$.
+
 
 \subsection{Review: free particle on $\mathbb{R}$}
 
@@ -163,19 +247,21 @@ Consider the quantization of the simplest possible continuous classical system: 
     H = - \frac{\partial_x^2}{2}\,.
 \end{equation}
 
-We are interested in calculation of the propagator $G(\Delta t, \Delta x)$. It is instructive to review the derivation of this Green function through both methods described before.
+We are interested in calculation of the propagator $G(x_1;x_2,t)$. Because of translation invariance, this quantity can only depend on the difference $x_2-x_1$, and we can simply write $G(x;t)$.
 
-We begin with the path integral picture.
+%It is instructive to review the derivation of this Green function through both methods described before.
+%
+%We begin with the path integral picture.
+%
+%\cmnt{ripresentare il calcolo del propagatore con path-integral.}
+%
+%the final expression for the propagator, which we call the Schr\"odinger kernel, is 
+%
+%\begin{equation}
+%    G(t,x) = (2\pi i t)^{-1/2} \exp(\frac{i}{2} \frac{x^2}{t})\,.
+%\end{equation}
 
-\cmnt{ripresentare il calcolo del propagatore con path-integral.}
-
-the final expression for the propagator, which we call the Schr\"odinger kernel, is 
-
-\begin{equation}
-    G(t,x) = (2\pi i t)^{-1/2} \exp(\frac{i}{2} \frac{x^2}{t})\,.
-\end{equation}
-
-The same result can be obtained by diagonalization of $H$. As a simple derivative operator, it's obvious a basis of eigenfunctions of $H$ is given by the Fourier components $\phi_k(x) = e^{ikx}$. Each of them evolves according to
+The most straightforward path to the propagator is through diagonalization of $H$. As a simple derivative operator, it's obvious a basis of eigenfunctions of $H$ is given by the Fourier components $\phi_k(x) = e^{ikx}$. Each of them evolves according to
 
 \begin{equation}
     \label{rfourierevolution}
@@ -191,10 +277,8 @@ Our initial wavefunction is the (non-normalizable) delta function: $\Psi(x;0) = 
 and inserting \eqref{rfourierevolution} we obtain the evolved state at a later time:
 
 \begin{equation}
-    \Psi(x;t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} dk \; \exp( - i \frac{k^2}{2}t +  ikx ) = (2 \pi i t)^{-1/2} \exp(-\frac{x^2}{2it}) \propto G(t,x)\,,
+    \Psi(x;t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} dk \; \exp( - i \frac{k^2}{2}t +  ikx ) = (2 \pi i t)^{-1/2} \exp(\frac{ix^2}{2t}) = G(x,t)\,.
 \end{equation}
-
-in agreement with the first derivation.
 
 We note a paradoxical properties of the propagator. At any given $t$, $\abs{G(t,x)}^2 \equiv \frac{1}{2\pi t}$ identically for all $x$. The state at time $t>0$ would seem to assign uniform probability density to all positions on the real line, and is therefore non-normalizable. This behaviour becomes more intuitive in light of the Heisenberg uncertainty principle (HUP), which states that for any state the variance of the position and momentum observables satisfy the inequality
 
@@ -210,9 +294,20 @@ If any possible value of the momentum is equally likely, it makes sense that aft
     \Phi(x;t) = \left(\Phi(0) * G(t) \right)(x) := \intR dx' \Phi(x',0) G(x-x',t)
 \end{equation}
 
-and since the kernel is a tempered distribution \cmnt{proof}, if $\Phi(x,0)$ is taken to be Schwartz so will be $\Phi(x,t)$. Thus the state will be normalizable at all times.
+and since the kernel is a tempered distribution\footnote{For positive times, $G(x;t)$ is a smooth bounded function, so it defines a tempered distribution. For $t=0$, it equals a $\delta$-function by definition, again a tempered distribution.}, if $\Phi(x,0)$ is taken to be Schwartz so will be $\Phi(x,t)$. Thus the state will be normalizable at all times.
 
-\cmnt{convolution with gaussian?}
+As an instructive example, consider a more regular initial state, such as the Gaussian $\Phi(x;0) = N \exp(-\frac{x^2}{2\sigma^2} )$, with $N$ such that $\int dx \abs{\Phi(x)}^2 = 1$. The wavefunction at time $t$ is then
+
+\begin{equation}
+    \Phi(x;t) = \left( \Phi(0) \star G(t) \right)(x) = \int dy \Phi(y;0) G(x-y,t)
+\end{equation}
+
+\begin{equation}
+    = N \sqrt\frac{\sigma^2}{\sigma^2 + it} e^{-\frac{x^2}{2(\sigma^2 + it)}}\,.
+\end{equation}
+
+The final state is still smooth and normalizable; in fact $\abs{\Phi(x;t)}^2$ is still a gaussian with finite (but growing in time) standard deviation $\sigma^2/(\sigma^4 + t^2)$.
+
 
 \cmnt{heat equation}
 
@@ -233,9 +328,9 @@ Boundary conditions \eqref{boundaryconds} should be obvious intuitively; formall
 
 Again the goal is to determine the propagator, that is to say the generalized solution corresponding to a $\delta$-function initial condition.
 
-One way of integrating the equation is by exploiting the known non-compact solution through a method of images. The circle is interpreted as $\ess^1 = \ar / \mathbb{Z}$, that is the quotient of $\ar$ through the identification of points that differ by an integer. Thus, a free particle starting on a point $x_1$ in the circle at time $0$ and ending on another point $x_2$ after a certain time interval $t$ is equivalent to a free particle on $\mathbb{R}$ starting on $x_1 \in \mathbb{R}$ and ending up on \emph{any} representative $x_2 + n$, $n\in\mathbb{Z}$, of the class of $x_2$ under the equivalence relation. The index $n$ of the representative corresponds to the winding number, that is the number of turns around the circle performed by the particle before reaching $x_2$.
+One way of integrating the equation is by exploiting the known non-compact solution through a method of images. The circle is interpreted as $\ess^1 = \ar / \mathbb{Z}$, that is the quotient of $\ar$ through the identification of points that differ by an integer. Thus, a free particle starting on a point $x_1$ in the circle at time $0$ and ending on another point $x_2$ after a certain time interval $t$ is equivalent to a free particle on $\mathbb{R}$ starting on $x_1 \in \mathbb{R}$ and ending up on \emph{any} representative $x_2 + n$, $n\in\mathbb{Z}$, of the class of $x_2$ under the equivalence relation. The index $n$ of the representative corresponds to the winding number, that is the number of turns around the circle performed by the particle before reaching $x_2$. (See figure \ref{fig:wrapping}).
 
-\cmnt{immagine}
+\immagine{wrapping.pdf_tex}{17cm}{A few trajectories on $\ar$ from $x_1$ to $x_2+n$ and their images under the quotient $\mathbb{S}^1 = \ar/\mathbb{Z}$, which are paths from $x_1$ to $x_2$ with winding number $n$.}{wrapping}
 
 In accordance with \eqref{amplitudessum} the amplitude for the particle on $\ess^1$ to move from $x_1$ to $x_2$ is equal to the sum over all images for the particle on $\ar$ to move from $x_1$ to that image over the same time interval. Therefore, setting again $x_1 = 0$ by translation invariance, the circle propagator is given by the sum over "unwrapped" propagators:
 
