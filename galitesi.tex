@@ -374,7 +374,7 @@ Thus, the main focus of our attention is directed towards the $\T(\tau)$ "functi
 
 \subsection{A resummation formula}\label{resummation}
 
-We will first simplify $\T(t)$ considerably. We recall the Poisson resummation formula: if $f(x)$ and $\hat f(k)$ are Fourier transforms\footnote{Note we use the ``physicist's'' convention with $\hat f(k) = \int dx\, e^{-ikx} f(x)$, so the argument of $\hat f$ is the wavenumber and $\xi$ is the inverse wavelength.} of eachother, then
+We will first simplify $\T(t)$ considerably. We recall the Poisson resummation formula\cite{bellman}: if $f(x)$ and $\hat f(k)$ are Fourier transforms\footnote{Note we use the ``physicist's'' convention with $\hat f(k) = \int dx\, e^{-ikx} f(x)$, so the argument of $\hat f$ is the wavenumber and $\xi$ is the inverse wavelength.} of eachother, then
 
 \begin{equation}
     \sumZ f(n) = \sum_{\xi=-\infty}^{\infty} \hat f(2\pi\xi)\,,
@@ -400,7 +400,7 @@ It seems natural to try and promote $t$, or equivalently $\tau$, to complex vari
     | \exp(\pi i n^2 \tau) | \leq e^{-\pi n^2 \Im\tau}\,.
 \end{equation}
 
-In fact, the series converges to a function holomorphic on the upper half-plane, the Jacobi theta function:
+In fact, the series converges to a function holomorphic on the upper half-plane, the Jacobi theta function\cite{bellman}:
 
 \begin{equation}\label{jacobidef}
 \vartheta(z;\tau) := \sumZ \exp( \pi i n^2 \tau + 2\pi i n z )\,.
@@ -459,6 +459,17 @@ The Jacobi theta function $\vartheta(z,\tau)$ has well-defined transformation pr
 
 These do generate a proper subgroup of $PSL(2,\mathbb{Z})$, as we will show now, which we call $\emodg$. Define the notion of \emph{parity} of a reduced fraction $p/q$ as the parity of $pq$. (The parity of $\infty \in \hat{\mathbb{Q}}$ is taken to be the same as $0$, so even). It's clear this parity is invariant under action of $\emodg$; moreover since at least two rationals of opposite parity exist (e.g. $0$ and $1$), transitivity implies $\emodg$ and $PSL(2,\mathbb{Z})$ cannot coincide.
 
+$\emodg$ is an example of congruence subgroup, i.e. a subgroup of the modular group defined by a congruence relation, in our case
+
+\begin{equation}
+    \emodg = \left\{M \in \modg : M \equiv T^2 \text{ or } S \mod 2 \right\} 
+\end{equation}
+
+\begin{equation}
+    = \left\{ \mqty(a & b \\ c & d) \in \modg : ac \equiv bd \equiv 0 \mod 2 \right\}
+\end{equation}
+
+and is also known in the literature as the theta subgroup\cite{eichler}.
 
 \figurewrapper{\includegraphics[width=0.8\textwidth]{modulargroup}}{20cm}{A representation of the action of $\modg$ on the upper half-plane $\mathbb{H}^2$ as a tessellation of ideal trangles with angles $(30\deg,30\deg,0\deg)$. Any of the triangles acts as a fundamental domain; the ideal $0\deg$ vertices lie on the real axis at rational points. The shading depicts the two orbits of the subgroup $\emodg \subset \modg$}{modular}
 
