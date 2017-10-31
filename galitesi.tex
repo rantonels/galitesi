@@ -1,8 +1,11 @@
 \documentclass{article}
+%\usepackage[utf8x]{inputenc} 
 \usepackage[margin=1.3in]{geometry}
-\renewcommand{\baselinestretch}{1.3} 
+\renewcommand{\baselinestretch}{1.2} 
+\usepackage{kpfonts}
 \usepackage[parfill]{parskip}
 \usepackage[utf8]{inputenc}
+\DeclareUnicodeCharacter{2212}{$-$}
 
 \usepackage{hyperref}
 
@@ -634,19 +637,26 @@ Equivalently, we have just proven that the Fourier transform of the $\T(\tau)$ d
     \hat \T(\omega) = \sumZ \delta(\omega + \pi n^2)
 \end{equation}
 
-is a well-defined tempered distribution.
+is a well-defined tempered distribution. Then clearly $\T(\tau)$ is also tempered as the Fourier transform of a tempered distribution.
 
-
-
-\cmnt{Segue dimostrazione alternativa con l'integrale, magari spostare in una sezione apposita con grafico di $B$}
-
-Consider the following series for real $\tau$:
+An alternative proof provides a different presentation of $\T(\tau)$. Consider the following series for real $\tau$:
 
 \begin{equation}
-    B(\tau) = \frac{1}{i\pi}\sumZ \frac{e^{i\pi\tau n^2} }{n^2}
+    B(\tau) = \frac{2}{i\pi}\sum_{n=1}^\infty \frac{e^{i\pi\tau n^2} }{n^2}
 \end{equation}
 
-The series is absoutely convergent and limited as a function of $\tau$, as $\sum_{n=0}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}$. Therefore, $B(\tau)$ is a well-defined function in $\locint$.
+The series is absoutely convergent and bounded as a function of $\tau$, as $\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}$. Therefore, $B(\tau)$ is a well-defined function in $\locint$, and thus defines a tempered distribution. $\T(\tau)$ is the distributional derivative of $B(\tau)$, in the sense
+
+\begin{equation}
+    \left\langle\T,\phi\right\rangle =  \left\langle 1 + \dv{\tau}B , \phi \right \rangle = \left\langle 1, \phi \right\rangle - \left\langle B, \dv{\tau} \phi \right\rangle\,,
+\end{equation}
+
+and the last expression defines a tempered distribution acting on Schwartz $\phi(\tau)$. $B(\tau)$ is useful because, being continuous and bounded, can be plotted; it gives therefore a graphical confirmation of the ideas presented in the previous sections.
+
+\figurewrapper{\inputpgf{images}{batman.pgf}}{40cm}{The real (back) and imaginary (front) parts of the function $B(\tau)$ over a revival period, with some small rational points marked. Note that around even rationals $r$ the function behaves as $\sqrt{\tau - r}$, while at odd $r$ all its derivatives vanish; this matches with our results for its derivative $\T(\tau)$.}{batman}
+
+
+
 
 \section{The theta function propagator}
 
@@ -760,7 +770,7 @@ Having in addition noted that $\abs{\beta_{p,1,c}} = 1$ for all $p,c$, we can in
 Thus, the fundamental solution at fractional time becomes
 
 \begin{equation}\label{finalrationalkernel}
-    \vartheta\left( z ; \,\frac{p}{q} \right) = \frac{1}{\sqrt{q}} \sum_{c=0}^{q-1} \phi_{p,q,c} \, \delta \left(z-\frac{c}{q}\right)\,,
+    \vartheta\left( z ; \,\frac{p}{q} \right) = \frac{1}{\sqrt{q}} \sum_{c=0}^{q-1} \phi_{p,q,c} \, \delta \left(z-\frac{c+\Delta}{q}\right)\,,
 \end{equation}
 
 for some phases $\phi_{p,q,c}$, a characterization which will become extremely useful when attempting a physical interpretation of time evolution of an initial state.
@@ -790,7 +800,63 @@ We just comment that the prefactor $1/\sqrt{q}$ is expected on the face of unita
 
 \section{Physical interpretation}
 
+A central concern in modern physics is the nature of the interface between quantum and classical mechanics. The correspondence principle, the idea that quantum systems should reduce to classical in some large quantum numbers limit, has been shown consistently to be too strong of a hypothesis if taken with absolute generality. Instead, the boundary between the class of cases where a concept of classical limit is sensible and those for which it is not has proven to be complex and require special care.
+
+For example, it's tempting to assume the classical limit of a quantum system to be recovered for example by considering ``quasiclassical'' states $\ket \psi$ such that
+
+\begin{itemize}
+    \item $\ket \psi$ is reasonably localized in configuration space, as to better approximate a classical trajectory $q(t)$.
+    \item In phase space $\ket \psi$ saturates the uncertainty principle, as to best approximate a classical phase space pure state, a single point $(q(t),p(t))$.
+    \item Under unitary time evolution, $\ket \psi$ should stay localized around the classical trajectory; it should thus also be quasiclassical in a dynamical sense.
+\end{itemize}
+
+The success of this program in a few basic examples can be deceiving. For example, the one-dimensional quantum harmonic oscillator admits coherent states
+
+\begin{equation}
+    \ket\alpha = \sum_{n=0}^{\infty} \frac{\alpha^n}{\sqrt{n!}} \ket n
+\end{equation}
+
+which satisfy the above properties. In fact, $\abs{\psi(x,t)}^2$ is always a gaussian with fixed width as a function of $x$, whose center oscillates harmonically around $x=0$; in addition the wavepacket always saturates the uncertainty principle in phase space. In fact, the coherent state $\ket \alpha$ is rigidly rotated around the origin in phase space through time evolution, with no change in shape.
+
+This is however too simple of a case. In more general quantum systems, it is impossible to prevent spreading of the wavepacket, and thus to construct semiclassical states according to the standards specified above. The path to the correspondence principle must be modified and these standards relaxed - for example, it is accepted that wavepackets spread, provided it is shown that the characteristic spreading time goes to infinity for large quantum numbers.
+
+What, then, is special about the quantum harmonic oscillator, in that it allows such constant-shape solutions? We argue that it is the following properties, which is shared with the particle in a $1D$ box and on a circle: the Hamiltonian has a spectrum composed only of integer multiples of a single energy:
+
+\begin{equation}
+    E_n = m_n E\,,\quad m_n \in \mathbb{Z}
+\end{equation}
+
+This property is also true of the hydrogen atom if truncated to principal quantum numbers $n < N$, and of the particle on higher-dimensional boxes and tori if the sides are in rational ratios. Consider the time-evolution of \emph{any} initial state $\ket{\psi(0)}$, decomposed in a complete basis of energy eigenstates:
+
+\begin{equation}
+    \ket{\psi(0)} = \sum_n \ket{\phi_n(0)}\,,
+\end{equation}
+
+\begin{equation}
+    \ket{\psi(t)} = \sum_n e^{-i m_n E t} \ket{\phi_n(0)}\,;
+\end{equation}
+
+so that, defined the period $T := 2\pi / E$,
+
+\begin{equation}
+    \ket{\psi(t+T)} = \ket{\psi(t)}\,.
+\end{equation}
+
+Thus \emph{all} states are reconstructed after a time $T$, a phenomenon dubbed quantum revival. This corresponds to the simple periodicity $\T(z;\tau+2) = \T(z;\tau)$ of the theta amplitude we have already investigated. Systems of this type do not encounter issues with wavepacket spreading because the state is necessarily periodic in time.
+
+Such integer revivals however do not provide a satisfying understanding of the nature of singularities of the propagator on the circle, which do not only appear for integer multiples of the fundamental period $T$, but also for rational multiples of it. We now attempt a physical formulation of the origin of such fractional revivals.
+
 \subsection{Fractional revivals and antirevivals}
+
+Moving back to $\mathbb{S}^1$, equation \eqref{finalrationalkernel} states that at rational time $\tau = p/q$ the propagator is a normalized array of $q$ equally spaced $\delta$-functions, weighted with some phases. The array is shifted by $\frac{1}{2q}$ if $pq$ is odd. Physically, this means that an initial state $\psi(z,0)$ will turn into $q$ smaller ``clones'' at any rational time:
+
+\begin{equation}
+    \psi(z,p/q) = \frac{1}{\sqrt q} \sum_{c=0}^{q-1} \phi_{p,q,c} \psi(z + \frac{c+\Delta}{q},0)\,,
+\end{equation}
+
+a phenomenon dubbed fractional revival. This explains the appearance of singularities at even rationals in the $z=0$ case: these were simply the $c=0$ copy of the initial $\delta$-function reforming in the corresponding fractional revival; in the odd case instead the revived copies are shifted and so $\T(0;p/q)$ vanishes. We term the latter case ``antirevivals''.
+
+\cmnt{lettura fisica della simmetria modulare}
 
 \cmnt{Spiegazione della struttura a tempi razionali: a tempo razionale pari la funzione d'onda viene ``rivitalizzata'' in $q$ copie, mentre a tempo razionale dispari le copie rivitalizzate sono sfasate di $1/(2q)$ (antirevivals)}
 
