@@ -781,6 +781,14 @@ We just comment that the prefactor $1/\sqrt{q}$ is expected on the face of unita
     \frac{1}{q}\sum_{c=0}^{q-1} 1 = 1\,.
 \end{equation}
 
+It is notable that the case $p = 1$ is easily interpreted in terms of the modular transformation property \eqref{smapfull}, which implies
+
+\begin{equation}\label{qcombmodular}
+    \vartheta\left(z;\frac{1}{q}\right) = \sqrt{iq} e^{-i\pi q z^2} \T(qz;-q) = \sqrt{iq} e^{-i\pi q z^2} \T(q(z+\Delta);0)\,,
+\end{equation}
+
+where again $\Delta = \frac{1}{2} (q \mod 2)$. If we recall that by definition $\T(z;0) = \delta(z)$, then \eqref{qcombmodular} implies for $\T(z;\frac{1}{q})$ the comb structure described in \eqref{finalrationalkernel}. Thus, while the structure of the phases in general might be very complex, the existence of these $\delta$-combs at rational times can be traced back entirely to modular invariance.
+
 %\subsection{The full modular group}
 %
 %Now that the $z$ dependence has been reintroduced, we can finally consider the action of the entire modular group on the theta amplitude $\vartheta(z;\tau)$. For the action under $T:\tau \mapsto \tau+1$, note
@@ -851,12 +859,51 @@ Such integer revivals however do not provide a satisfying understanding of the n
 Moving back to $\mathbb{S}^1$, equation \eqref{finalrationalkernel} states that at rational time $\tau = p/q$ the propagator is a normalized array of $q$ equally spaced $\delta$-functions, weighted with some phases. The array is shifted by $\frac{1}{2q}$ if $pq$ is odd. Physically, this means that an initial state $\psi(z,0)$ will turn into $q$ smaller ``clones'' at any rational time:
 
 \begin{equation}
-    \psi(z,p/q) = \frac{1}{\sqrt q} \sum_{c=0}^{q-1} \phi_{p,q,c} \psi(z + \frac{c+\Delta}{q},0)\,,
+    \psi(z,p/q) = \frac{1}{\sqrt q} \sum_{c=0}^{q-1} \phi_{p,q,c} \psi\left(z + \frac{c+\Delta}{q},0\right)\,,
 \end{equation}
 
 a phenomenon dubbed fractional revival. This explains the appearance of singularities at even rationals in the $z=0$ case: these were simply the $c=0$ copy of the initial $\delta$-function reforming in the corresponding fractional revival; in the odd case instead the revived copies are shifted and so $\T(0;p/q)$ vanishes. We term the latter case ``antirevivals''.
 
-\cmnt{lettura fisica della simmetria modulare}
+This phenomenon is harder to understand on a basic physical level. It should be remarked that at the heart of fractional revivals is the hidden modular symmetry as in \eqref{qcombmodular}, so we will now try to provide an intuitive picture of the meaning of this property of the propagator. Our system of a particle on a circle with unit circumference has energy eigenvalues:
+
+\begin{equation}
+    E_n = 2\pi^2 n^2\,.
+\end{equation}
+
+Note that if one takes a smaller circle, of circumference $1/q$ for some positive integer $q$, the energy levels $E^{S}_n$ will of course be rescaled as
+
+\begin{equation}
+    E^{S}_n = 2\pi^2 n^2 q^2 = q^2 E^{S}_n\,.
+\end{equation}
+
+\newcommand{\aqeq}{\ensuremath{{\,``\!\!=''}}}
+
+That would suggest that if time is rescaled as $t^{S} = q^{-2} t$, then since the Hamiltonians are ``rescaled'' as $\hat{H}^S \aqeq q^2 \hat H$ one would expect the smaller circle time-evolution to coincide with that of the larger circle over a rescaled time:
+
+\begin{equation}
+    \hat{U}(t)\; \aqeq \; \hat{U}^{S}(q^2 t)\,.
+\end{equation}
+
+This equality cannot actually be sensible as written, as the two time-evolution operators act on different Hilbert spaces and cannot be compared. But we can certainly attempt a more meaningful equality between propagators. Consider the more explicit map between the circles:
+
+\begin{equation} \label{wrapmap}
+    z \mapsto z\,, \quad t \mapsto q^2 t\,.
+\end{equation}
+
+This map is actually not a diffeomorphism as it is $q$-to-$1$ on $z$; the larger circle is wrapped $q$ times on the smaller one. Still, if one were to ignore this subtlety, it is reasonable to expect an equality of the type
+
+\begin{equation} \label{boipagator}
+    A\left(z;\frac{1}{q}\right) \; \aqeq \; A^S(z;q) = \sqrt{q} A(qz;q)\,.
+\end{equation}
+
+In the last equality, we used the fact that the system of a particle on a circle of length $1/q$ is identical to our original system of a unitary circumference, once one reparametrizes as $z \mapsto qz$. Thus, the propagators must coincide\footnote{The factor of $\sqrt{q}$ appears for renormalizability, or in other words because the true invariant is the probablity density $dz \abs{A(z,t)}^2$.}. Equation \eqref{boipagator} is essentially the modular transformation property \eqref{qcombmodular}, the only missing piece being the phase. We argue this addition is a consequence of the winding number of \eqref{wrapmap} and could be accounted for by arguing that the wavefunction on the smaller circle is not necessarily a section of a trivial line $\mathbb{C}$-bundle, in other words in some coordinates the boundary conditions on the smaller circle could be of the form
+
+\begin{equation}
+    \psi^S(z + \frac{1}{q}; t) = e^{i\alpha} \psi^S(z;t)\,.
+\end{equation}
+
+Accounting for this possible non-triviality, the phase factor $\sqrt{i} e^{i\pi q z^2}$ can be seen to arise naturally.
+
 
 \cmnt{Spiegazione della struttura a tempi razionali: a tempo razionale pari la funzione d'onda viene ``rivitalizzata'' in $q$ copie, mentre a tempo razionale dispari le copie rivitalizzate sono sfasate di $1/(2q)$ (antirevivals)}
 
