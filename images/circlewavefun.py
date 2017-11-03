@@ -47,7 +47,7 @@ def plotPsi(psi,text):
     ax.set_aspect('equal')
     ax.set_xlim3d(-1,1)
     ax.set_ylim3d(-1,1)
-    HEIGHT = 0.2
+    HEIGHT = 0.1
     ax.set_zlim3d(0,1)
     ax.set_axis_off()
     ax.text2D(0,-0.09,text, 
