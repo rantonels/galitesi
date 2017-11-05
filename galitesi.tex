@@ -8,7 +8,8 @@
 \DeclareUnicodeCharacter{2212}{$-$}
 
 \usepackage{hyperref}
-
+\usepackage{afterpage}
+\usepackage{float}
 \usepackage{multicol}
     
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
@@ -59,7 +60,8 @@
 \graphicspath{{images/}}
 
 \newcommand{\figurewrapper}[4]{
-    \begin{figure}[h]
+    \begin{figure}[H]
+    \captionsetup{width=0.8\textwidth}
     \centering{
     \def\svgwidth{\linewidth}
     {#1}
@@ -146,7 +148,11 @@ Perhaps the most general of such regularizations is Wick rotation, in which a tr
 
 We would like here instead to attempt a sketch of alternative meaning that can be assigned to the naively divergent oscillatory sums of quantum mechanics. For this reason we consider the simplest possible quantum system in which such unruly summations occur, a free particle on $\mathbb{S}^1$. This is a sandbox even more basic than the more popular particle in a box\footnote{In fact, the box is a simple orbifold of the circle, as $[0,1] \cong \mathbb{S}^1/\{\theta \sim - \theta\}$. Thus the propagator in a box is easily obtained as a sum of two circle propagators through the method of images.}, and in this context we pose the simplest question:
 
+\vspace{2em}
+
 \begin{quote} \emph{What is the probability that a particle left on a point on the circle will reach another given point after some given time?} \end{quote}
+
+\vspace{2em}
 
 This probability (density) is the squared modulus of a complex amplitude, depending on the final position and elapsed time, called the propagator, which is simply the fundamental solution to the Schr\"odinger equation on the circle. The answer to this apparently absolutely innocuous question is already an incredibly bizzare object. Even after being rigorously defined through regularization, it still does not behave as a function of position and time in any naive sense. Normally, this is kept ``as is'' and read as a formal series, up until the point when one computes more regular observables starting from it. In this work, instead, we insist in providing an accurate description of this amplitude as it comes as an actual mathematical object (and it will turn out to be a tempered distribution of both time and space) and a study of its features.
 
@@ -244,7 +250,7 @@ Expression \eqref{productform} states the amplitude of propagation from an initi
 where $\SumInt$ can be any general type of "sum", including even finite or infinite sums or integrals under which the intermediate states form a suitably normalized complete basis of $\hil$.
 
 
-\subsection{Review: free particle on $\mathbb{R}$}
+\subsection{Review: free particle on $\mathbb{R}$}\label{sec:free}
 
 Consider the quantization of the simplest possible continuous classical system: the free particle in one dimension. This is the Hamiltonian system phase space $\ar^2$ (with the simple chart $(p,x)$) and the Hamiltonian $H(p,x) = \frac{p^2}{2}$ (having chosen units such that $m=1$). Configuration space is the real line. Consequently, the quantum description has as state a complex wavefunction with domain $\ar$, and evolution is according to the Hamiltonian
 
@@ -258,7 +264,6 @@ We are interested in calculation of the propagator $G(x_1;x_2,t)$. Because of tr
 %
 %We begin with the path integral picture.
 %
-%\cmnt{ripresentare il calcolo del propagatore con path-integral.}
 %
 %the final expression for the propagator, which we call the Schr\"odinger kernel, is 
 %
@@ -281,11 +286,17 @@ Our initial wavefunction is the (non-normalizable) delta function: $\Psi(x;0) = 
 
 and inserting \eqref{rfourierevolution} we obtain the evolved state at a later time:
 
-\begin{equation}
-    \Psi(x;t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} dk \; \exp( - i \frac{k^2}{2}t +  ikx ) = (2 \pi i t)^{-1/2} \exp(\frac{ix^2}{2t}) = G(x,t)\,.
+\begin{equation}\label{rprop}
+    \Psi(x;t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} dk \; \exp( - i \frac{k^2}{2}t +  ikx ) = (2 \pi i t)^{-1/2} \exp(\frac{ix^2}{2t}) = G(x,t)\,;
 \end{equation}
 
-We note a paradoxical properties of the propagator. At any given $t$, $\abs{G(t,x)}^2 \equiv \frac{1}{2\pi t}$ identically for all $x$. The state at time $t>0$ would seem to assign uniform probability density to all positions on the real line, and is therefore non-normalizable. This behaviour becomes more intuitive in light of the Heisenberg uncertainty principle (HUP), which states that for any state the variance of the position and momentum observables satisfy the inequality
+where from now on the square root of a purely imaginary number is defined as
+
+\begin{equation}
+    \sqrt{ix} := e^{i(\operatorname{sgn} x) \frac{\pi}{4}} \sqrt{\abs{x}}\,.
+\end{equation}
+
+We note a paradoxical property of the propagator \eqref{rprop}. At any given $t$, $\abs{G(t,x)}^2 \equiv \frac{1}{2\pi t}$ identically for all $x$. The state at time $t>0$ would seem to assign uniform probability density to all positions on the real line, and is therefore non-normalizable. This behaviour becomes more intuitive in light of the Heisenberg uncertainty principle (HUP), which states that for any state the variance of the position and momentum observables satisfy the inequality
 
 \begin{equation}
     \sigma_x \sigma_p \geq \frac{1}{2}
@@ -304,17 +315,38 @@ and since the kernel is a tempered distribution\footnote{For positive times, $G(
 As an instructive example, consider a more regular initial state, such as the Gaussian $\Phi(x;0) = N \exp(-\frac{x^2}{2\sigma^2} )$, with $N$ such that $\int dx \abs{\Phi(x)}^2 = 1$. The wavefunction at time $t$ is then
 
 \begin{equation}
-    \Phi(x;t) = \left( \Phi(0) \star G(t) \right)(x) = \int dy \Phi(y;0) G(x-y,t)
+    \Phi(x;t) = \left( \Phi(0) * G(t) \right)(x) = \int dy \Phi(y;0) G(x-y,t)
 \end{equation}
 
 \begin{equation}
     = N \sqrt\frac{\sigma^2}{\sigma^2 + it} e^{-\frac{x^2}{2(\sigma^2 + it)}}\,.
 \end{equation}
 
-The final state is still smooth and normalizable; in fact $\abs{\Phi(x;t)}^2$ is still a gaussian with finite (but growing in time) standard deviation $\sigma^2/(\sigma^4 + t^2)$.
+The final state is still smooth and normalizable; in fact $\abs{\Phi(x;t)}^2$ is again a gaussian with finite (but growing in time) standard deviation $\sigma^2/(\sigma^4 + t^2)$.
+
+A clearer understanding of the analytic structure of propagator \eqref{rprop} can be reached if a connection with a well-known classical problem is uncovered. Consider again the Schr\"odinger equation for a particle moving on some Riemannian manifold $M$:
+
+\begin{equation}
+    i \pdv{t} \Psi = - \frac{\nabla^2}{2} \Psi\,,
+\end{equation}
+
+where $\nabla^2$ is the Laplace-Beltrami operator on $M$, and perform the substitution $t \mapsto -it$; this yields
+
+\begin{equation}
+    \pdv{t} \Psi = - \frac{\nabla^2}{2} \Psi\,,
+\end{equation}
+
+i.e. the heat / diffusion equation on $M$. The imaginary-time propagator is
+
+\begin{equation}\label{imrprop}
+    i G(x;-it) = \frac{1}{\sqrt{2\pi t}} \exp(-\frac{x^2}{t})\,,
+\end{equation}
+
+which is the famous and well-understood heat kernel, the fundamental solution to the heat equation on $\ar$. \eqref{improp} is only defined for positive $t$, as the heat equation only has smooth solution for infinite time in the future, but it develops singularities in finite time if time-reversed. Mathematically, this corresponds to entering the lower-half plane region in $t$ (understood as complex) where the Gaussian integrals are divergent. The quantum case is exactly on the axis which acts as boundary of convergence.
+
+This can be understood physically as diffusion being the Wick-rotated, or imaginary-time, counterpart of the Schr\"odinger equation. This, in fact, is to be seen as a minimal example of a general phenomenon in quantum theories in which the Wick-rotated theory (a statistical-mechanical system) has better converging observables; and observables in the quantum theory, only formally specified by non-converging oscillatory integrals, can be defined by analytic continuation of the imaginary-time observables.
 
 
-\cmnt{heat equation}
 
 \subsection{Free particle on the circle}
 
@@ -368,7 +400,7 @@ in particular, the probability amplitude (density) for the particle to return to
 \end{equation}
 
 
-The issue with the above is that the sum of oscillatory terms does not converge in any simple sense. (In fact, we will prove in \cmnt{proof!!} it almost never does converge pointwise). It does however converge in the sense of distributions in $t$ to a tempered distribution with highly singular behaviour. Our goal is to provide a complete description of the structure of this distribution. Since the $x$-dependence of the amplitude is not as fascinating as that on $\tau$, we will limit most of our considerations to the $x=0$ case, with no real loss of qualitative structure. We will recover the $x$ dependence after, in the discussion of fractional revivals and the physical interpretation of the amplitude.
+The issue with the above is that the sum of oscillatory terms does not converge in any simple sense. It does however converge in the sense of distributions in $t$ to a tempered distribution with highly singular behaviour. Our goal is to provide a complete description of the structure of this distribution. Since the $x$-dependence of the amplitude is not as fascinating as that on $\tau$, we will limit most of our considerations to the $x=0$ case, with no real loss of qualitative structure. We will recover the $x$ dependence after, in the discussion of fractional revivals and the physical interpretation of the amplitude.
 
 Thus, the main focus of our attention is directed towards the $\T(\tau)$ "function".
 
@@ -506,15 +538,17 @@ Returning to our physical object of interest, the amplitude, we see that propert
 
 \subsection{Even rationals}\label{sec:evens}
 
+\newcommand{\asympt}{(-i\tau)^{-1/2}}
+
 It is easy to show $\T$ ``should'' have a $\sim \tau^{-1/2}$ singularity near $\tau = 0$ \cite{boxpdf}. Indeed, applying  \eqref{smap}:
 
 \begin{equation}
     \vartheta(\tau) = \sqrt{\frac{i}{\tau}} \sumZ e^{-i\pi n^2 \frac{1}{\tau}}\,.
 \end{equation}
 
-Naively, all terms in the sum except $n=0$ are oscillatory and supposedly cancel for small times, and $\vartheta(\tau) \sim \sqrt{\frac{i}{\tau}}$. This corresponds to physical intuition: the propagator should reduce to the free particle propagator for very short times, in which the particle has not yet "probed" the global structure of the circle. If this is true, however, then similar singularities should be repeated at any even rational point. Thus $\T$ would have infinite singularities, and thus be unbounded, in any given interval. This makes it impossible for it to be ever asymptotic to $\tau^{-1/2}$ in the first place.
+Naively, all terms in the sum except $n=0$ are oscillatory and supposedly cancel for small times, and $\vartheta(\tau) \sim \asympt$. This corresponds to physical intuition: the propagator should reduce to the free particle propagator for very short times, in which the particle has not yet "probed" the global structure of the circle. If this is true, however, then similar singularities should be repeated at any even rational point. Thus $\T$ would have infinite singularities, and thus be unbounded, in any given interval. This makes it impossible for it to be ever asymptotic to $\tau^{-1/2}$ in the first place.
 
-The asymptotic behaviour must not of course be interpreted as direct but in a distributional sense. In particular, a more sensible definition is that for a family of Schwartz functions $f_\sigma(\tau) = f(\tau/\sigma)$ the evaluation of $\vartheta$ on $f_\sigma$ is asymptotic to that of $f_\sigma$ on the tempered distribution $A t^{-1/2}$ for some constant $A$. In integration against a Schwartz function we expect the secundary singularities at each even rational to matter less and less as we approach the main singularity at $\tau = 0$. We now test explicitly $\vartheta$ against a family of shrinking Gaussians and verify this intuition.
+The asymptotic behaviour must not of course be interpreted as direct but in a distributional sense. In particular, a more sensible definition is that for a family of Schwartz functions $f_\sigma(\tau) = f(\tau/\sigma)$ the evaluation of $\vartheta$ on $f_\sigma$ is asymptotic to that of $f_\sigma$ on the tempered distribution $A \tau^{-1/2}$ for some constant $A$. In integration against a Schwartz function we expect the secundary singularities at each even rational to matter less and less as we approach the main singularity at $\tau = 0$. We now test explicitly $\vartheta$ against a family of shrinking Gaussians and verify this intuition.
 
 Consider the normalized Gaussian $g_\sigma(\tau) = \frac{1}{\sigma \sqrt{2\pi}} \exp(-\frac{\tau^2}{2\sigma^2})$. The integral of $g_\sigma(\tau)$ against $A \tau^{-1/2}$ is
 
@@ -535,7 +569,7 @@ only the asymptotic behaviour for small $\sigma$ is relevant. Defined $N^4 := 2 
 \end{equation}
 
 It is therefore seen%\footnote{The doubt might arise that $\vartheta(\tau)$ also has a component with support in $\{0\}$ that is invisible to the family of gaussian (in the sense that its integral against $g_\sigma$ is independent on $\sigma$). However, this component must be a linear combination of $\delta$ derivatives; the even derivatives do yield positive powers of $\sigma$ and are to be excluded,  }
-\ that the action of $\vartheta$ on a Schwartz function shrinking around $\tau=0$ is asymptotic to that of the distribution $\sqrt{\frac{i}{\tau}}$.
+\ that the action of $\vartheta$ on a Schwartz function shrinking around $\tau=0$ is asymptotic to that of the distribution $\asympt$.
 
 Now that the existence of this singularity has been ascertained, let us verify a reduced copy of it exists at any even rational. Imagine the even rational $a$ gets mapped to the even rational $b$ by one step of the iterative procedure described in section \ref{sec:modular}. Assume it is known that in the vicinity of $b$ there is an inverse square-root singularity:
 
@@ -555,9 +589,9 @@ so that $a$ inherits the singularity of $b$ but suppressed by a factor of $\sqrt
     \vartheta(\tau) \sim \frac{1}{\sqrt{p-q\tau}}
 \end{equation}
 
-\cmnt{è possibile anche fare un calcolo della fase delle singolarità? Credo di sì}
+%\cmnt{è possibile anche fare un calcolo della fase delle singolarità? Credo di sì}
 
-\cmnt{Forse no... forse è equivalente al calcolo delle fasi nella \eqref{finalrationalkernel}, che coinvolge number theory e potrebbe non essere fattibile nel caso generale}
+%\cmnt{Forse no... forse è equivalente al calcolo delle fasi nella \eqref{finalrationalkernel}, che coinvolge number theory e potrebbe non essere fattibile nel caso generale}
 
 \subsection{Odd rationals}
 
@@ -647,6 +681,10 @@ An alternative proof provides a different presentation of $\T(\tau)$. Consider t
     B(\tau) = \frac{2}{i\pi}\sum_{n=1}^\infty \frac{e^{i\pi\tau n^2} }{n^2}
 \end{equation}
 
+\figurewrapper{\inputpgf{images}{batman.pgf}}{40cm}{The real (back) and imaginary (front) parts of the function $B(\tau)$ over a revival period, with some small rational points marked. Note that around even rationals $r$ the function behaves as $\sqrt{\tau - r}$, while at odd $r$ all its derivatives vanish; this matches with our results for its derivative $\T(\tau)$.}{batman}
+
+
+
 The series is absoutely convergent and bounded as a function of $\tau$, as $\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}$. Therefore, $B(\tau)$ is a well-defined function in $\locint$, and thus defines a tempered distribution. $\T(\tau)$ is the distributional derivative of $B(\tau)$, in the sense
 
 \begin{equation}
@@ -654,9 +692,6 @@ The series is absoutely convergent and bounded as a function of $\tau$, as $\sum
 \end{equation}
 
 and the last expression defines a tempered distribution acting on Schwartz $\phi(\tau)$. $B(\tau)$ is useful because, being continuous and bounded, can be plotted; it gives therefore a graphical confirmation of the ideas presented in the previous sections.
-
-\figurewrapper{\inputpgf{images}{batman.pgf}}{40cm}{The real (back) and imaginary (front) parts of the function $B(\tau)$ over a revival period, with some small rational points marked. Note that around even rationals $r$ the function behaves as $\sqrt{\tau - r}$, while at odd $r$ all its derivatives vanish; this matches with our results for its derivative $\T(\tau)$.}{batman}
-
 
 
 
@@ -684,7 +719,7 @@ The full Jacobi theta function has more general modular transformation propertie
     \vartheta\left(\frac{z}{\tau}; -\frac{1}{\tau} \right) = \sqrt{-i\tau} \exp(\frac{\pi}{\tau} i z^2) \T(z;\tau)
 \end{equation}
 
-Equations \eqref{zperiodicity} and \eqref{tmap} are immediate; \eqref{smapfull} can again be proven by means of Poisson resummation\cite{thetamodular}; we omit the derivation for the sake of brevity.
+Equations \eqref{zperiodicity} and \eqref{tmap} are immediate; \eqref{smapfull} can again be proven by means of Poisson resummation\cite{bellman}; we omit the derivation for the sake of brevity.
 
 Relation \eqref{smapfull} immediately implies that the fundamental solution $A$ is \emph{directly} a theta function:
 
@@ -692,19 +727,10 @@ Relation \eqref{smapfull} immediately implies that the fundamental solution $A$ 
     A(z,\tau) = \vartheta(z;\tau)
 \end{equation}
 
-The Jacobi theta for real values of the period is thus reinterpreted physically as the quantum propagator on the circle. There is an enlightening analogy with a better-known case; consider again the Schr\"odinger equation for a particle moving on some Riemannian manifold $M$:
+The Jacobi theta for real values of the period is thus reinterpreted physically as the quantum propagator on the circle. This matches perfectly with the well-known fact that the Jacobi theta for imaginary times $\T(z;i\tau)$ is the heat kernel on the circle\cite{bellman}, nothing else than the compact analogue of the description of Wick-rotation on $\ar$ we provided in section \ref{sec:free}.
 
-\begin{equation}
-    i \pdv{t} \Psi = - \frac{\nabla^2}{2} \Psi\,,
-\end{equation}
+\figurewrapper{\input{images/heatkernel.pgf}}{20cm}{The heat kernel on the circle, which is simply $\T(z;it)$ for positive real $t$ and is itself real. It corresponds to the evolution of a point of heat or substance on a circle under the heat or diffusion equation; the limit for $t \rightarrow \infty$ is the thermodynamic equilibrium of the uniform distribution. In the plot two periods of $z$ are depicted.}{heatk}
 
-where $\nabla^2$ is the Laplace-Beltrami operator on $M$, and perform the substitution $t \mapsto it$; this yields
-
-\begin{equation}
-    \pdv{t} \Psi = - \frac{\nabla^2}{2} \Psi\,,
-\end{equation}
-
-i.e. the heat / diffusion equation on $M$. Indeed, it is well-known $\vartheta(z;it)$ (much more regular than its real-period counterpart studied in this work) is the fundamental solution to the heat equation on the circle. This can be understood physically as diffusion being the Wick-rotated, or imaginary-time, counterpart of the Schr\"odinger equation. This, in fact, is to be seen as a minimal example of a general phenomenon in quantum theories in which the Wick-rotated theory (a statistical-mechanical system) has better converging observables; and observables in the quantum theory, only formally specified by non-converging oscillatory integrals, can be defined by analytic continuation of the imaginary-time observables.
 
 We now show a remarkable structure of the theta function propagator that should clarify the nature of the singularities in the time dependence. Fixed a rational time $\tau = \sfrac{p}{q}$ in least terms, without loss of generality between $0$ and $1$, rewrite the summation index $n$ as $n = aq + b$, for $a \in \mathbb{Z}$, $b = 0,\ldots,q-1$. The amplitude becomes:
 
