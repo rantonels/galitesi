@@ -163,7 +163,7 @@ Finally, after this anatomical study of the circle propagator, we will offer a p
 \section{Quantum mechanics on $\ess^1$}
 \subsection{Schr\"odinger equation and propagators}
 
-Arguably, a minimal description of a quantum mechanical system is in terms of a separable complex Hilbert space $\hil$, the state space, an algebra $\mathcal{A}$ of operators acting on $\hil$, and, if there is interest in studying time-evolution, a selected hermitian operator $H \in \mathcal{A}$, the Hamiltonian.  
+Arguably, a minimal description of a quantum mechanical system is in terms of a separable complex Hilbert space $\hil$, the state space, an algebra $\mathcal{A}$ of operators acting on $\hil$, and, if there is interest in studying time-evolution, a selected hermitian operator $H \in \mathcal{A}$, the Hamiltonian \cite{ali_quantization}.  
 
 The state, representing information available about the system, is encoded as a vector\footnote{This is actually only true for \emph{pure} (i.e., maximal) information. Imperfect/incomplete information, that is a mixed state, admits a representation as a state matrix but not as a state space vector. In addition, proportional vectors of $\hil$ map to the same pure state, so that the latter should better be made to correspond with rays of $\hil$. Both of these points are not relevant to our present discussion.} (ket) $\ket{\Psi(t)}$ in state space, where we have explicited the possibility that this knowledge is time-dependent. This possibility is realized, and information on the system at time $t=t_1$ determines the state at a later time $t=t_2$ by integration of the Schr\"odinger equation:
 
@@ -342,7 +342,7 @@ i.e. the heat / diffusion equation on $M$. The imaginary-time propagator is
     i G(x;-it) = \frac{1}{\sqrt{2\pi t}} \exp(-\frac{x^2}{t})\,,
 \end{equation}
 
-which is the famous and well-understood heat kernel, the fundamental solution to the heat equation on $\ar$. \eqref{improp} is only defined for positive $t$, as the heat equation only has smooth solution for infinite time in the future, but it develops singularities in finite time if time-reversed. Mathematically, this corresponds to entering the lower-half plane region in $t$ (understood as complex) where the Gaussian integrals are divergent. The quantum case is exactly on the axis which acts as boundary of convergence.
+which is the famous and well-understood heat kernel, the fundamental solution to the heat equation on $\ar$. \eqref{imrprop} is only defined for positive $t$, as the heat equation only has smooth solution for infinite time in the future, but it develops singularities in finite time if time-reversed. Mathematically, this corresponds to entering the lower-half plane region in $t$ (understood as complex) where the Gaussian integrals are divergent. The quantum case is exactly on the axis which acts as boundary of convergence.
 
 This can be understood physically as diffusion being the Wick-rotated, or imaginary-time, counterpart of the Schr\"odinger equation. This, in fact, is to be seen as a minimal example of a general phenomenon in quantum theories in which the Wick-rotated theory (a statistical-mechanical system) has better converging observables; and observables in the quantum theory, only formally specified by non-converging oscillatory integrals, can be defined by analytic continuation of the imaginary-time observables.
 
@@ -402,12 +402,12 @@ in particular, the probability amplitude (density) for the particle to return to
 
 The issue with the above is that the sum of oscillatory terms does not converge in any simple sense. It does however converge in the sense of distributions in $t$ to a tempered distribution with highly singular behaviour. Our goal is to provide a complete description of the structure of this distribution. Since the $x$-dependence of the amplitude is not as fascinating as that on $\tau$, we will limit most of our considerations to the $x=0$ case, with no real loss of qualitative structure. We will recover the $x$ dependence after, in the discussion of fractional revivals and the physical interpretation of the amplitude.
 
-Thus, the main focus of our attention is directed towards the $\T(\tau)$ "function".
+Thus, the main focus of our attention for now is directed towards the $\T(\tau)$ "function".
 
 
 \section{Deconstructing $\T(\tau)$}
 
-\cmnt{breve introduzione}
+The $\T(\tau)$ ``function'' is actually a tempered distribution, a fact whose proof is actually straightforward but which we postpone until section \ref{sec:convergence}, focusing instead on describing its involved structure of zeroes and singularities. Since this singular structure prevents the application of most standard analytic technique, exposing the singularities themselves will require some ingenuity. We will combine a ``modular hopping'' technique as in \cite{boxpdf} with a more rigorous test-function based approach for probing the $\T(\tau)$ distribution.
 
 \subsection{A resummation formula}\label{resummation}
 
@@ -533,7 +533,7 @@ The above procedure has the property of always decreasing the magnitude of eithe
     \frac{7}{9} \sapp - \frac{9}{7} \tapp{1} \frac{5}{7} \sapp -\frac{7}{5} \tapp{1} \frac{3}{5} \sapp - \frac{5}{3} \tapp{1} \frac{1}{3} \sapp -3 \tapp{2} 1
 \end{equation}
 
-Returning to our physical object of interest, the amplitude, we see that properties \eqref{t2map} and \eqref{smap} relate the behaviour of $\T$ at a rational time\footnote{We are, of course, here referring to the normalized time $\tau$ for simplicity.} with the behaviour at time $0$ or $1$ depending on the parity. Therefore $\T$ has a sort of self-similar structure, and any qualitative features present at the points $0$ and $1$ will be repeated infinitely in two dense sets. For example, we anticipate (though this will be studied more precisely) that the amplitude has a $\tau^{-1/2}$ singularity for $\tau$ close to zero, since for very small time the propagator on a circle is expected to reduce to that of the free particle. If so, then there must also be a similar singularity at all even rationals; therefore $\T$ has a dense set of singularities.
+Returning to our physical object of interest, the amplitude, we see that properties \eqref{t2map} and \eqref{smap} relate the behaviour of $\T$ at a rational time\footnote{We are, of course, here referring to the normalized time $\tau$ for simplicity.} with the behaviour at time $0$ or $1$ depending on the parity. Therefore $\T$ has a sort of self-similar structure, and any qualitative features present at the points $0$ and $1$ will be repeated infinitely in two dense sets. For example, we anticipate (though this will be studied more precisely) that the amplitude has a $\tau^{-1/2}$ singularity for $\tau$ close to zero, since for very small time the propagator on a circle is expected to reduce to that of the free particle. If so, then there must also be a similar singularity at all even rationals; therefore $\T$ has a dense set of singularities \cite{intermode_traces}.
 
 
 \subsection{Even rationals}\label{sec:evens}
@@ -856,13 +856,13 @@ which satisfy the above properties. In fact, $\abs{\psi(x,t)}^2$ is always a gau
 
 This is however too simple of a case. In more general quantum systems, it is impossible to prevent spreading of the wavepacket, and thus to construct semiclassical states according to the standards specified above. The path to the correspondence principle must be modified and these standards relaxed - for example, it is accepted that wavepackets spread, provided it is shown that the characteristic spreading time goes to infinity for large quantum numbers.
 
-What, then, is special about the quantum harmonic oscillator, in that it allows such constant-shape solutions? We argue that it is the following properties, which is shared with the particle in a $1D$ box and on a circle: the Hamiltonian has a spectrum composed only of integer multiples of a single energy:
+What, then, is special about the quantum harmonic oscillator, in that it allows such constant-shape solutions? We argue that it is the following property, which is shared with the particle in a $1D$ box and on a circle: the Hamiltonian has a spectrum composed only of integer multiples of a single energy:
 
 \begin{equation}
     E_n = m_n E\,,\quad m_n \in \mathbb{Z}
 \end{equation}
 
-This property is also true of the hydrogen atom if truncated to principal quantum numbers $n < N$, and of the particle on higher-dimensional boxes and tori if the sides are in rational ratios. Consider the time-evolution of \emph{any} initial state $\ket{\psi(0)}$, decomposed in a complete basis of energy eigenstates:
+The characteristic of having energies integer multiples of a constant is also true of the hydrogen atom if truncated to principal quantum numbers $n < N$, and of the particle on higher-dimensional boxes and tori if the sides are in rational ratios. Consider the time-evolution of \emph{any} initial state $\ket{\psi(0)}$, decomposed in a complete basis of energy eigenstates:
 
 \begin{equation}
     \ket{\psi(0)} = \sum_n \ket{\phi_n(0)}\,,
@@ -932,8 +932,27 @@ In the last equality, we used the fact that the system of a particle on a circle
 
 Accounting for this possible non-triviality, the phase factor $\sqrt{i} e^{i\pi q z^2}$ can be seen to arise naturally.
 
+The above gives a reasonable understanding of the behaviour under the modular $S$ transformation $\tau \mapsto - \frac{1}{\tau}$, which in turn implies the comb structure \eqref{qcombmodular}, but is still fairly abstract and disconnected from a practical approach. A much simpler explanation is possible if one allows for a certain lack of rigour; in particular if we assume that the amplitude, written as a path integral over histories
 
+\begin{equation}
+    A(z_1,z_2;T) = \int Dz \,e^{iS[z]} = \int Dz \,e^{i \int_0^T \frac{v^2}{2} dt}\,,
+\end{equation}
 
+where the integral is over $z(t)$ such that $z(0) = z_1$, $z(T) = z_2$, is dominated by the contribution of the classical solution, i.e. minima of the action, while large quantum fluctuations around these minima tend to cancel; tentatively one can write down a saddle-point-like expansion as
+
+\begin{equation}
+    A \sim e^{iS[z_\text{cl}]} \left( 1 + \int D\delta z\, e^{ i \delta S[\delta z]} \right)\,,\quad z(t) = z_\text{cl}(t) + \delta z(t)\,.
+\end{equation}
+
+Thus the amplitude is at least in principle understood as a term expected from the classical equation of motion plus arbitrary quantum corrections. Normally there is one unique classical solution with given boundary conditions. However if it is the case that multiple solutions $z_\text{cl}^{(n)}$ exist, then the corresponding amplitude would generalize to a sum:
+
+\begin{equation}
+    A \sim \sum_n e^{i S[z_cl]^{(n)}} ( 1 + \text{quantum corrections} \ldots)\,.
+\end{equation}
+
+And if in addition the number of solutions is infinite, we could expect the amplitude to diverge, more precisely to concentrate in a ``speck'' centered on the arguments $(z_2-z_1,T)$ that trigger the appearance of the infinite classical solutions, and thus would turn into a $\delta$ function and result in a quantum revival. We call such a situation a caustic \cite{horie_quantum}\cite{boxpdf} in analogy with the phenomenon in optics. In the quantum harmonic oscillator, a caustic appears for $z_2 - z_1 = 0$ and $T \in \frac{\pi}{\omega} \mathbb{Z}$, because all classical solutions $z_A(t) = A \sin(\omega t)$ starting at $z_1 = 0$ for $t=0$ reconverge at $z_2 = 0$ at time $T$. These caustics result in a periodic revival of the wavefunction.
+
+On the circle, however, revivals are much more frequent. If $\tau = \frac{p}{q} \in \mathbb{Q}$, then of all classical solutions $z_v(t) = vt$ (meant $\mod 1$) an infinite number will reconverge at each of the $q$ points $\frac{c}{q}$, namely those with $v \in \mathbb{Z}/p$. The quantum particle on the circle has caustics in a dense set of times.
 
 %\immagine{3dplots/1-3.pgf}{20cm}{ }{13}
 \figurewrapper{
@@ -953,8 +972,7 @@ Accounting for this possible non-triviality, the phase factor $\sqrt{i} e^{i\pi 
 
 \figurewrapper{\inputpgf{images/}{butterfly.pgf}}{40cm}{$\abs{\psi(z,\tau)}^2$ for an initial Gaussian state over a full revival period.}{butterfly}
 
-%\import{images/}{butterfly.pgf}
-\cmnt{Spiegazione della struttura a tempi razionali: a tempo razionale pari la funzione d'onda viene ``rivitalizzata'' in $q$ copie, mentre a tempo razionale dispari le copie rivitalizzate sono sfasate di $1/(2q)$ (antirevivals)}
+
 
 \clearpage
 \printbibliography
