@@ -127,7 +127,7 @@
 \maketitle
 
 \begin{abstract}
-    We study the probability amplitude for a quantum particle on a circle to return to its original position after a time $t$. This amplitude turns out to be a tempered distribution with an intricate structure of singularities on a dense set and transformation properties reminiscent of a modular form.
+    We study the probability amplitude for a quantum particle on a circle to return to its original position after a time $t$. This amplitude turns out to be a tempered distribution with an intricate structure of singularities on a dense set and transformation properties reminiscent of a modular form. A connection to the theory of theta functions and the problem of quadratic Gauss sums in number theory is hinted to.
 \end{abstract}
 
 \tableofcontents
@@ -161,6 +161,9 @@ The propagator will be found to be endowed with an intricate structure of infini
 Finally, after this anatomical study of the circle propagator, we will offer a possible physical understanding for the features found.
 
 \section{Quantum mechanics on $\ess^1$}
+
+We very briefly review the basic points of the Schr\"odinger representation-picture of quantum mechanical systems with finite degrees of freedom.
+
 \subsection{Schr\"odinger equation and propagators}
 
 Arguably, a minimal description of a quantum mechanical system is in terms of a separable complex Hilbert space $\hil$, the state space, an algebra $\mathcal{A}$ of operators acting on $\hil$, and, if there is interest in studying time-evolution, a selected hermitian operator $H \in \mathcal{A}$, the Hamiltonian \cite{ali_quantization}.  
@@ -168,17 +171,17 @@ Arguably, a minimal description of a quantum mechanical system is in terms of a 
 The state, representing information available about the system, is encoded as a vector\footnote{This is actually only true for \emph{pure} (i.e., maximal) information. Imperfect/incomplete information, that is a mixed state, admits a representation as a state matrix but not as a state space vector. In addition, proportional vectors of $\hil$ map to the same pure state, so that the latter should better be made to correspond with rays of $\hil$. Both of these points are not relevant to our present discussion.} (ket) $\ket{\Psi(t)}$ in state space, where we have explicited the possibility that this knowledge is time-dependent. This possibility is realized, and information on the system at time $t=t_1$ determines the state at a later time $t=t_2$ by integration of the Schr\"odinger equation:
 
 \begin{equation}
-    i \hbar \dv{t}\ket{\Psi(t)} = H \ket{\Psi(t)}
+    i \hbar \dv{t}\ket{\Psi(t)} = \hat H \ket{\Psi(t)}
 \end{equation}
 
 
 If, in addition, we exclude that the Hamiltonian depends explicitly on time, the Schr\"odinger equation can immediately be integrated through an operator exponential:
 
 \begin{equation}
-    \ket{\Psi(t_2)} = e^{-\frac{i}{\hbar} H (t_2-t_1)} \ket{\Psi(t_1)} 
+    \ket{\Psi(t_2)} = e^{-\frac{i}{\hbar} \hat H (t_2-t_1)} \ket{\Psi(t_1)} 
 \end{equation}
 
-$U(t) = e^{-\frac{i}{\hbar} H t}$ is the unitary time-evolution operator, and its determination coincides with the complete solution of the Schr\"odinger equation.
+$\hat U(t) = e^{-\frac{i}{\hbar} H t}$ is the unitary time-evolution operator, and its determination coincides with the complete solution of the Schr\"odinger equation.
 
 While the presentation above is absolutely general, we specialize to a very simple subcase, that of a mechanical system with finite degrees of freedom. If we have a classical Hamiltonian system whose phase space is a product $M \times TM \ni (q,p)$, where the $n$-dimensional Riemannian smooth manifold $(M,g)$ is called the configuration space, and with some Hamiltonian function $H(p,q)$, then the \textbf{quantization} of this system is constructed by taking as Hilbert space the set of square-normalizable complex wavefunctions on configuration space\footnote{An interesting generalization is to consider instead wavefunctions to be sections of a complex line bundle over $M$, perhaps topologically non-trivial. This can be seen to be equivalent to the introduction of a flat electromagnetic potential with a non-trivial holonomy, and this addition on the $\mathbb{S}^1$ case is a possible future extension for this work.}:
 
@@ -202,7 +205,7 @@ Then finally we can write the Hamiltonian $\hat H$ as simply\footnote{More preci
 Physically speaking, the class of systems above is fairly broad. We can restrict it considerably to Hamiltonians of the form
 
 \begin{equation}
-    H(p,q) = \frac{\left\langle p, p \right\rangle}{2m}\,,
+    H(p,q) = \frac{\left\langle p, p \right\rangle_g}{2m}\,,
 \end{equation}
 
 which describe the dynamics of a free point particle of mass $m$ moving on $(M,g)$. We now choose units in which $\hbar = m = 1$. The Schr\"odinger equation reduces to
