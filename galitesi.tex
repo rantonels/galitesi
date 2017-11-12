@@ -7,6 +7,8 @@
 \usepackage[utf8]{inputenc}
 \DeclareUnicodeCharacter{2212}{$-$}
 
+\usepackage{tikz}
+\usepackage{transparent}
 
 \usepackage{mathtools}
 \mathtoolsset{showonlyrefs}
@@ -90,6 +92,7 @@
 
 \begin{document}
 
+%\tikz[remember picture,overlay] \node[opacity=0.3,inner sep=0pt] at (current page.center){{\transparent{0.1}\includegraphics[width=0.5\paperwidth,height=0.5\paperwidth]{Stemma_galileiana}}};
 
 \makeatletter
 \begin{center} \Large
@@ -98,11 +101,11 @@
     \vspace{20pt}
     {\LARGE Scuola Galileiana di Studi Superiori}\\
     \vspace{20pt}
-    \emph{Classe di Scienze Naturali}\\ 
-    \vspace{40pt}
-    Tesi di diploma galileiano\\
+    {\LARGE \emph{Classe di Scienze Naturali}}\\ 
+    \vspace{80pt}
+    {\LARGE Tesi di diploma galileiano}\\
 
-    \vspace{120pt}
+    \vspace{80pt}
 
     {\Huge \bfseries \@title }
     \vfill
