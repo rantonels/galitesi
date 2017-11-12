@@ -7,6 +7,10 @@
 \usepackage[utf8]{inputenc}
 \DeclareUnicodeCharacter{2212}{$-$}
 
+
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs}
+
 \usepackage{hyperref}
 \usepackage{afterpage}
 \usepackage{float}
@@ -170,43 +174,43 @@ Arguably, a minimal description of a quantum mechanical system is in terms of a 
 
 The state, representing information available about the system, is encoded as a vector\footnote{This is actually only true for \emph{pure} (i.e., maximal) information. Imperfect/incomplete information, that is a mixed state, admits a representation as a state matrix but not as a state space vector. In addition, proportional vectors of $\hil$ map to the same pure state, so that the latter should better be made to correspond with rays of $\hil$. Both of these points are not relevant to our present discussion.} (ket) $\ket{\Psi(t)}$ in state space, where we have explicited the possibility that this knowledge is time-dependent. This possibility is realized, and information on the system at time $t=t_1$ determines the state at a later time $t=t_2$ by integration of the Schr\"odinger equation:
 
-\begin{equation}
+\begin{equation*}
     i \hbar \dv{t}\ket{\Psi(t)} = \hat H \ket{\Psi(t)}
-\end{equation}
+\end{equation*}
 
 
 If, in addition, we exclude that the Hamiltonian depends explicitly on time, the Schr\"odinger equation can immediately be integrated through an operator exponential:
 
-\begin{equation}
+\begin{equation*}
     \ket{\Psi(t_2)} = e^{-\frac{i}{\hbar} \hat H (t_2-t_1)} \ket{\Psi(t_1)} 
-\end{equation}
+\end{equation*}
 
 $\hat U(t) = e^{-\frac{i}{\hbar} H t}$ is the unitary time-evolution operator, and its determination coincides with the complete solution of the Schr\"odinger equation.
 
 While the presentation above is absolutely general, we specialize to a very simple subcase, that of a mechanical system with finite degrees of freedom. If we have a classical Hamiltonian system whose phase space is a product $M \times TM \ni (q,p)$, where the $n$-dimensional Riemannian smooth manifold $(M,g)$ is called the configuration space, and with some Hamiltonian function $H(p,q)$, then the \textbf{quantization} of this system is constructed by taking as Hilbert space the set of square-normalizable complex wavefunctions on configuration space\footnote{An interesting generalization is to consider instead wavefunctions to be sections of a complex line bundle over $M$, perhaps topologically non-trivial. This can be seen to be equivalent to the introduction of a flat electromagnetic potential with a non-trivial holonomy, and this addition on the $\mathbb{S}^1$ case is a possible future extension for this work.}:
 
-\begin{equation}
+\begin{equation*}
     \hil = L^2(M) = \left\{ \psi : M \rightarrow \mathbb{C} : \int d\operatorname{vol}_M \abs{\psi(q)}^2 < \infty \right\}\,.
-\end{equation}
+\end{equation*}
 
 Then the dynamics can be specified in any given atlas of $M$. In each chart $M \times TM \supset U \rightarrow \mathbb{R}^n \times \mathbb{R}^n$, $(q,p) \mapsto (x,p)$, we represent the classical coordinates $x$, $p$ respectively by the Hermitian operators $\hat x$, $\hat p$ acting as
 
-\begin{align}
-    \hat x \psi(x) & := x \psi(x)\\
-    \hat p \psi(x) & := -i \hbar \operatorname{grad}_M \psi(x)
-\end{align}
+\begin{equation*}
+    \hat x \psi(x)  := x \psi(x)\\
+    \hat p \psi(x)  := -i \hbar \operatorname{grad}_M \psi(x)
+\end{equation*}
 
 Then finally we can write the Hamiltonian $\hat H$ as simply\footnote{More precisely, $H(p,q)$ is either written as a polynomial or approximated with a family of polynomials, and the same operation is performed on the operators $\hat x$, $\hat p$ to build the quantized Hamiltonian $\hat H$. Since these do not commute, ambiguities might arise, with physical implications. It is not the case for the situations we will consider, however, and we can ignore these issues.} $H(\hat x, \hat p)$. In each chart, the Schr\"odinger equation holds:
 
-\begin{equation}
+\begin{equation*}
     i \pdv{t} \psi(x,t) = \hat H \psi(x,t)
-\end{equation}
+\end{equation*}
 
 Physically speaking, the class of systems above is fairly broad. We can restrict it considerably to Hamiltonians of the form
 
-\begin{equation}
+\begin{equation*}
     H(p,q) = \frac{\left\langle p, p \right\rangle_g}{2m}\,,
-\end{equation}
+\end{equation*}
 
 which describe the dynamics of a free point particle of mass $m$ moving on $(M,g)$. We now choose units in which $\hbar = m = 1$. The Schr\"odinger equation reduces to
 
@@ -218,10 +222,10 @@ where $\nabla^2$ is the Laplace-Beltrami operator for the metric $g$.
 
 There exists a way of understanding the time-evolution operator $\hat U(t)$ more explicitly in this case. Define the function $G(x_1,x_2;t)$ as the solution to the initial-value problem for equation \eqref{localschroedinger} with a $\delta$-function initial condition:
 
-\begin{align}
+\begin{align*}
     i \pdv{t} G(x_1;x,t) & = - \frac{\nabla^2_x}{2} G(x_1;x,t)\,, \\
     G(x_1;x,0) & = \frac{1}{\sqrt{g}} \delta(x-x_1)\,.
-\end{align}
+\end{align*}
 
 Then, since \eqref{localschroedinger} is linear, the solution to the initial-value problem with initial condition $\psi(x,0)$ can be found as a convolution:
 
@@ -234,10 +238,10 @@ The function $G$ is known as a fundamental solution or in more physical terms th
 Taking a basis of eigenstates of position $\ket x$ normalized such that $\int dx \ket{x} \bra{x}$ is the identity operator, note that
 
 \begin{align}
-    G(x_1;x,t) & := \bra{x_1} \hat U (t) \ket{x}\\
-    & = \bra{x_1} e^{-i H t} \ket{x} \\
-    & = \bra{x_1} e^{-i H t'} e^{-i H (t-t')} \ket{x} \\
-    & = \int dx' \bra{x_1} e^{-i H t'} \ket{x'} \bra{x'} e^{-iH(t-t')} \ket{x}\\
+    G(x_1;x,t) & := \bra{x_1} \hat U (t) \ket{x} \nonumber \\
+    & = \bra{x_1} e^{-i H t} \ket{x} \nonumber \\
+    & = \bra{x_1} e^{-i H t'} e^{-i H (t-t')} \ket{x} \nonumber \\
+    & = \int dx' \bra{x_1} e^{-i H t'} \ket{x'} \bra{x'} e^{-iH(t-t')} \ket{x} \nonumber\\
     & = \int dx' G(x_1;x',t')G(x';x,t-t') \label{productform}
 \end{align}
 
@@ -246,7 +250,8 @@ Expression \eqref{productform} states the amplitude of propagation from an initi
 \newcommand{\iniziale}{\bra{\text{initial}}}
 \newcommand{\finale}{\ket{\text{final}}}
 
-\begin{equation}\label{amplitudessum}
+\begin{equation}
+    \label{amplitudessum}
     \iniziale \hat U(t) \finale = \SumInt_{\text{intermediate}} \iniziale \hat U(t') \ket{\text{intermediate}} \bra{\text{intermediate}} U(t-t') \finale\,;
 \end{equation}
 
@@ -257,9 +262,9 @@ where $\SumInt$ can be any general type of "sum", including even finite or infin
 
 Consider the quantization of the simplest possible continuous classical system: the free particle in one dimension. This is the Hamiltonian system phase space $\ar^2$ (with the simple chart $(p,x)$) and the Hamiltonian $H(p,x) = \frac{p^2}{2}$ (having chosen units such that $m=1$). Configuration space is the real line. Consequently, the quantum description has as state a complex wavefunction with domain $\ar$, and evolution is according to the Hamiltonian
 
-\begin{equation}
+\begin{equation*}
     H = - \frac{\partial_x^2}{2}\,.
-\end{equation}
+\end{equation*}
 
 We are interested in calculation of the propagator $G(x_1;x_2,t)$. Because of translation invariance, this quantity can only depend on the difference $x_2-x_1$, and we can simply write $G(x;t)$.
 
@@ -278,66 +283,66 @@ The most straightforward path to the propagator is through diagonalization of $H
 
 \begin{equation}
     \label{rfourierevolution}
-    \phi_k(x; t) = \exp(\frac{it}{2}\partial_x^2) \phi_k(x;0) = e^{-ik^{2}t/2} e^{ikx}\,.
+    \phi_k(x; t) = \exp(\frac{it}{2}\partial_x^2) \, \phi_k(x;0) = e^{-ik^{2}t/2} e^{ikx}\,.
 \end{equation}
 
 Our initial wavefunction is the (non-normalizable) delta function: $\Psi(x;0) = \delta(x)$. Recalling the Fourier representation of the distribution $\delta$:
 
-\begin{equation}
+\begin{equation*}
     \Psi(x;0) = \frac{1}{2\pi} \int_{-\infty}^\infty dk \; e^{ikx} 
-\end{equation}
+\end{equation*}
 
 and inserting \eqref{rfourierevolution} we obtain the evolved state at a later time:
 
 \begin{equation}\label{rprop}
-    \Psi(x;t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} dk \; \exp( - i \frac{k^2}{2}t +  ikx ) = (2 \pi i t)^{-1/2} \exp(\frac{ix^2}{2t}) = G(x,t)\,;
+    \Psi(x;t)\, =\, \frac{1}{2\pi} \int_{-\infty}^{\infty} dk \; \exp( - i \frac{k^2}{2}t +  ikx )\, =\, (2 \pi i t)^{-1/2} \exp(\frac{ix^2}{2t})\, =: G(x,t)\,;
 \end{equation}
 
 where from now on the square root of a purely imaginary number is defined as
 
-\begin{equation}
+\begin{equation*}
     \sqrt{ix} := e^{i(\operatorname{sgn} x) \frac{\pi}{4}} \sqrt{\abs{x}}\,.
-\end{equation}
+\end{equation*}
 
 We note a paradoxical property of the propagator \eqref{rprop}. At any given $t$, $\abs{G(t,x)}^2 \equiv \frac{1}{2\pi t}$ identically for all $x$. The state at time $t>0$ would seem to assign uniform probability density to all positions on the real line, and is therefore non-normalizable. This behaviour becomes more intuitive in light of the Heisenberg uncertainty principle (HUP), which states that for any state the variance of the position and momentum observables satisfy the inequality
 
-\begin{equation}
+\begin{equation*}
     \sigma_x \sigma_p \geq \frac{1}{2}
-\end{equation}
+\end{equation*}
 
 The initial $\delta$-function state is a position eigenstate, and thus has $\sigma_x = 0$. It follows that $\sigma_p = \infty$, and indeed the Fourier transform is the constant function.
 
 If any possible value of the momentum is equally likely, it makes sense that after any small time the particle could have moved to any point on the real line with equal probability. This statement of dubious rigorousness is as far as it is possible to go in the attempt to make physical sense of the propagator as an actual solution. In reality, physically realizable initial states are normalizable and will remain so as they evolve in time; nevertheless it will be possible to model such evolution through convolution with the Schr\"odinger kernel:
 
-\begin{equation}
-    \Phi(x;t) = \left(\Phi(0) * G(t) \right)(x) := \intR dx' \Phi(x',0) G(x-x',t)
-\end{equation}
+\begin{equation*}
+    \Phi(x;t) \, = \, \left(\Phi(0) * G(t) \right)(x) \, := \, \intR dx' \Phi(x',0) G(x-x',t)
+\end{equation*}
 
 and since the kernel is a tempered distribution\footnote{For positive times, $G(x;t)$ is a smooth bounded function, so it defines a tempered distribution. For $t=0$, it equals a $\delta$-function by definition, again a tempered distribution.}, if $\Phi(x,0)$ is taken to be Schwartz so will be $\Phi(x,t)$. Thus the state will be normalizable at all times.
 
 As an instructive example, consider a more regular initial state, such as the Gaussian $\Phi(x;0) = N \exp(-\frac{x^2}{2\sigma^2} )$, with $N$ such that $\int dx \abs{\Phi(x)}^2 = 1$. The wavefunction at time $t$ is then
 
-\begin{equation}
+\begin{equation*}
     \Phi(x;t) = \left( \Phi(0) * G(t) \right)(x) = \int dy \Phi(y;0) G(x-y,t)
-\end{equation}
+\end{equation*}
 
-\begin{equation}
+\begin{equation*}
     = N \sqrt\frac{\sigma^2}{\sigma^2 + it} e^{-\frac{x^2}{2(\sigma^2 + it)}}\,.
-\end{equation}
+\end{equation*}
 
 The final state is still smooth and normalizable; in fact $\abs{\Phi(x;t)}^2$ is again a gaussian with finite (but growing in time) standard deviation $\sigma^2/(\sigma^4 + t^2)$.
 
 A clearer understanding of the analytic structure of propagator \eqref{rprop} can be reached if a connection with a well-known classical problem is uncovered. Consider again the Schr\"odinger equation for a particle moving on some Riemannian manifold $M$:
 
-\begin{equation}
+\begin{equation*}
     i \pdv{t} \Psi = - \frac{\nabla^2}{2} \Psi\,,
-\end{equation}
+\end{equation*}
 
 where $\nabla^2$ is the Laplace-Beltrami operator on $M$, and perform the substitution $t \mapsto -it$; this yields
 
-\begin{equation}
+\begin{equation*}
     \pdv{t} \Psi = - \frac{\nabla^2}{2} \Psi\,,
-\end{equation}
+\end{equation*}
 
 i.e. the heat / diffusion equation on $M$. The imaginary-time propagator is
 
@@ -356,6 +361,7 @@ This can be understood physically as diffusion being the Wick-rotated, or imagin
 Let us consider now the case of interest for this work: a particle moving on the cirlce $\ess^1$. A change of units can fix the radius of the circle to any desired value; we take the circumference to be $1$. In a local chart, for example using an angle coordinate $x \in [0,1]$, the Schr\"odinger equation takes the form
 
 \begin{equation}
+    \label{schroedeqt}
     -i\partial_t \Psi(x;t) = - \frac{\partial_x^2}{2} \Psi(x;t)
 \end{equation}
 
@@ -366,7 +372,7 @@ Let us consider now the case of interest for this work: a particle moving on the
 
 Boundary conditions \eqref{boundaryconds} should be obvious intuitively; formally they can be derived easily by considering a second overlapping chart and imposing the Schr\"odinger equation applies there too.
 
-Again the goal is to determine the propagator, that is to say the generalized solution corresponding to a $\delta$-function initial condition.
+Again the goal is to determine the propagator, that is to say the generalized solution to \eqref{schroedeqt} corresponding to a $\delta$-function initial condition.
 
 One way of integrating the equation is by exploiting the known non-compact solution through a method of images. The circle is interpreted as $\ess^1 = \ar / \mathbb{Z}$, that is the quotient of $\ar$ through the identification of points that differ by an integer. Thus, a free particle starting on a point $x_1$ in the circle at time $0$ and ending on another point $x_2$ after a certain time interval $t$ is equivalent to a free particle on $\mathbb{R}$ starting on $x_1 \in \mathbb{R}$ and ending up on \emph{any} representative $x_2 + n$, $n\in\mathbb{Z}$, of the class of $x_2$ under the equivalence relation. The index $n$ of the representative corresponds to the winding number, that is the number of turns around the circle performed by the particle before reaching $x_2$. (See figure \ref{fig:wrapping}).
 
@@ -374,21 +380,21 @@ One way of integrating the equation is by exploiting the known non-compact solut
 
 In accordance with \eqref{amplitudessum} the amplitude for the particle on $\ess^1$ to move from $x_1$ to $x_2$ is equal to the sum over all images for the particle on $\ar$ to move from $x_1$ to that image over the same time interval. Therefore, setting again $x_1 = 0$ by translation invariance, the circle propagator is given by the sum over "unwrapped" propagators:
 
-\begin{equation}
+\begin{equation*}
     A(x;t) := A(0,x;0,t) = \sumZ G(x + n; t)\,.
-\end{equation}
+\end{equation*}
 
 Naively ignoring convergence issues, we would then obtain the sum
 
-\begin{equation}
+\begin{equation*}
     A(x;t) = (2\pi i t)^{-1/2} \sumZ \exp(i \frac{(x+ n)^2}{2t})\,.
-\end{equation}
+\end{equation*}
 
 Defining the variables\footnote{The reasoning behind the nature of the redefinitions will become apparent in the next section.} $\tau := - 2\pi t $ and $z := - x$, this becomes
 
-\begin{equation}
+\begin{equation*}
     A(x;t) = \exp(\frac{ix^2}{2t}) \frac{1}{\sqrt{2\pi i t}} \sumZ \exp( \frac{in^2}{2t} + \frac{ixn}{t} ) 
-\end{equation}
+\end{equation*}
 
 
 \begin{equation} \label{amplitudeztau}
@@ -422,9 +428,9 @@ We will first simplify $\T(t)$ considerably. We recall the Poisson resummation f
 
 provided any of the two series converges at least distributionally. Taking $f(x) = e^{-i\frac{\pi}{\tau} x^2 }$, and thus $\hat f(k) = \sqrt{-i\tau} e^{i \frac{\tau}{4\pi} k^2}$, the equality reads (renaming dummy $\xi$ to $n$):
 
-\begin{equation}
+\begin{equation*}
     \sumZ e^{-i\frac{\pi}{\tau} n^2 } = \sqrt{-i\tau} \sumZ e^{i\tau\pi n^2} \,,
-\end{equation}
+\end{equation*}
 
 so that the $\T(\tau)$ amplitude is rewritten as
 
@@ -436,9 +442,9 @@ so that the $\T(\tau)$ amplitude is rewritten as
 
 It seems natural to try and promote $t$, or equivalently $\tau$, to complex variables. If $\tau$ is in the upper half plane the series is absolutely convergent pointwise, as
 
-\begin{equation}
+\begin{equation*}
     | \exp(\pi i n^2 \tau) | \leq e^{-\pi n^2 \Im\tau}\,.
-\end{equation}
+\end{equation*}
 
 In fact, the series converges to a function holomorphic on the upper half-plane, the Jacobi theta function\cite{bellman}:
 
@@ -450,9 +456,9 @@ In fact, the series converges to a function holomorphic on the upper half-plane,
 
 The issue is that $\T(\tau)$ coincides with the theta function computed on the real axis, outside of its domain of convergence. We argue $\T(t)$ can be constructed as the limit $\lim_{\epsilon\rightarrow 0} \vartheta(0;\tau + i\epsilon)$, where the limit is taken distributionally; that is to say the distribution is specified by the following action on a test function $\varphi(t)$:
 
-\begin{equation}
+\begin{equation*}
     \intR dt \, \T(t) \varphi(t)  := \lim_{\epsilon\rightarrow 0} \intR dt \, \vartheta(0; \tau + i \epsilon) \varphi(t)
-\end{equation}
+\end{equation*}
 
 We will prove there is convergence in this sense in section \ref{sec:convergence}.
 
@@ -463,37 +469,37 @@ $\vartheta(0;\tau)$ has remarkable transformation properties which carry over to
     \vartheta(0; -\tfrac{1}{\tau}) = \sqrt{-i\tau} \, \vartheta(0; \tau)\,. \label{smap}
 \end{align}
 
-The first is evident from the derived expression. That the function is periodic of period $2$ in $\tau$ means that the propagator at time $t^* = \frac{1}{\pi}$, or recovering units $t^* = 4\pi \frac{mR^2}{\hbar}$, is equal to the propagator at time $0$. In other words, any quantum state on the circle repeats every $t^*$. This fact is less remarkable if one recalls that all energy eigenvalues on the circle, forming a complete basis, evolve in time with the simple phase factor $e^{int/t^*}$, with $n\in \mathbb{N}$, so that all wavefunctions must also share the same periodicity in time. Still, it means a quantum particle placed exactly at one point on a circle (that is, in a position eigenstate) will return to the original position with probability $1$ every $t*$.
+The first is evident from the derived expression. That the function is periodic of period $2$ in $\tau$ means that the propagator at time $t^* = \frac{1}{\pi}$, or recovering units $t^* = 4\pi \frac{mR^2}{\hbar}$, is equal to the propagator at time $0$. In other words, any quantum state on the circle repeats every $t^*$. This fact is less remarkable if one recalls that all energy eigenvalues on the circle, forming a complete basis, evolve in time with the simple phase factor $e^{int/t^*}$, with $n\in \mathbb{N}$, so that all wavefunctions must also share the same periodicity in time. Still, it means a quantum particle placed exactly at one point on a circle (that is, in a position eigenstate) will return to the original position with probability $1$ every $t*$. We will comment more precisely on this fact in section \ref{sec:physical}.
 
 \newcommand{\modg}{PSL(2,\mathbb{Z})}
 
 The second relation is however especially important in combination with the first. The two transformations in terms of $\tau$ belong to the modular group $\modg$, which is composed of all maps of the form
 
-\begin{equation}
+\begin{equation*}
     \tau \rightarrow \frac{a \tau + b}{c\tau + d}\,, \quad a,b,c,d \in \mathbb{Z}\,,\; ad - bc = 1\,.
-\end{equation}
+\end{equation*}
 
-These are all diffeomorphisms from the upper half-plane to itself. They can also be extended to act on the real axis, provided the latter is compactified with a point at infinity as $\hat{\mathbb{R}} = \mathbb{R} \cup \{\infty\}$. The modular group is also realizable as a matrix group: if a modular transformation is represented by the unitary integer matrix
+These are all diffeomorphisms from the upper half-plane to itself. They can also be extended to act on the real axis, provided the latter is projectively compactified with a point at infinity as $\hat{\mathbb{R}} = \mathbb{R} \cup \{\infty\}$. The modular group is also realizable as a matrix group: if a modular transformation is represented by the unitary integer matrix
 
-\begin{equation}
-    \mqty( a & b \\ c & d)
-\end{equation}
+\begin{equation*}
+    \mqty( a  b \\ c & d)
+\end{equation*}
 
 then composition of modular maps is seen to coincide with matrix multiplication; this translates into a homomorphism from the modular group to $SL(2,\mathbb{Z})$. Since opposite matrices $A$ and $-A$ yield the same modular transformation, this can be turned into an isomorphism by quotienting the sign ambiguity: $SL(2,\mathbb{Z})/\mathbb{Z}_2 = PSL(2,\mathbb{Z})$ is therefore the modular group.
 
 $\modg$ has an obvious but powerful property of mapping rationals to rationals (or better, extended rationals $\hat{\mathbb{Q}} = \mathbb{Q} \cup \{\infty\}$), and moreover this action is transitive, in the sense that given rationals $r$ and $s$ there exists a modular map sending $r\mapsto s$. The modular group is generated by the two transformations:
 
-\begin{align}
-   && T : \tau \rightarrow \tau + 1\,, \quad& T=\mqty(1 & 1 \\ 0 & 1) && \\
-   && S : \tau \rightarrow -1/\tau\,, \quad& S=\mqty(0 & -1 \\ 1 & 0) &&
-\end{align}
+\begin{align*}
+   & T : \tau \rightarrow \tau + 1\,, \quad& T=\mqty(1 & 1 \\ 0 & 1) && \\
+   & S : \tau \rightarrow -1/\tau\,, \quad& S=\mqty(0 & -1 \\ 1 & 0) &&
+\end{align*}
 
 The Jacobi theta function $\vartheta(z,\tau)$ has well-defined transformation properties under $T$ and $S$, implying the same holds for general modular transformations. However, the transformation under $T$ involves a shift in the variable $z$, which is not especially useful for our purposes. The transformations that do keep $z$ constant are generated by maps \eqref{t2map} and \eqref{smap}:
 
-\begin{align}
-   && T^2 : \tau \rightarrow \tau + 2\,, \quad& T^2=\mqty(1 & 2 \\ 0 & 1) && \\
-   && S : \tau \rightarrow -1/\tau\,, \quad& S=\mqty(0 & -1 \\ 1 & 0) &&
-\end{align}
+\begin{align*}
+   & T^2 : \tau \rightarrow \tau + 2\,, \quad& T^2=\mqty(1 & 2 \\ 0 & 1) && \\
+   & S : \tau \rightarrow -1/\tau\,, \quad& S=\mqty(0 & -1 \\ 1 & 0) &&
+\end{align*}
 
 \newcommand{\emodg}{\Lambda}
 
@@ -501,13 +507,13 @@ These do generate a proper subgroup of $PSL(2,\mathbb{Z})$, as we will show now,
 
 $\emodg$ is an example of congruence subgroup, i.e. a subgroup of the modular group defined by a congruence relation, in our case
 
-\begin{equation}
+\begin{equation*}
     \emodg = \left\{M \in \modg \, : \quad M \equiv T^2 \text{ or } S \mod 2 \right\} 
-\end{equation}
+\end{equation*}
 
-\begin{equation}
-    = \left\{ \mqty(a & b \\ c & d) \in \modg \, : \quad ac \equiv bd \equiv 0 \mod 2 \right\}
-\end{equation}
+\begin{equation*}
+    = \left\{ \mqty(a  b \\ c & d) \in \modg \, : \quad ac \equiv bd \equiv 0 \mod 2 \right\}
+\end{equation*}
 
 and is also known in the literature as the theta subgroup\cite{eichler}.
 
@@ -528,13 +534,13 @@ The above procedure has the property of always decreasing the magnitude of eithe
 %\newcommand{\tappz}{\ensuremath{\xrightarrow{T^2}}}
 \newcommand{\tapp}[1]{\,\;\xrightarrow{\mathmakebox[2em]{(T^2)^{#1}}}\;\,}
 
-\begin{equation}
+\begin{equation*}
     \frac{13}{4} \tapp{-2} - \frac{3}{4} \sapp \frac{4}{3} \tapp{-1} - \frac{2}{3} \sapp \frac{3}{2} \tapp{-1} -\frac{1}{2} \sapp 2 \tapp{-1} 0
-\end{equation}
+\end{equation*}
 
-\begin{equation}
+\begin{equation*}
     \frac{7}{9} \sapp - \frac{9}{7} \tapp{1} \frac{5}{7} \sapp -\frac{7}{5} \tapp{1} \frac{3}{5} \sapp - \frac{5}{3} \tapp{1} \frac{1}{3} \sapp -3 \tapp{2} 1
-\end{equation}
+\end{equation*}
 
 Returning to our physical object of interest, the amplitude, we see that properties \eqref{t2map} and \eqref{smap} relate the behaviour of $\T$ at a rational time\footnote{We are, of course, here referring to the normalized time $\tau$ for simplicity.} with the behaviour at time $0$ or $1$ depending on the parity. Therefore $\T$ has a sort of self-similar structure, and any qualitative features present at the points $0$ and $1$ will be repeated infinitely in two dense sets. For example, we anticipate (though this will be studied more precisely) that the amplitude has a $\tau^{-1/2}$ singularity for $\tau$ close to zero, since for very small time the propagator on a circle is expected to reduce to that of the free particle. If so, then there must also be a similar singularity at all even rationals; therefore $\T$ has a dense set of singularities \cite{intermode_traces}.
 
@@ -545,9 +551,9 @@ Returning to our physical object of interest, the amplitude, we see that propert
 
 It is easy to show $\T$ ``should'' have a $\sim \tau^{-1/2}$ singularity near $\tau = 0$ \cite{boxpdf}. Indeed, applying  \eqref{smap}:
 
-\begin{equation}
-    \vartheta(\tau) = \sqrt{\frac{i}{\tau}} \sumZ e^{-i\pi n^2 \frac{1}{\tau}}\,.
-\end{equation}
+\begin{equation*}
+    \vartheta(\tau) = \sqrt{\frac{1}{-i\tau}} \sumZ e^{-i\pi n^2 \frac{1}{\tau}}\,.
+\end{equation*}
 
 Naively, all terms in the sum except $n=0$ are oscillatory and supposedly cancel for small times, and $\vartheta(\tau) \sim \asympt$. This corresponds to physical intuition: the propagator should reduce to the free particle propagator for very short times, in which the particle has not yet "probed" the global structure of the circle. If this is true, however, then similar singularities should be repeated at any even rational point. Thus $\T$ would have infinite singularities, and thus be unbounded, in any given interval. This makes it impossible for it to be ever asymptotic to $\tau^{-1/2}$ in the first place.
 
@@ -555,54 +561,54 @@ The asymptotic behaviour must not of course be interpreted as direct but in a di
 
 Consider the normalized Gaussian $g_\sigma(\tau) = \frac{1}{\sigma \sqrt{2\pi}} \exp(-\frac{\tau^2}{2\sigma^2})$. The integral of $g_\sigma(\tau)$ against $A \tau^{-1/2}$ is
 
-\begin{equation}
+\begin{equation*}
     \bra{\tau^{-1/2}}\ket{g_\sigma} =  A \intR d\tau \, g_\sigma(\tau) \tau^{-1/2} = \frac{2A}{\sigma\sqrt{2\pi}} 2^{1/4} \sqrt\sigma \int_0^\infty dx e^{-x} x^{-3/4} = \frac{A\Gamma(\frac{1}{4})}{2^{1/4}\sqrt{\pi\sigma}}\,.
-\end{equation}
+\end{equation*}
 
 On the other hand, if $g_\sigma(\tau)$ is integrated against $\vartheta$, we obtain
 
-\begin{equation}
+\begin{equation*}
     \bra{\vartheta}\ket{g_\sigma} = \sumZ \int d\tau \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{\tau^2}{2\sigma^2} + i\pi\tau n^2}  = \sumZ \exp(-\pi^2 \sigma^2 n^4 / 2)\,; 
-\end{equation}
+\end{equation*}
 
 only the asymptotic behaviour for small $\sigma$ is relevant. Defined $N^4 := 2 \pi^{-2} \sigma^{-2}$, the summand is slowly-varying for large $N$. Thus we can approximate as an integral:
 
-\begin{equation}
+\begin{equation*}
     = N \sumZ \frac{1}{N} \exp(-\frac{n^4}{N^4}) \sim N \intR d\xi \, e^{-\xi^4} = 2 N \, \Gamma(\tfrac{5}{4}) = \frac{2^{-3/4}}{\sqrt{\pi\sigma}} \Gamma(\tfrac{1}{4})\,.
-\end{equation}
+\end{equation*}
 
 It is therefore seen%\footnote{The doubt might arise that $\vartheta(\tau)$ also has a component with support in $\{0\}$ that is invisible to the family of gaussian (in the sense that its integral against $g_\sigma$ is independent on $\sigma$). However, this component must be a linear combination of $\delta$ derivatives; the even derivatives do yield positive powers of $\sigma$ and are to be excluded,  }
 \ that the action of $\vartheta$ on a Schwartz function shrinking around $\tau=0$ is asymptotic to that of the distribution $\asympt$.
 
 Now that the existence of this singularity has been ascertained, let us verify a reduced copy of it exists at any even rational. Imagine the even rational $a$ gets mapped to the even rational $b$ by one step of the iterative procedure described in section \ref{sec:modular}. Assume it is known that in the vicinity of $b$ there is an inverse square-root singularity:
 
-\begin{equation}
+\begin{equation*}
     \vartheta(b + \delta\tau') \sim K \delta \tau^{-1/2}
-\end{equation}
+\end{equation*}
 
 Now, if $a$ and $b$ are related by a simple translation $(T^2)^n$, then it's obvious this singularity is copied with no change in the constant $K$ by the periodicity property \eqref{t2map}. If instead they are related by the map $S$, and $b = -1/a$, then
 
-\begin{equation}
+\begin{equation*}
     \vartheta(a + \delta\tau) = \sqrt\frac{i}{a} \vartheta\left(-\frac{1}{a+\delta\tau}\right) \sim \sqrt\frac{i}{a} \vartheta(b + \frac{\delta \tau}{a^2}) = \sqrt{ia} K \delta\tau^{-1/2}\,,
-\end{equation}
+\end{equation*}
 
 so that $a$ inherits the singularity of $b$ but suppressed by a factor of $\sqrt{a}$. By simple induction, a singularity appears at any even rational $\pm p/q$, and the constant of proportionality $K_{p/q}$ is equal to the square root of the product of all rational encountered in the procedure towards $\tau = 0$ at each application of $S$; it's clear this is simply $|K_{p/q}| = 1/\sqrt{q}$. So, in the vicinity of $p/q$ the distribution $\vartheta$ behaves as
 
-\begin{equation}
+\begin{equation*}
     \vartheta(\tau) \sim \frac{1}{\sqrt{p-q\tau}}
-\end{equation}
+\end{equation*}
 
-%\cmnt{è possibile anche fare un calcolo della fase delle singolarità? Credo di sì}
+%{è possibile anche fare un calcolo della fase delle singolarità? Credo di sì}
 
-%\cmnt{Forse no... forse è equivalente al calcolo delle fasi nella \eqref{finalrationalkernel}, che coinvolge number theory e potrebbe non essere fattibile nel caso generale}
+%{Forse no... forse è equivalente al calcolo delle fasi nella \eqref{finalrationalkernel}, che coinvolge number theory e potrebbe non essere fattibile nel caso generale}
 
 \subsection{Odd rationals}
 
 The point $\tau=1$ is equally peculiar. We argue $\vartheta$ vanishes there along with all of its distributional derivatives $\dv[k]{t} \vartheta(\tau)$. Again, the statement as it stands is non-sensical unless it is reformulated in distributional language because of the dense set of singularities. To express it we introduce again a family of shrinking Schwartz functions $f_\sigma(\tau) = f((\tau-1)/\sigma)$, this time centered around $1$. We claim that, for all $k \in \mathbb{N}$,
 
-\begin{equation}
+\begin{equation*}
     \lim_{\sigma \rightarrow 0} \bra{ \dv[k]{t}\vartheta}\ket{ f_\sigma } = 0
-\end{equation}
+\end{equation*}
 
 As before, it suffices to test against shrinking normalized Gaussians $g_\sigma(\tau) = \frac{1}{\sigma\sqrt{2\pi}} \exp( - \frac{\tau^2}{2\sigma^2} )$. We find
 
@@ -795,7 +801,7 @@ Having in addition noted that $\abs{\beta_{p,1,c}} = 1$ for all $p,c$, we can in
 %    \beta_{p,q,c} \beta^*_{p,q,c} = \sum_{b_1=0}^{q-1} \sum_{b_2=0}^{q-1} \left(e^{i\pi/q}\right)^{p(b_1^2 - b_2^2) + l (b_1 - b_2)} = q     
 %\end{equation}
 %
-%\cmnt{Nessun progresso per dimostrare questo fatto. Numericamente sembra vero.}
+%{Nessun progresso per dimostrare questo fatto. Numericamente sembra vero.}
 
 
 Thus, the fundamental solution at fractional time becomes
@@ -837,7 +843,7 @@ where again $\Delta = \frac{1}{2} (q \mod 2)$. If we recall that by definition $
 %\end{equation}
 
 
-\section{Physical interpretation}
+\section{Physical interpretation}\label{sec:physical}
 
 A central concern in modern physics is the nature of the interface between quantum and classical mechanics. The correspondence principle, the idea that quantum systems should reduce to classical in some large quantum numbers limit, has been shown consistently to be too strong of a hypothesis if taken with absolute generality. Instead, the boundary between the class of cases where a concept of classical limit is sensible and those for which it is not has proven to be complex and require special care.
 
