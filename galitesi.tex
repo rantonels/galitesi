@@ -602,7 +602,7 @@ so that $a$ inherits the singularity of $b$ but suppressed by a factor of $\sqrt
 
 %{Forse no... forse è equivalente al calcolo delle fasi nella \eqref{finalrationalkernel}, che coinvolge number theory e potrebbe non essere fattibile nel caso generale}
 
-\subsection{Odd rationals}
+\subsection{Odd rationals}\label{sec:oddrationals}
 
 The point $\tau=1$ is equally peculiar. We argue $\vartheta$ vanishes there along with all of its distributional derivatives $\dv[k]{t} \vartheta(\tau)$. Again, the statement as it stands is non-sensical unless it is reformulated in distributional language because of the dense set of singularities. To express it we introduce again a family of shrinking Schwartz functions $f_\sigma(\tau) = f((\tau-1)/\sigma)$, this time centered around $1$. We claim that, for all $k \in \mathbb{N}$,
 
@@ -956,12 +956,14 @@ where the integral is over $z(t)$ such that $z(0) = z_1$, $z(T) = z_2$, is domin
 Thus the amplitude is at least in principle understood as a term expected from the classical equation of motion plus arbitrary quantum corrections. Normally there is one unique classical solution with given boundary conditions. However if it is the case that multiple solutions $z_\text{cl}^{(n)}$ exist, then the corresponding amplitude would generalize to a sum:
 
 \begin{equation}
-    A \sim \sum_n e^{i S[z_cl]^{(n)}} ( 1 + \text{quantum corrections} \ldots)\,.
+    A \sim \sum_n e^{i S[z_{cl}^{(n)}]} ( 1 + \text{quantum corrections} \ldots)\,.
 \end{equation}
 
 And if in addition the number of solutions is infinite, we could expect the amplitude to diverge, more precisely to concentrate in a ``speck'' centered on the arguments $(z_2-z_1,T)$ that trigger the appearance of the infinite classical solutions, and thus would turn into a $\delta$ function and result in a quantum revival. We call such a situation a caustic \cite{horie_quantum}\cite{boxpdf} in analogy with the phenomenon in optics. In the quantum harmonic oscillator, a caustic appears for $z_2 - z_1 = 0$ and $T \in \frac{\pi}{\omega} \mathbb{Z}$, because all classical solutions $z_A(t) = A \sin(\omega t)$ starting at $z_1 = 0$ for $t=0$ reconverge at $z_2 = 0$ at time $T$. These caustics result in a periodic revival of the wavefunction.
 
 On the circle, however, revivals are much more frequent. If $\tau = \frac{p}{q} \in \mathbb{Q}$, then of all classical solutions $z_v(t) = vt$ (meant $\mod 1$) an infinite number will reconverge at each of the $q$ points $\frac{c}{q}$, namely those with $v \in \mathbb{Z}/p$. The quantum particle on the circle has caustics in a dense set of times.
+
+To conclude our discussion, we present a couple of numerical examinations of the fractional revival phenomenon. In figure \ref{fig:pokies}, the Schr\"odinger equation was solved for an initial gaussian wavepacket through convolution with the $\T$ kernel, and the appearance of fractional copies at rational time is evident. We note that the spread in the initial state offers a natural short-length cutoff\footnote{We are cautious about the usage of the expression ``UV cutoff'', since a short-length cutoff is only such in a relativistic context.}, so that if we were to plot the state at a time $p/q$ with $1/q \ll \sigma_x$ the copies would not be distinguishable. This provides some intuition as to how the propagator can be well-defined and regular when convolved; the small-scale singular behaviour is cut off in integration with a sufficiently regular initial state. In figure \ref{fig:butterfly} we plot the same solution, but as a function of space and time. It is found that reducing the spread in the initial state does make smaller-length structure of the propagator appear, but the graph becomes \emph{less} readable and becomes noisy. This is an informal presentation of the fact that there is no convergence of the propagator as a regular sum. We note that the diagonal lines of $\abs{\psi}$ visible through the plot are simply the ``flat points'' we demonstrated in section \ref{sec:oddrationals}, and are called ``intermode traces'' in \cite{intermode_traces}.
 
 %\immagine{3dplots/1-3.pgf}{20cm}{ }{13}
 \figurewrapper{
