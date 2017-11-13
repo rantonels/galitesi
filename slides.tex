@@ -1,0 +1,117 @@
+\documentclass{beamer}
+
+\usepackage{physics}
+
+\usepackage{mathtools}  
+\mathtoolsset{showonlyrefs} 
+
+\mode<presentation>{}
+
+\usefonttheme{serif}
+
+%% preamble
+\title{Quantum particle on a circle}
+%\subtitle{The subtitle}
+\author{Riccardo Antonelli}
+\begin{document}
+
+\begin{frame}
+    \maketitle
+\end{frame}
+
+\begin{frame}{Divergent oscillations}
+\begin{equation*}
+    \mathcal{A} = \sum_{\phi(t)} e^{iF[\phi(t)]}
+    \label{}
+\end{equation*}
+
+Quantum observables are oscillatory sums\footnote{politically correct language for ``divergent''}, need \textbf{regularization}.
+
+\end{frame}
+
+\begin{frame}{Wick rotation}
+    Standard answer: tilt head $\pi/2$.
+
+    \begin{equation}
+        t = i\tau
+        \label{}
+    \end{equation}
+
+    \begin{equation}
+        F[\phi(i\tau)] = i \mathcal{F}[\varphi(\tau)]
+        \label{}
+    \end{equation}
+
+    \begin{equation}
+        \mathcal{A}(it) = \sum_{\varphi(\tau)} e^{-\mathcal{F}[\varphi(\tau)]}
+        \label{}
+    \end{equation}
+
+    Now they converge. Then hopefully get back to real axis through analytic continuation.
+\end{frame}
+
+\begin{frame}{QM on circles}
+    Place free quantum particle on a circle.
+
+    \begin{align}
+        x \sim x + 1\,, && \psi(x+1,t) = \psi(x,t)\\
+        i \pdv{t} \psi(x,t) = - {\nabla \over 2} \psi(x,t) && \partial_x \psi(x+1,t) = \partial_x \psi(x,t)
+        \label{}
+    \end{align}
+    
+    Initial condition is a position (generalized) eigenstate
+
+    \begin{equation}
+        \psi(x,0) = \delta(x)
+        \label{}
+    \end{equation}
+
+    $\psi(x,t)$ is the \textbf{propagator} or \textbf{fundamental solution}.
+
+\end{frame}
+
+\newcommand{\sumZ}{\sum_{n=-\infty}^\infty}
+
+\begin{frame}{Unwrapping the circle}
+    On $\mathbb{R}$, the propagator is innocuous enough:
+
+    \begin{equation}
+        G_\mathbb{R}(x,t) = {1 \over \sqrt{ 2\pi i t }} \exp(ix^2 \over 2t)
+        \label{}
+    \end{equation}
+
+    But $\mathbb{S}^1 = \mathbb{R} / \mathbb{Z}$, therefore
+
+    \begin{equation}
+        G(x,t) = \sumZ G_\mathbb{R}(x+n,t) 
+    \end{equation}
+    \begin{equation}
+        = \exp(ix^2 \over 2t) {1 \over \sqrt{2\pi i t}} \sumZ \exp( {in^2 \over 2t} + {ixn \over t} )
+    \end{equation}
+
+    Simply a method of images!
+\end{frame}
+
+
+\begin{frame}{A pleasant surprise}
+    \begin{equation}
+   G(x,t) = \exp(ix^2 \over 2t) {1 \over \sqrt{2\pi i t}} \sumZ \exp( {in^2 \over 2t} + {ixn \over t} ) 
+   \end{equation}
+
+   Change variables $\tau := 2\pi t$, $z := x$, and use Poisson resummation:
+
+   \begin{equation}
+       G(z,\tau) = \sumZ \exp(\pi i n^2 \tau + 2 \pi i n z)
+       \label{}
+   \end{equation}
+
+   It's the Jacobi $\vartheta$ function!
+\end{frame}
+
+\begin{frame}{A less pleasant surprise}
+    
+\end{frame}
+
+
+
+\end{document}
