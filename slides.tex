@@ -40,21 +40,23 @@ Quantum observables are oscillatory sums\footnote{politically correct language f
 
 \end{frame}
 
+\newcommand{\imt}{\eta}
+
 \begin{frame}{Wick rotation}
     Standard answer: tilt head $\pi/2$.
 
     \begin{equation}
-        t = i\mathrm{t}
+        t = i\imt
         \label{}
     \end{equation}
 
     \begin{equation}
-        F[\phi(i\mathrm{t})] = i \mathcal{F}[\varphi(\mathrm{t})]
+        F[\phi(i\imt)] = i \mathcal{F}[\varphi(\imt)]
         \label{}
     \end{equation}
 
     \begin{equation}
-        \mathcal{A}(it) = \sum_{\varphi(\tau)} e^{-\mathcal{F}[\varphi(i\mathrm{t})]}
+        \mathcal{A}(it) = \sum_{\varphi(\imt)} e^{-\mathcal{F}[\varphi(i\imt)]}
         \label{}
     \end{equation}
 
@@ -66,7 +68,7 @@ Quantum observables are oscillatory sums\footnote{politically correct language f
 
     \begin{align}
         x \sim x + 1\,, && \psi(x+1,t) = \psi(x,t)\\
-        i \pdv{t} \psi(x,t) = - {\nabla \over 2} \psi(x,t) && \partial_x \psi(x+1,t) = \partial_x \psi(x,t)
+        i \pdv{t} \psi(x,t) = - {\Delta \over 2} \psi(x,t) && \partial_x \psi(x+1,t) = \partial_x \psi(x,t)
         \label{}
     \end{align}
     
@@ -163,7 +165,7 @@ Quantum observables are oscillatory sums\footnote{politically correct language f
     $\T(0,\tau)$ has remarkable transformation properties under modular transformations.
 
 \begin{equation}
-    \T(0,\tau + 2) = \T(0,\tau)\,,\quad \T(0,-\frac{1}{\tau}) = \sqrt{-i\tau} \T(0,\tau)
+    \T(0,\tau + 2) = \T(0,\tau)\,,\quad \T\left(0,-\frac{1}{\tau}\right) = \sqrt{-i\tau} \T(0,\tau)
     \label{}
 \end{equation}
 
@@ -183,7 +185,7 @@ All rational times $p/q$ can be mapped back to either $1$ or $0$ depending on th
 \end{frame}
 
 \begin{frame}{Even rationals}
-        $\T(\tau)$ is ``asymptotic'' to $1/\sqrt{\tau}$ for $\tau \sim 0$. Normal analytic methods however fail. We test with shrinking gaussian test functions:
+        $\T(\tau)$ is ``asymptotic'' to $1/\sqrt{\tau}$ for $\tau \rightarrow 0$. Normal analytic methods however fail. We test with shrinking gaussian test functions:
 \begin{equation}
     \left\langle g_\sigma(\tau), \T \right\rangle \sim \left\langle g_\sigma(\tau) , \tau^{-1/2} \right\rangle
     \label{}
@@ -193,10 +195,10 @@ All rational times $p/q$ can be mapped back to either $1$ or $0$ depending on th
 
         \[\int d\tau \, \vartheta(\tau) \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{\tau^2}{2\sigma^2}} = \sumZ \exp(-\pi^2 \sigma^2 n^4 / 2) \]
     
-        \[\sim \frac{2^{1/4}}{\sqrt{\pi \sigma}} \int d\xi e^{-\xi^4} = \frac{2^{-3/4}}{\sqrt{\pi\sigma}} \Gamma(\frac{1}{4}) \]
+        \[\sim \frac{2^{1/4}}{\sqrt{\pi \sigma}} \int d\xi e^{-\xi^4} = \frac{2^{-3/4}}{\sqrt{\pi\sigma}} \Gamma\left(\frac{1}{4}\right) \]
 
 
-        \[ \int d\tau \, \frac{1}{\sqrt \tau} \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{\tau^2}{2\sigma^2}}  = \frac{2^{-3/4}}{\sqrt{\pi \sigma}} \Gamma(\frac{1}{4}) \]
+        \[ \int d\tau \, \frac{1}{\sqrt \tau} \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{\tau^2}{2\sigma^2}}  = \frac{2^{-3/4}}{\sqrt{\pi \sigma}} \Gamma\left(\frac{1}{4}\right) \]
 
 
 \end{frame}
@@ -234,7 +236,15 @@ $\theta(\tau)$ has a \textbf{dense} set of singularities! They are rescaled by $
    
     \[ \propto \sumZ n^{2k} (-1)^n e^{-\pi^2 \sigma^2 n^4 / 2} = \frac{1}{2\pi i}\oint \frac{\pi}{\sin \pi z} z^{2k} \exp(-\pi^2\sigma^2 n^4) dz \]
 
-    \scalebox{0.8}{\input{images/contour.pdf_tex}} Send $\sigma \rightarrow 0$, but keep $t \sqrt{\sigma}$ constant.
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+        \centering        \scalebox{0.8}{\input{images/contour.pdf_tex}}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+
+        Send $\sigma \rightarrow 0$, but keep $l \sqrt{\sigma}$ constant.
+        \end{column}
+    \end{columns}
 
 \end{frame}
 
@@ -266,19 +276,19 @@ $\theta(\tau)$ has a \textbf{dense} set of singularities! They are rescaled by $
     Fix $\tau = p/q$, study $z$ dependence.
 
     \begin{equation}
-        \vartheta(z,\tau) = \sumZ e^{\pi i n^2 \frac{p}{q} + 2\pi i n z}
+        \vartheta\left(z,\frac{p}{q}\right) = \sumZ e^{\pi i n^2 \frac{p}{q} + 2\pi i n z}
         \label{}
     \end{equation}
 
     Trick: $n = aq + b$, $a \in \mathbb{Z}$, $b = 0,\ldots,q-1$
 
 \begin{equation}
-    \vartheta(z,\tau) = \frac{1}{\sqrt q} \sum_{c=0}^{q-1} \phi_{p,q,c} \, \delta\left(z - \frac{c+\Delta}{q}\right)
+    \vartheta\left(z,\frac{p}{q}\right) = \frac{1}{\sqrt q} \sum_{c=0}^{q-1} \phi_{p,q,c} \, \delta\left(z - \frac{c+\Delta}{q}\right)
     \label{}
 \end{equation}
 
 
-The propagator is a ``\textbf{fractional comb}'' of $q$ equispaced $\delta$-functions.
+The propagator is a ``\textbf{fractional comb}'' of $q$ equally-spaced $\delta$-functions.
 
 \vfill
 
@@ -339,14 +349,14 @@ No general closed form.
 \end{frame}
 
 \begin{frame}
-    Reconvergence of classical solutions, a \textbf{caustic}, generates a $\delta$-function pole in an amplitude (simply resonance!). 
+    Reconvergence of classical solutions, a \textbf{caustic}, generates a $\delta$-function singularity in an amplitude (simply resonance!). 
     
     \vfill
 
     When $2\pi t$ is rational, then an infinite number of classical solutions starting at $z=0$:
 
     \begin{equation}
-        z_v(t) = vt
+        z_v(t) = vt\,;\quad v = 2\pi {n \over p}
         \label{}
     \end{equation}
 

@@ -50,6 +50,6 @@
   \makeatother%
   \begin{picture}(1,0.58365489)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{contour.pdf}}%
-    \put(0.37406013,0.46851919){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.15789473\unitlength}\raggedright $t$\end{minipage}}}%
+    \put(0.37406013,0.46851919){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.15789473\unitlength}\raggedright $l$\end{minipage}}}%
   \end{picture}%
 \endgroup%
